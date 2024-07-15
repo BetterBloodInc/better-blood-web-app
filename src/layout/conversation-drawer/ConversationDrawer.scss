@@ -1,0 +1,71 @@
+@import '../../palette.scss';
+
+.ConversationDrawer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 500px;
+  background: white;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  ul {
+    list-style: none;
+    padding: 1rem;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    height: calc(100% - 124px - 4rem);
+    overflow-y: auto;
+    gap: 0.5rem;
+  }
+  .EmptyState {
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    height: calc(100% - 124px - 4rem);
+    text-align: center;
+    gap: 1rem;
+  }
+  .InputContainer {
+    width: 100%;
+  }
+}
+.ConversationDrawer__header {
+  padding: 1rem;
+  gap: 0.5rem;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+.ConversationDrawer__input {
+  align-items: center;
+  width: calc(100% - 2rem);
+  flex-grow: 1;
+  padding: 1rem;
+  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+.dark-mode {
+  .ConversationDrawer {
+    background: #234;
+  }
+  .ConversationDrawer__header {
+    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+  }
+  .ConversationDrawer__input {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ConversationDrawer {
+    top: 60px;
+    bottom: 68px;
+    width: auto;
+    left: 0;
+    right: 0;
+  }
+  .ConversationDrawer__header > .Row {
+    flex-direction: row-reverse;
+  }
+  #close-conversation-drawer {
+    display: none;
+  }
+}

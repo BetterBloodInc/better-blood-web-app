@@ -1,0 +1,182 @@
+@import '../../palette.scss';
+.date-picker {
+  position: relative;
+  width: 100%;
+  label {
+    position: absolute;
+    top: 12;
+    left: 16;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+  &:focus-within {
+    label {
+      color: $tertiary-color-light;
+    }
+  }
+  svg {
+    position: absolute;
+    top: 16;
+    left: 12;
+    opacity: 0.5;
+  }
+  &.has-label {
+    svg {
+      left: 18px;
+      top: 40px;
+    }
+  }
+}
+.react-datepicker-wrapper {
+  width: 100%;
+}
+.react-datepicker {
+  border: 0;
+  font-family: inherit;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+.datepicker
+  .react-datepicker-popper[data-placement^='bottom']
+  .react-datepicker__triangle::before {
+  border-bottom-color: #234;
+}
+.react-datepicker-popper[data-placement^='bottom'] .react-datepicker__triangle {
+  fill: #234;
+  color: #234;
+  stroke: none;
+}
+.react-datepicker__header {
+  background: #234;
+  border-bottom: 0;
+}
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+  color: white;
+  font-weight: 500;
+}
+.react-datepicker__day-name {
+  color: rgba(255, 255, 255, 0.63);
+}
+.react-datepicker__input-container > input {
+  border: 0;
+  width: calc(100% - 48px);
+  padding: 14px 14px 14px 34px;
+  border-radius: 4px;
+  background: none;
+  color: black;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+  &::placeholder {
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    color: rgba(0, 0, 0, 0.5);
+  }
+  &:focus {
+    outline: none;
+    background: rgba($tertiary-color-light, 0.1);
+    box-shadow: inset 0 0 0 2px $tertiary-color-light;
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.33);
+    }
+  }
+}
+.date-picker.has-label .react-datepicker__input-container > input {
+  width: calc(100% - 58px);
+  padding: 40px 18px 18px 40px;
+}
+.react-datepicker-popper {
+  z-index: 3;
+}
+.react-datepicker__navigation {
+  top: 0;
+  &:hover {
+    background: none;
+    transform: none;
+  }
+}
+.react-datepicker__navigation--previous {
+  left: 0;
+}
+.react-datepicker__navigation--next {
+  right: 0;
+}
+.react-datepicker__year-read-view--down-arrow,
+.react-datepicker__month-read-view--down-arrow,
+.react-datepicker__month-year-read-view--down-arrow,
+.react-datepicker__navigation-icon::before {
+  color: rgba(255, 255, 255, 0.63);
+  border-width: 2px 2px 0 0;
+  top: 14px;
+  height: 8px;
+  width: 8px;
+}
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range,
+.react-datepicker__month-text--in-selecting-range,
+.react-datepicker__month-text--in-range,
+.react-datepicker__quarter-text--in-selecting-range,
+.react-datepicker__quarter-text--in-range,
+.react-datepicker__year-text--in-selecting-range,
+.react-datepicker__year-text--in-range {
+  background: rgba($primary-color, 1);
+  color: $primary-color;
+}
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__month-text--keyboard-selected,
+.react-datepicker__quarter-text--keyboard-selected,
+.react-datepicker__year-text--keyboard-selected,
+.react-datepicker__day--range-start,
+.react-datepicker__day--range-end {
+  background: $primary-color;
+  color: white;
+}
+.date-picker > button {
+  padding: 0;
+  position: absolute;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 14px;
+  font-size: 12px;
+  top: 11px;
+  svg {
+    margin: 0;
+  }
+}
+.react-datepicker__year-read-view {
+  color: white;
+}
+.react-datepicker__year-read-view--down-arrow {
+  top: 3px;
+}
+.dark-mode {
+  .date-picker {
+    label {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    &:focus-within {
+      label {
+        color: $tertiary-color;
+      }
+    }
+  }
+  .react-datepicker__input-container > input {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    color: white;
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    &:focus {
+      background: rgba($tertiary-color, 0.1);
+      box-shadow: inset 0 0 0 2px $tertiary-color;
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.33);
+      }
+    }
+  }
+}

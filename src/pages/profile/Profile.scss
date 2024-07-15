@@ -1,0 +1,10 @@
+.Height, .Weight {
+  .options{
+    flex-wrap: nowrap;
+  }
+}
+@media screen and (max-width: 768px) {
+  .RawData__header {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,36 @@
+@import '../palette.scss';
+
+.status-circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  &.bad {
+    background-color: $primary-color-light;
+  }
+  &.ok {
+    background-color: $secondary-color-light;
+  }
+  &.good {
+    background-color: $tertiary-color-light;
+  }
+  &.unknown {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}
+
+.dark-mode {
+  .status-circle {
+    &.bad {
+      background-color: $primary-color;
+    }
+    &.ok {
+      background-color: $secondary-color;
+    }
+    &.good {
+      background-color: $tertiary-color;
+    }
+    &.unknown {
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+  }
+}

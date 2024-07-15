@@ -1,0 +1,39 @@
+.modal {
+  font-family: Poppins, sans-serif;
+  border-radius: 10;
+  padding: 2rem 2rem 2rem;
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.1);
+  background: white;
+}
+.dark-mode .modal {
+  color: white;
+  background: linear-gradient(to bottom, #234, #345);
+}
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modal-fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+.modal-fade-in {
+  animation: modal-fade-in 0.3s ease-in-out;
+}
+.modal-fade-out {
+  animation: modal-fade-out 0.3s ease-in-out;
+}

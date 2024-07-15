@@ -1,0 +1,49 @@
+@import '../../palette.scss';
+.tag-select {
+  flex-shrink: 1;
+  display: flex;
+  .options {
+    border-radius: 4px;
+    gap: 0.5rem;
+    overflow-x: auto;
+  }
+}
+.tag {
+  display: flex;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 14px;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  &.selected {
+    background: $primary-color;
+    color: white;
+    font-weight: 500;
+  }
+}
+
+.dark-mode {
+  .tag-select {
+    border: none;
+  }
+  .tag {
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.63);
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+    }
+    &.selected {
+      background-color: rgba($primary-color, 0.3);
+      border-color: $primary-color;
+      color: white;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tag-select {
+    width: calc(100% - 2rem);
+  }
+}

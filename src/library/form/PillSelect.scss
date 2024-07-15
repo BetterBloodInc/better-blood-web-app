@@ -1,0 +1,61 @@
+@import '../../palette.scss';
+.pill-select {
+  position: relative;
+  padding: 2.5rem 1rem 1rem;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  label {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+  .options {
+    border-radius: 4px;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+}
+.pill {
+  display: flex;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  &.selected {
+    background: $primary-color;
+    color: white;
+    font-weight: 500;
+  }
+}
+
+.dark-mode {
+  .pill-select {
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    label {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+  .pill {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+    }
+    &.selected {
+      background-color: rgba($primary-color, 0.3);
+      border-color: $primary-color;
+      color: white;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .pill-select {
+    width: calc(100% - 2rem);
+  }
+}

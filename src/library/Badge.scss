@@ -1,0 +1,42 @@
+@import '../palette.scss';
+
+.badge {
+  display: inline-block;
+  padding: 0.5em 0.75em;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: $quaternary-color;
+}
+.badge.green {
+  background-color: $tertiary-color;
+}
+.badge.red {
+  background-color: $primary-color;
+}
+.badge.yellow {
+  background-color: $secondary-color-light;
+  color: black;
+}
+.badge.dark {
+  color: $quaternary-color;
+  background-color: rgba($quaternary-color, 0.1);
+}
+.badge.dark.red {
+  color: $primary-color;
+  background-color: rgba($primary-color, 0.1);
+}
+.badge.dark.yellow {
+  background-color: $secondary-color-light;
+  color: black;
+}
+.dark-mode .badge.dark.yellow {
+  color: $secondary-color;
+  background-color: rgba($secondary-color, 0.1);
+}

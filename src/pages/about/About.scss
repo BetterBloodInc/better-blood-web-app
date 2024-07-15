@@ -1,0 +1,36 @@
+@import '../../palette.scss';
+.About {
+  > div {
+    padding: 4rem;
+  }
+}
+.faq-item {
+  line-height: 1.5;
+  background: rgba(0, 0, 0, 0.05);
+  > div:first-child {
+    color: $primary-color-light;
+    font-weight: 500;
+  }
+}
+.dark-mode .faq-item {
+  background: rgba(255, 255, 255, 0.05);
+  transition: 0.3s;
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.02);
+  }
+  > div:first-child {
+    color: $secondary-color;
+  }
+  > div:last-child {
+    color: rgba(255, 255, 255, 0.75);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .About {
+    > div {
+      padding: 0.5rem;
+    }
+  }
+}

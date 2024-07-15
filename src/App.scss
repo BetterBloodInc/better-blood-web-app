@@ -1,0 +1,185 @@
+@import './palette.scss';
+html {
+  background-color: #123;
+}
+body {
+  margin: 0;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+button,
+div {
+  font-family: 'Poppins', sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+  line-height: 1.5;
+}
+h1 {
+  font-size: 28px;
+}
+h2 {
+  font-size: 24px;
+}
+h3 {
+  font-size: 20px;
+}
+h4 {
+  font-size: 16px;
+}
+h5 {
+  font-size: 14px;
+}
+h6 {
+  font-size: 12px;
+}
+strong {
+  font-weight: 600;
+}
+p {
+  color: #000a;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  &:last-child {
+    margin: 0;
+  }
+}
+a {
+  color: $primary-color-light;
+  text-decoration: none;
+  line-height: 1.5;
+}
+.dark-mode p {
+  color: #fffa;
+}
+.App.dark-mode {
+  --scrollbar-color-track: rgba(0, 0, 0, 0.3);
+  --scrollbar-color-thumb: rgba(255, 255, 255, 0.1);
+  scrollbar-color: var(--scrollbar-color-thumb) var(--scrollbar-color-track);
+  scrollbar-highlight-color: rgba(255, 255, 255, 0.2);
+}
+.App {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff;
+  color: #000;
+}
+.App.dark-mode {
+  color: #fff;
+  background: linear-gradient(to bottom, #123, #1f0e18);
+}
+input {
+  border: 0;
+  padding: 0px 12px;
+  font-size: 16px;
+  border-radius: 4px;
+  height: auto;
+  resize: vertical;
+  background: rgba(0, 0, 0, 0.1);
+  color: white;
+  outline: none;
+  &::placeholder {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+  &:focus {
+    box-shadow: inset 0 0 0 2px #4d9;
+    background: #4d94;
+  }
+  &:disabled {
+    background: rgba(0, 0, 0, 0.1);
+    color: rgba(0, 0, 0, 0.5);
+  }
+}
+.align-right {
+  text-align: right;
+}
+.text-green {
+  color: $tertiary-color-light;
+}
+.text-red {
+  color: $primary-color-light;
+}
+.text-yellow {
+  color: $secondary-color-light;
+}
+.metric-name {
+  color: $primary-color-light;
+}
+
+div.react-tooltip {
+  background: #123;
+  padding: 12px;
+  opacity: 1;
+}
+
+.card-secondary {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 0.5rem;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  h4 {
+    font-size: 16px;
+  }
+  a {
+    font-size: 13px;
+  }
+  .overline {
+    color: black;
+  }
+}
+
+.dark-mode .card-secondary {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  .overline {
+    color: white;
+  }
+}
+
+.dark-mode {
+  div.react-tooltip {
+    background: #345;
+  }
+  a {
+    color: $primary-color;
+    &:hover {
+      color: #fff;
+    }
+  }
+  .metric-name {
+    color: $secondary-color;
+  }
+  input {
+    background: rgba(0, 0, 0, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    &:focus {
+      box-shadow: inset 0 0 0 2px #4d9;
+      background: #4d92;
+    }
+  }
+  .text-green {
+    color: $tertiary-color;
+  }
+  .text-red {
+    color: $primary-color;
+  }
+  .text-yellow {
+    color: $secondary-color;
+  }
+}

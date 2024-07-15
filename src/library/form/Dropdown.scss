@@ -1,0 +1,39 @@
+@import '../../palette.scss';
+.drop-down {
+  width: 100%;
+  position: relative;
+  > div:first-child {
+    color: rgba(255, 255, 255, 0.5);
+  }
+  &:focus-within > div:first-child {
+    color: $primary-color;
+  }
+  input[type='text']:focus-visible {
+    box-shadow: none;
+  }
+  &.disabled {
+    opacity: 0.5;
+  }
+  label {
+    position: absolute;
+    top: 12;
+    left: 16;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+}
+.dark-mode {
+  .drop-down {
+    label {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    &:focus-within {
+      label {
+        color: $tertiary-color;
+      }
+    }
+  }
+}

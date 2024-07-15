@@ -1,0 +1,45 @@
+@import '../../palette.scss';
+
+.impact-indicator {
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.impact-indicator-icon {
+  background: #eee;
+  width: 24;
+  height: 24;
+  border-radius: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.impact-level {
+  box-shadow: inset 0 0 0 1px #0003;
+  width: 32px;
+  height: 12px;
+}
+.low,
+.med,
+.high {
+  box-shadow: none;
+}
+.low {
+  background-color: #999;
+}
+.med {
+  background-color: #999;
+}
+.high {
+  background-color: #999;
+}
+
+.dark-mode {
+  .impact-indicator-icon {
+    background: #123;
+  }
+  .impact-level {
+    box-shadow: inset 0 0 0 1px #fff3;
+  }
+}

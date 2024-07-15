@@ -1,0 +1,153 @@
+@import '../../palette.scss';
+
+$bg-color-dark: rgba(255, 255, 255, 0.05);
+$bg-color-light: #eee;
+
+.table {
+  font-family: Poppins, sans-serif;
+  font-size: 14px;
+  width: 100%;
+  color: black;
+  > header {
+    .InputContainer {
+      width: 200px;
+    }
+  }
+  .table-with-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .table-actions {
+    button {
+      font-size: 14px;
+    }
+    ul {
+      margin: 0;
+      align-items: center;
+      li + li {
+        margin: 0;
+      }
+    }
+    .select-one ul li label {
+      font-size: 12px;
+      padding: 0.5rem 0.75rem;
+    }
+  }
+  > header + main {
+    margin-top: 1rem;
+  }
+  > main {
+    border: 1px solid $bg-color-light;
+    border-radius: 5px;
+    overflow-y: hidden;
+    overflow-x: auto;
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    td,
+    th {
+      padding: 1.3rem;
+      text-align: left;
+      vertical-align: middle;
+      &.active {
+        color: $primary-color;
+      }
+    }
+    th {
+      cursor: pointer;
+      font-weight: 500;
+      &.right-align {
+        text-align: right;
+      }
+    }
+  }
+  .table-empty-message {
+    padding: 2rem;
+    font-size: 14px;
+  }
+  &.table-card {
+    > main {
+      table {
+        width: 100%;
+        font-size: 14px;
+      }
+      thead {
+        text-transform: uppercase;
+        font-size: 11px;
+        letter-spacing: 0.03rem;
+        box-shadow: 0 1px rgba(255, 255, 255, 0.05);
+        background: $bg-color-light;
+        th {
+          font-weight: 600;
+          white-space: nowrap;
+        }
+      }
+      tbody {
+        tr:nth-child(2n) {
+          background: $bg-color-light;
+        }
+        tr:hover {
+          background: rgba(0, 0, 0, 0.2);
+        }
+        td {
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+}
+.selectable tr:hover {
+  cursor: pointer;
+}
+.table-filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+}
+.dark-mode {
+  .table {
+    color: white;
+    .table-actions {
+      button {
+        font-size: 14px;
+      }
+      ul {
+        li + li {
+          margin: 0;
+        }
+      }
+    }
+    > main {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      th {
+        cursor: pointer;
+      }
+      .table-empty-message {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      thead {
+        box-shadow: 0 1px rgba(255, 255, 255, 0.05);
+        background: $bg-color-dark;
+        th {
+          font-weight: 600;
+        }
+      }
+      tbody {
+        tr:nth-child(2n) {
+          background: $bg-color-dark;
+        }
+        tr:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+  }
+  .selectable.table > main tbody > tr:hover {
+    background: rgba(80, 180, 255, 0.3);
+    color: white;
+  }
+}

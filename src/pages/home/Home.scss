@@ -1,0 +1,19 @@
+@import '../../palette.scss';
+
+a.home-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  svg {
+    color: $primary-color-light;
+    font-size: 32px;
+  }
+}
+
+.dark-mode a.home-card {
+  color: white;
+  svg {
+    color: $primary-color;
+  }
+}

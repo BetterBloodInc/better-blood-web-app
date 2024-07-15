@@ -1,0 +1,32 @@
+.MobileNav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+  justify-content: space-between;
+  background: white;
+  a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 12px;
+    width: 100%;
+    svg {
+        font-size: 1.5rem;
+    }
+  }
+}
+.dark-mode {
+    .MobileNav {
+        background: #123;
+    }
+}
+@media screen and (max-width: 768px) {
+    .MobileNav {
+        display: flex;
+    }
+  }
+  

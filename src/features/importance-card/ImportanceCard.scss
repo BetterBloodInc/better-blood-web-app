@@ -1,0 +1,18 @@
+@import '../../palette.scss';
+
+.importance-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 0.5rem;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  h4 {
+    font-size: 20px;
+  }
+}
+
+.dark-mode .importance-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}

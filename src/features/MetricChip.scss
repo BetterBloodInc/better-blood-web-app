@@ -1,0 +1,46 @@
+@import '../palette.scss';
+.metric-chip {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+  flex-shrink: 1;
+  background: rgba($primary-color-light, 0.1);
+  border: 1px solid $primary-color-light;
+  color: black;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  &.optimized {
+    border-color: $tertiary-color;
+    background: rgba($tertiary-color-light, 0.1);
+  }
+  dd {
+    font-size: 18px;
+    font-weight: 500;
+  }
+  dt {
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+
+.dark-mode {
+  .metric-chip {
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba($primary-color, 0.3)
+    );
+    border: 1px solid $primary-color;
+    color: white;
+    &.optimized {
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba($tertiary-color, 0.3)
+      );
+      border: 1px solid $tertiary-color;
+    }
+  }
+}

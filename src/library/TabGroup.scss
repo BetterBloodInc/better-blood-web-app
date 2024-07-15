@@ -1,0 +1,50 @@
+@import '../palette.scss';
+
+.tab-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  > div {
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+    padding: 1rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    text-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    &.active {
+      color: black;
+      box-shadow: inset 0 0 0 1px $primary-color-light;
+      background: rgba($primary-color-light, 0.1);
+      svg {
+        color: $primary-color-light;
+      }
+    }
+  }
+}
+.dark-mode .tab-group {
+  > div {
+    background: none;
+    box-shadow: inset 0 0 0 1px #fff2;
+    color: #fffa;
+    &:hover {
+      background: #fff1;
+    }
+    &.active {
+      color: white;
+      box-shadow: inset 0 0 0 1px $primary-color;
+      background: radial-gradient(
+        circle at bottom,
+        rgba($primary-color, 0.3) 0%,
+        transparent 100%
+      );
+      background-position: center -50%; /* Move the circle further down */
+      svg {
+        color: $primary-color;
+      }
+    }
+  }
+}

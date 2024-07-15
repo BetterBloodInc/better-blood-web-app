@@ -1,0 +1,17 @@
+.filter-results-count {
+  color: #0004;
+  font-size: 14px;
+  line-height: 28px;
+  strong {
+    color: #0009;
+    font-weight: 600;
+  }
+}
+.dark-mode {
+  .filter-results-count {
+    color: #fff4;
+    strong {
+      color: #fff9;
+    }
+  }
+}
