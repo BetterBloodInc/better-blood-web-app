@@ -340,11 +340,11 @@ export const BIOMARKER_IMPORTANCE_MAP: Partial<
       category: BiomarkerHealthImpact.BLOOD,
     },
   ],
-  [BiomarkerId.HgbA1c]: [
+  [BiomarkerId.HbA1c]: [
     {
-      biomarkerId: BiomarkerId.HgbA1c,
+      biomarkerId: BiomarkerId.HbA1c,
       description:
-        'Hemoglobin A1c is a measure of long-term blood sugar control. Elevated HgbA1c levels are associated with an increased risk of diabetes and other health problems. Monitoring HgbA1c levels can help diagnose and manage diabetes-related conditions.',
+        'Hemoglobin A1c is a measure of long-term blood sugar control. Elevated HbA1c levels are associated with an increased risk of diabetes and other health problems. Monitoring HbA1c levels can help diagnose and manage diabetes-related conditions.',
       importance: BiomarkerImportanceLevel.HIGH,
       category: BiomarkerHealthImpact.DIABETES,
     },
@@ -624,6 +624,22 @@ export const BIOMARKER_IMPORTANCE_MAP: Partial<
         'The Horvath epigenetic clock provides a measure of biological age, which can differ significantly from chronological age. Biological age reflects the functional state of the body and is a more accurate predictor of health and lifespan.',
       importance: BiomarkerImportanceLevel.HIGH,
       category: BiomarkerHealthImpact.AGE,
+    },
+  ],
+  [BiomarkerId.hsCRP]: [
+    {
+      biomarkerId: BiomarkerId.hsCRP,
+      description:
+        'High-sensitivity C-reactive protein (hsCRP) is a marker of inflammation in the body. Elevated levels of hsCRP are associated with an increased risk of heart disease. Monitoring hsCRP levels can help identify and manage heart disease risk.',
+      importance: BiomarkerImportanceLevel.HIGH,
+      category: BiomarkerHealthImpact.CARDIOVASCULAR,
+    },
+    {
+      biomarkerId: BiomarkerId.hsCRP,
+      description:
+        'Rheumatoid Arthritis: High hsCRP levels can be a marker for active inflammation in autoimmune diseases like rheumatoid arthritis and lupus.',
+      importance: BiomarkerImportanceLevel.HIGH,
+      category: BiomarkerHealthImpact.IMMUNE,
     },
   ],
 }

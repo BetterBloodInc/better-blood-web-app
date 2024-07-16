@@ -1,18 +1,16 @@
 import { BiomarkerId } from '~src/types/biomarker-types'
-
-export type InterventionCategory =
-  | 'diet'
-  | 'nutrition'
-  | 'exercise'
-  | 'supplements'
-  | 'lifestyle'
-  | 'medical'
+import {
+  InterventionId,
+  InterventionRequirement,
+} from '~src/types/intervention-types'
+import { ResourceId } from '~src/types/resource-types'
 
 export interface BiomarkerIntervention {
   biomarkerId: BiomarkerId
-  intervention: string
+  interventionId: InterventionId
   description: string
-  category: InterventionCategory
+  resources: ResourceId[]
+  requirements: InterventionRequirement[]
 }
 
 export const BIOMARKER_INTERVENTIONS_MAP: Partial<
@@ -21,599 +19,606 @@ export const BIOMARKER_INTERVENTIONS_MAP: Partial<
   [BiomarkerId.WBC]: [
     {
       biomarkerId: BiomarkerId.WBC,
-      intervention: 'Eat more fruits and vegetables',
-      description:
-        'Eating a diet rich in fruits and vegetables can help support a healthy immune system and reduce inflammation in the body.',
-      category: 'nutrition',
-    },
-    {
-      biomarkerId: BiomarkerId.WBC,
-      intervention: 'Increase Protein Intake',
+      interventionId: InterventionId.IncreaseProtein,
       description:
         'Proteins are essential for the production of WBCs. Include lean meats, fish, poultry, beans, and legumes in your diet.',
-      category: 'nutrition',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
     {
       biomarkerId: BiomarkerId.WBC,
-      intervention: 'Vitamins and Minerals',
+      interventionId: InterventionId.EatGarlic,
       description:
-        'Ensure adequate intake of vitamins A, C, E, and B-complex vitamins, as well as minerals like zinc, iron, and selenium, which are crucial for immune function.',
-      category: 'nutrition',
+        'Garlic contains compounds that can help boost your immune system and support healthy WBC levels.',
+      resources: [
+        ResourceId.Frontiersin_fcanc_2022_00005,
+        ResourceId.LPI_Garlic,
+        ResourceId.JN_131_3s_1054S_4687050,
+      ],
+      requirements: [InterventionRequirement.Low],
     },
     {
       biomarkerId: BiomarkerId.WBC,
-      intervention: 'Garlic and Ginger',
+      interventionId: InterventionId.EatGinger,
       description:
-        'These foods have immune-boosting properties that can help improve WBC count.',
-      category: 'nutrition',
+        'Ginger has anti-inflammatory and immune-boosting properties that may help support healthy WBC levels.',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
     {
       biomarkerId: BiomarkerId.WBC,
-      intervention: 'Vitamin C and Zinc',
+      interventionId: InterventionId.SupplementVitaminC,
       description:
-        'Both are known to support immune function and may help increase WBC production.',
-      category: 'supplements',
+        'Vitamin C is essential for immune health and may help support healthy WBC levels.',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
     {
       biomarkerId: BiomarkerId.WBC,
-      intervention: 'Echinacea and Astragalus',
+      interventionId: InterventionId.SupplementZinc,
       description:
-        'These herbal supplements are believed to boost immune health.',
-      category: 'supplements',
+        'Zinc is important for immune function and may help support healthy WBC levels.',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
     {
       biomarkerId: BiomarkerId.WBC,
-      intervention: 'Regular Exercise',
+      interventionId: InterventionId.SupplementEchinacea,
+      description:
+        'Echinacea is an herb that has been used to support immune health and may help improve WBC count.',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
+    },
+    {
+      biomarkerId: BiomarkerId.WBC,
+      interventionId: InterventionId.SupplementAstragalus,
+      description:
+        'Astragalus is an herb that has been used in traditional Chinese medicine to support immune health and may help improve WBC count.',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
+    },
+    {
+      biomarkerId: BiomarkerId.WBC,
+      interventionId: InterventionId.IncreaseExercise,
       description:
         'Moderate exercise can enhance immune function and potentially increase WBC count. Avoid overtraining, which can have the opposite effect.',
-      category: 'lifestyle',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
     {
       biomarkerId: BiomarkerId.WBC,
-      intervention: 'Adequate Sleep',
+      interventionId: InterventionId.ImproveSleepQuality,
       description:
         'Ensure you get 7-9 hours of quality sleep per night to support overall health and immune function.',
-      category: 'lifestyle',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
     {
       biomarkerId: BiomarkerId.WBC,
-      intervention: 'Stress Management',
+      interventionId: InterventionId.LimitStress,
       description:
         'Chronic stress can negatively affect your immune system. Practice stress-reducing techniques such as meditation, yoga, or deep-breathing exercises.',
-      category: 'lifestyle',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
   ],
   [BiomarkerId.RBC]: [
     {
       biomarkerId: BiomarkerId.RBC,
-      intervention: 'Get regular exercise',
+      interventionId: InterventionId.IncreaseExercise,
       description:
         'Regular exercise can help improve circulation and oxygen delivery to your cells, which can support healthy red blood cell production.',
-      category: 'exercise',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
   ],
   [BiomarkerId.Hgb]: [
     {
       biomarkerId: BiomarkerId.Hgb,
-      intervention: 'Get regular exercise',
+      interventionId: InterventionId.IncreaseExercise,
       description:
         'Regular exercise can help improve circulation and oxygen delivery to your cells, which can support healthy red blood cell production.',
-      category: 'exercise',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
   ],
   [BiomarkerId.Hct]: [
     {
       biomarkerId: BiomarkerId.Hct,
-      intervention: 'Get regular exercise',
+      interventionId: InterventionId.IncreaseExercise,
       description:
         'Regular exercise can help improve circulation and oxygen delivery to your cells, which can support healthy red blood cell production.',
-      category: 'exercise',
-    },
-  ],
-  [BiomarkerId.PLT]: [
-    {
-      biomarkerId: BiomarkerId.PLT,
-      intervention: 'Eat more fruits and vegetables',
-      description:
-        'Eating a diet rich in fruits and vegetables can help support a healthy immune system and reduce inflammation in the body.',
-      category: 'nutrition',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
   ],
   [BiomarkerId.Glu]: [
     {
       biomarkerId: BiomarkerId.Glu,
-      intervention: 'Limit sugar and refined carbohydrates',
+      interventionId: InterventionId.LimitSugar,
       description:
         'Limiting your intake of sugar and refined carbohydrates can help stabilize your blood sugar levels and reduce inflammation in the body.',
-      category: 'nutrition',
+      resources: [],
+      requirements: [InterventionRequirement.High],
+    },
+    {
+      biomarkerId: BiomarkerId.Glu,
+      interventionId: InterventionId.LimitRefinedCarbs,
+      description:
+        'Limiting your intake of sugar and refined carbohydrates can help stabilize your blood sugar levels and reduce inflammation in the body.',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
   ],
   [BiomarkerId.BUN]: [
     {
       biomarkerId: BiomarkerId.BUN,
-      intervention: 'Stay hydrated',
+      interventionId: InterventionId.StayHydrated,
       description:
         'Drinking plenty of water can help support healthy kidney function and prevent dehydration, which can lead to elevated BUN levels.',
-      category: 'lifestyle',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
   ],
   [BiomarkerId.Crea]: [
     {
       biomarkerId: BiomarkerId.Crea,
-      intervention: 'Stay hydrated',
+      interventionId: InterventionId.StayHydrated,
       description:
         'Drinking plenty of water can help support healthy kidney function and prevent dehydration, which can lead to elevated creatinine levels.',
-      category: 'lifestyle',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
   ],
   [BiomarkerId.eGFR]: [
     {
       biomarkerId: BiomarkerId.eGFR,
-      intervention: 'Stay hydrated',
+      interventionId: InterventionId.StayHydrated,
       description:
         'Drinking plenty of water can help support healthy kidney function and prevent dehydration, which can lead to decreased eGFR levels.',
-      category: 'lifestyle',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
   ],
   [BiomarkerId.Na]: [
     {
       biomarkerId: BiomarkerId.Na,
-      intervention: 'Limit sodium intake',
+      interventionId: InterventionId.LimitSodium,
       description:
         'Reducing your sodium intake can help prevent high sodium levels in the blood, which can lead to elevated sodium levels.',
-      category: 'nutrition',
-    },
-  ],
-  [BiomarkerId.K]: [
-    {
-      biomarkerId: BiomarkerId.K,
-      intervention: 'Eat potassium-rich foods',
-      description:
-        'Including potassium-rich foods in your diet can help support healthy potassium levels in the blood.',
-      category: 'nutrition',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
   ],
   [BiomarkerId.Cl]: [
     {
       biomarkerId: BiomarkerId.Cl,
-      intervention: 'Stay hydrated',
+      interventionId: InterventionId.StayHydrated,
       description:
         'Drinking plenty of water can help support healthy kidney function and prevent dehydration, which can lead to decreased chloride levels.',
-      category: 'lifestyle',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
   ],
   [BiomarkerId.ALP]: [
     {
       biomarkerId: BiomarkerId.ALP,
-      intervention: 'Vitamin D and Calcium',
+      interventionId: InterventionId.SupplementVitaminD,
       description:
-        'Both are essential for bone health and may help support healthy ALP levels.',
-      category: 'supplements',
+        'Vitamin D is important for bone health and may help support healthy ALP levels.',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
   ],
   [BiomarkerId.ALT]: [
     {
       biomarkerId: BiomarkerId.ALT,
-      intervention: 'Limit alcohol consumption',
+      interventionId: InterventionId.LimitAlcohol,
       description:
         'Excessive alcohol consumption can lead to elevated ALT levels. Limit your intake to support healthy liver function.',
-      category: 'lifestyle',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
   ],
   [BiomarkerId.AST]: [
     {
       biomarkerId: BiomarkerId.AST,
-      intervention: 'Limit alcohol consumption',
+      interventionId: InterventionId.LimitAlcohol,
       description:
         'Excessive alcohol consumption can lead to elevated AST levels. Limit your intake to support healthy liver function.',
-      category: 'lifestyle',
-    },
-  ],
-  [BiomarkerId.Alb]: [
-    {
-      biomarkerId: BiomarkerId.Alb,
-      intervention: 'Eat a balanced diet',
-      description:
-        'Eating a balanced diet that includes protein-rich foods can help support healthy albumin levels.',
-      category: 'nutrition',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
   ],
   [BiomarkerId.Bil]: [
     {
       biomarkerId: BiomarkerId.Bil,
-      intervention: 'Limit alcohol consumption',
+      interventionId: InterventionId.LimitAlcohol,
       description:
         'Excessive alcohol consumption can lead to elevated bilirubin levels. Limit your intake to support healthy liver function.',
-      category: 'lifestyle',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
   ],
   [BiomarkerId.Ca]: [
     {
       biomarkerId: BiomarkerId.Ca,
-      intervention: 'Vitamin D and Magnesium',
+      interventionId: InterventionId.SupplementCalcium,
       description:
-        'Both are essential for bone health and may help support healthy calcium levels.',
-      category: 'supplements',
+        'Calcium is important for bone health and may help support healthy calcium levels in the blood.',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
   ],
   [BiomarkerId.CHOL]: [
     {
       biomarkerId: BiomarkerId.CHOL,
-      intervention: 'Eat a heart-healthy diet',
+      interventionId: InterventionId.LimitSaturatedFats,
       description:
         'Eating a diet low in saturated fats and cholesterol can help support healthy cholesterol levels.',
-      category: 'nutrition',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
   ],
   [BiomarkerId.CK]: [
     {
       biomarkerId: BiomarkerId.CK,
-      intervention: 'Rest and recover',
+      interventionId: InterventionId.RestAndRecover,
       description:
         'Elevated CK levels can be a sign of muscle damage. Allow your muscles to rest and recover after intense exercise.',
-      category: 'lifestyle',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
   ],
   [BiomarkerId.Cor]: [
     {
       biomarkerId: BiomarkerId.Cor,
-      intervention: 'Stress management',
+      interventionId: InterventionId.LimitStress,
       description:
         'Chronic stress can lead to elevated cortisol levels. Practice stress-reducing techniques such as meditation or yoga.',
-      category: 'lifestyle',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
   ],
   [BiomarkerId.CRP]: [
     {
       biomarkerId: BiomarkerId.CRP,
-      intervention: 'Eat an anti-inflammatory diet',
+      interventionId: InterventionId.SupplementOmega3,
       description:
-        'Foods rich in antioxidants and omega-3 fatty acids can help reduce inflammation in the body and support healthy CRP levels.',
-      category: 'nutrition',
+        'Omega-3 fatty acids have anti-inflammatory properties and may help reduce CRP levels.',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
   ],
   [BiomarkerId.Fer]: [
     {
       biomarkerId: BiomarkerId.Fer,
-      intervention: 'Iron-rich foods',
+      interventionId: InterventionId.SupplementIron,
       description:
-        'Including iron-rich foods in your diet can help support healthy iron levels in the blood.',
-      category: 'nutrition',
-    },
-  ],
-  [BiomarkerId.FT]: [
-    {
-      biomarkerId: BiomarkerId.FT,
-      intervention: 'Eat a balanced diet',
-      description:
-        'Eating a balanced diet that includes protein-rich foods can help support healthy free testosterone levels.',
-      category: 'nutrition',
+        'Iron is essential for red blood cell production and may help support healthy ferritin levels.',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
   ],
   [BiomarkerId.GGT]: [
     {
       biomarkerId: BiomarkerId.GGT,
-      intervention: 'Limit alcohol consumption',
+      interventionId: InterventionId.LimitAlcohol,
       description:
         'Excessive alcohol consumption can lead to elevated GGT levels. Limit your intake to support healthy liver function.',
-      category: 'lifestyle',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
   ],
   [BiomarkerId.HDL]: [
     {
       biomarkerId: BiomarkerId.HDL,
-      intervention: 'Exercise regularly',
+      interventionId: InterventionId.IncreaseExercise,
       description:
         'Regular exercise can help raise HDL cholesterol levels, which are beneficial for heart health.',
-      category: 'exercise',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
     {
       biomarkerId: BiomarkerId.HDL,
-      intervention: 'Eat a heart-healthy diet',
+      interventionId: InterventionId.LimitTransFats,
       description:
-        'Eating a diet rich in healthy fats and fiber can help raise HDL cholesterol levels.',
-      category: 'nutrition',
+        'Limiting trans fats in your diet can help raise HDL cholesterol levels, which are beneficial for heart health.',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
     {
       biomarkerId: BiomarkerId.HDL,
-      intervention: 'Quit smoking',
+      interventionId: InterventionId.QuitSmoking,
       description:
         'Smoking can lower HDL cholesterol levels. Quitting can help improve your cholesterol levels and overall health.',
-      category: 'lifestyle',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
   ],
-  [BiomarkerId.HgbA1c]: [
+  [BiomarkerId.HbA1c]: [
     {
-      biomarkerId: BiomarkerId.HgbA1c,
-      intervention: 'Limit sugar and refined carbohydrates',
+      biomarkerId: BiomarkerId.HbA1c,
+      interventionId: InterventionId.LimitSugar,
       description:
-        'Limiting your intake of sugar and refined carbohydrates can help stabilize your blood sugar levels and support healthy HgbA1c levels.',
-      category: 'nutrition',
+        'Limiting your intake of sugar can help stabilize your blood sugar levels and support healthy HbA1c levels.',
+      resources: [],
+      requirements: [InterventionRequirement.High],
+    },
+    {
+      biomarkerId: BiomarkerId.HbA1c,
+      interventionId: InterventionId.LimitRefinedCarbs,
+      description:
+        'Limiting your intake of refined carbohydrates can help stabilize your blood sugar levels and support healthy HbA1c levels.',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
   ],
   [BiomarkerId.Ins]: [
     {
       biomarkerId: BiomarkerId.Ins,
-      intervention: 'Limit sugar and refined carbohydrates',
+      interventionId: InterventionId.LimitSugar,
       description:
-        'Limiting your intake of sugar and refined carbohydrates can help stabilize your blood sugar levels and support healthy insulin levels.',
-      category: 'nutrition',
+        'Limiting your intake of sugar can help stabilize your blood sugar levels and support healthy insulin levels.',
+      resources: [],
+      requirements: [InterventionRequirement.Low, InterventionRequirement.High],
+    },
+    {
+      biomarkerId: BiomarkerId.Ins,
+      interventionId: InterventionId.LimitRefinedCarbs,
+      description:
+        'Limiting your intake refined carbohydrates can help stabilize your blood sugar levels and support healthy insulin levels.',
+      resources: [],
+      requirements: [InterventionRequirement.Low, InterventionRequirement.High],
     },
   ],
   [BiomarkerId.LDL]: [
     {
       biomarkerId: BiomarkerId.LDL,
-      intervention: 'Eat a heart-healthy diet',
+      interventionId: InterventionId.LimitSaturatedFats,
       description:
         'Eating a diet low in saturated fats and cholesterol can help support healthy LDL cholesterol levels.',
-      category: 'nutrition',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
     {
       biomarkerId: BiomarkerId.LDL,
-      intervention: 'Exercise regularly',
+      interventionId: InterventionId.IncreaseExercise,
       description:
         'Regular exercise can help lower LDL cholesterol levels and support heart health.',
-      category: 'exercise',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
     {
       biomarkerId: BiomarkerId.LDL,
-      intervention: 'Quit smoking',
+      interventionId: InterventionId.QuitSmoking,
       description:
         'Smoking can raise LDL cholesterol levels and increase your risk of heart disease. Quitting can help improve your cholesterol levels and overall health.',
-      category: 'lifestyle',
-    },
-  ],
-  [BiomarkerId.Mg]: [
-    {
-      biomarkerId: BiomarkerId.Mg,
-      intervention: 'Eat magnesium-rich foods',
-      description:
-        'Including magnesium-rich foods in your diet can help support healthy magnesium levels in the blood.',
-      category: 'nutrition',
-    },
-  ],
-  [BiomarkerId.P]: [
-    {
-      biomarkerId: BiomarkerId.P,
-      intervention: 'Eat phosphorus-rich foods',
-      description:
-        'Including phosphorus-rich foods in your diet can help support healthy phosphorus levels in the blood.',
-      category: 'nutrition',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
   ],
   [BiomarkerId.Tg]: [
     {
       biomarkerId: BiomarkerId.Tg,
-      intervention: 'Limit sugar and refined carbohydrates',
+      interventionId: InterventionId.LimitSugar,
       description:
         'Limiting your intake of sugar and refined carbohydrates can help stabilize your blood sugar levels and support healthy triglyceride levels.',
-      category: 'nutrition',
+      resources: [],
+      requirements: [InterventionRequirement.High],
+    },
+
+    {
+      biomarkerId: BiomarkerId.Tg,
+      interventionId: InterventionId.LimitRefinedCarbs,
+      description:
+        'Limiting your intake of sugar and refined carbohydrates can help stabilize your blood sugar levels and support healthy triglyceride levels.',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
   ],
   [BiomarkerId.TP]: [
     {
       biomarkerId: BiomarkerId.TP,
-      intervention: 'Eat a balanced diet',
+      interventionId: InterventionId.IncreaseProtein,
       description:
         'Eating a balanced diet that includes protein-rich foods can help support healthy total protein levels.',
-      category: 'nutrition',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
   ],
-  [BiomarkerId.TSH]: [
-    {
-      biomarkerId: BiomarkerId.TSH,
-      intervention: 'Eat a balanced diet',
-      description:
-        'Eating a balanced diet that includes iodine-rich foods can help support healthy TSH levels.',
-      category: 'nutrition',
-    },
-  ],
+  [BiomarkerId.TSH]: [],
   [BiomarkerId.UA]: [
     {
       biomarkerId: BiomarkerId.UA,
-      intervention: 'Stay hydrated',
+      interventionId: InterventionId.StayHydrated,
       description:
         'Drinking plenty of water can help support healthy uric acid levels in the blood.',
-      category: 'lifestyle',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
   ],
-  [BiomarkerId.VLDL]: [
-    {
-      biomarkerId: BiomarkerId.VLDL,
-      intervention: 'Eat a heart-healthy diet',
-      description:
-        'Eating a diet low in saturated fats and cholesterol can help support healthy VLDL cholesterol levels.',
-      category: 'nutrition',
-    },
-  ],
+  [BiomarkerId.VLDL]: [],
   [BiomarkerId.TIBC]: [
     {
       biomarkerId: BiomarkerId.TIBC,
-      intervention: 'Eat iron-rich foods',
+      interventionId: InterventionId.SupplementIron,
       description:
-        'Including iron-rich foods in your diet can help support healthy total iron-binding capacity levels.',
-      category: 'nutrition',
+        'Iron is essential for red blood cell production and may help support healthy TIBC levels.',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
   ],
   [BiomarkerId.TS]: [
     {
       biomarkerId: BiomarkerId.TS,
-      intervention: 'Eat iron-rich foods',
+      interventionId: InterventionId.SupplementIron,
       description:
-        'Including iron-rich foods in your diet can help support healthy transferrin saturation levels.',
-      category: 'nutrition',
+        'Iron is essential for red blood cell production and may help support healthy transferrin saturation levels.',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
   ],
-  [BiomarkerId.SHBG]: [
-    {
-      biomarkerId: BiomarkerId.SHBG,
-      intervention: 'Eat a balanced diet',
-      description:
-        'Eating a balanced diet that includes protein-rich foods can help support healthy SHBG levels.',
-      category: 'nutrition',
-    },
-  ],
-  [BiomarkerId.T]: [
-    {
-      biomarkerId: BiomarkerId.T,
-      intervention: 'Eat a balanced diet',
-      description:
-        'Eating a balanced diet that includes healthy fats and protein can help support healthy total testosterone levels.',
-      category: 'nutrition',
-    },
-  ],
+  [BiomarkerId.SHBG]: [],
+  [BiomarkerId.T]: [],
   [BiomarkerId.D]: [
     {
       biomarkerId: BiomarkerId.D,
-      intervention: 'Get adequate sun exposure',
+      interventionId: InterventionId.IncreaseSunExposure,
       description:
         'Vitamin D is produced by the skin in response to sunlight. Spending time outdoors can help support healthy vitamin D levels.',
-      category: 'lifestyle',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
     {
       biomarkerId: BiomarkerId.D,
-      intervention: 'Vitamin D supplements',
+      interventionId: InterventionId.SupplementVitaminD,
       description:
         'If you have low vitamin D levels, your doctor may recommend taking vitamin D supplements to support healthy levels.',
-      category: 'supplements',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
   ],
   [BiomarkerId.Zn]: [
     {
       biomarkerId: BiomarkerId.Zn,
-      intervention: 'Eat zinc-rich foods',
+      interventionId: InterventionId.SupplementZinc,
       description:
-        'Including zinc-rich foods in your diet can help support healthy zinc levels in the blood.',
-      category: 'nutrition',
+        'Zinc is important for immune function and may help support healthy zinc levels.',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
   ],
   [BiomarkerId.NEUT]: [
     {
       biomarkerId: BiomarkerId.NEUT,
-      intervention: 'Eat a balanced diet',
+      interventionId: InterventionId.IncreaseProtein,
       description:
         'Eating a balanced diet that includes protein-rich foods can help support healthy neutrophil levels.',
-      category: 'nutrition',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
   ],
-  [BiomarkerId.RDW]: [
-    {
-      biomarkerId: BiomarkerId.RDW,
-      intervention: 'Eat a balanced diet',
-      description:
-        'Eating a balanced diet that includes iron-rich foods can help support healthy RDW levels.',
-      category: 'nutrition',
-    },
-  ],
+  [BiomarkerId.RDW]: [],
   [BiomarkerId.GSH]: [
     {
       biomarkerId: BiomarkerId.GSH,
-      intervention: 'Sulfur-rich foods',
+      interventionId: InterventionId.EatSulfurRichFoods,
       description:
         'Consume foods high in sulfur, such as garlic, onions, broccoli, Brussels sprouts, cauliflower, and kale. Sulfur is necessary for GSH synthesis.',
-      category: 'nutrition',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
     {
       biomarkerId: BiomarkerId.GSH,
-      intervention: 'Protein-rich foods',
+      interventionId: InterventionId.IncreaseCysteine,
       description:
         'Include sources of cysteine, an amino acid crucial for GSH production. Good sources include poultry, yogurt, eggs, and legumes.',
-      category: 'nutrition',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
+
     {
       biomarkerId: BiomarkerId.GSH,
-      intervention: 'Fruits and vegetables',
-      description:
-        'Especially those rich in vitamin C, such as oranges, strawberries, kiwi, and bell peppers, as vitamin C can help recycle GSH.',
-      category: 'nutrition',
-    },
-    {
-      biomarkerId: BiomarkerId.GSH,
-      intervention: 'N-acetylcysteine (NAC)',
+      interventionId: InterventionId.SupplementNAC,
       description:
         'NAC is a precursor to GSH and can help support healthy GSH levels.',
-      category: 'supplements',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
     {
       biomarkerId: BiomarkerId.GSH,
-      intervention: 'Alpha-lipoic acid (ALA)',
+      interventionId: InterventionId.SupplementALA,
       description:
         'ALA is an antioxidant that can help regenerate GSH and support healthy levels.',
-      category: 'supplements',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
     },
   ],
   [BiomarkerId.As]: [
     {
       biomarkerId: BiomarkerId.As,
-      intervention: 'Reduce or Avoid High-Arsenic Foods',
+      interventionId: InterventionId.LimitHighArsenicFoods,
       description:
         'Some seafood, rice, and rice-based products can contain significant amounts of arsenic. Opting for varied grains like quinoa, barley, and bulgur can help reduce arsenic intake.',
-      category: 'diet',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
     {
       biomarkerId: BiomarkerId.As,
-      intervention: 'Cook Rice with More Water',
+      interventionId: InterventionId.CookRiceWithMoreWater,
       description:
         "Cooking rice in a higher water-to-rice ratio can reduce the arsenic content in cooked rice. Draining the excess water after cooking can remove about 30-40% of the rice's arsenic content.",
-      category: 'diet',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
     {
       biomarkerId: BiomarkerId.As,
-      intervention: 'Increase Intake of Folate',
+      interventionId: InterventionId.IncreaseFolate,
       description:
         'Folate can aid in the methylation process, which helps detoxify arsenic in the body. Foods rich in folate include leafy greens, beans, and fortified grains.',
-      category: 'nutrition',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
     {
       biomarkerId: BiomarkerId.As,
-      intervention: 'Enhance Detoxification with Antioxidants',
-      description:
-        "Consuming foods high in antioxidants, such as fruits and vegetables, can support the body's detoxification processes.",
-      category: 'nutrition',
-    },
-    {
-      biomarkerId: BiomarkerId.As,
-      intervention: 'Chelation Therapy',
+      interventionId: InterventionId.ChelationTherapy,
       description:
         'In severe cases of arsenic poisoning, doctors may recommend chelation therapy, which involves the administration of chelating agents that bind to arsenic and help remove it from the body.',
-      category: 'medical',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
   ],
   [BiomarkerId.HORVATH]: [
     {
       biomarkerId: BiomarkerId.HORVATH,
-      intervention: 'Regular Exercise',
-      description:
-        'Regular physical activity can help support healthy DNA methylation patterns and potentially slow down the aging process.',
-      category: 'exercise',
-    },
-    {
-      biomarkerId: BiomarkerId.HORVATH,
-      intervention: 'Eat a Balanced Diet',
-      description:
-        'Eating a diet rich in fruits, vegetables, whole grains, and lean proteins can provide essential nutrients that support overall health and well-being.',
-      category: 'nutrition',
-    },
-    {
-      biomarkerId: BiomarkerId.HORVATH,
-      intervention: 'Manage Stress',
-      description:
-        'Chronic stress can accelerate the aging process. Practice stress-reducing techniques such as meditation, yoga, or deep-breathing exercises.',
-      category: 'lifestyle',
-    },
-    {
-      biomarkerId: BiomarkerId.HORVATH,
-      intervention: 'Adequate Sleep',
-      description:
-        'Ensure you get 7-9 hours of quality sleep per night to support overall health and well-being.',
-      category: 'lifestyle',
-    },
-    {
-      biomarkerId: BiomarkerId.HORVATH,
-      intervention: 'Quit Smoking',
+      interventionId: InterventionId.QuitSmoking,
       description:
         'Smoking can accelerate the aging process and increase the risk of age-related diseases. Quitting can help slow down the aging process and improve overall health.',
-      category: 'lifestyle',
+      resources: [],
+      requirements: [InterventionRequirement.High],
+    },
+    {
+      biomarkerId: BiomarkerId.HORVATH,
+      interventionId: InterventionId.SupplementGrowthHormone,
+      description:
+        'Growth hormone supplements are sometimes used to support healthy aging. Talk to your doctor before taking any growth hormone supplements.',
+      resources: [ResourceId.Nature_d41586_019_02638_w],
+      requirements: [InterventionRequirement.High],
+    },
+    {
+      biomarkerId: BiomarkerId.HORVATH,
+      interventionId: InterventionId.SupplementDHEA,
+      description:
+        'DHEA is a hormone that declines with age. Supplementing with DHEA may support healthy aging, but consult your doctor before taking any DHEA supplements.',
+      resources: [ResourceId.Nature_d41586_019_02638_w],
+      requirements: [InterventionRequirement.High],
+    },
+    {
+      biomarkerId: BiomarkerId.HORVATH,
+      interventionId: InterventionId.SupplementMetformin,
+      description:
+        'Metformin is a medication used to treat type 2 diabetes that has been studied for its potential anti-aging effects. Talk to your doctor before taking metformin for anti-aging purposes.',
+      resources: [ResourceId.Nature_d41586_019_02638_w],
+      requirements: [InterventionRequirement.High],
+    },
+  ],
+  [BiomarkerId.hsCRP]: [
+    {
+      biomarkerId: BiomarkerId.hsCRP,
+      interventionId: InterventionId.SupplementDHA,
+      description:
+        'Omega-3 fatty acids, particularly DHA and EPA, have been associated with lower levels of hsCRP. These fatty acids are known to reduce the production of inflammatory cytokines and other markers of inflammation.',
+      resources: [ResourceId.NutraIngredients_Omega3],
+      requirements: [InterventionRequirement.High],
+    },
+    {
+      biomarkerId: BiomarkerId.hsCRP,
+      interventionId: InterventionId.IncreaseExercise,
+      description:
+        'Regular exercise can help reduce inflammation in the body and lower hsCRP levels.',
+      resources: [],
+      requirements: [InterventionRequirement.High],
     },
   ],
 }

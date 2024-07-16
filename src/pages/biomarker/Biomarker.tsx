@@ -8,15 +8,12 @@ import { TopBar } from './TopBar'
 import { BiomarkerId } from '~src/types/biomarker-types'
 import { BiomarkerTestSection } from '~src/features/biomarker-test-section/BiomarkerTestSection'
 import { BiomarkerInterventionSection } from '~src/features/biomarker-intervention-section/BiomarkerInterventionSection'
-import { Button } from '~src/library/Button'
 import { EditBiomarkerModal } from '~src/modals/edit-biomarker-modal/EditBiomarkerModal'
 import { BiomarkerImportanceSection } from '~src/features/biomarker-importance-section/BiomarkerImportanceSection'
 import { BiomarkerHistorySection } from '~src/features/biomarker-history-section/BiomarkerHistorySection'
-import { getMinMaxForMetric } from '~src/utils/utils'
-import './Biomarker.scss'
 import { Fader } from '~src/library/transition/Fader'
-import { Row } from '~src/library/Row'
-import { Overline } from '~src/library/text/Overline'
+import { BiomarkerAboutSection } from '~src/features/biomarker-about-section/BiomarkerAboutSection'
+import './Biomarker.scss'
 
 interface Props {
   biomarkerId: BiomarkerId
@@ -24,62 +21,30 @@ interface Props {
 
 export const Biomarker: React.FC<Props> = ({ biomarkerId }: Props) => {
   const { data: profile, isFetching } = useActiveProfileQuery()
-  const metric = BIOMARKERS.find((m) => m.id === biomarkerId)
-  const { min, max } = getMinMaxForMetric(biomarkerId, profile?.demographic)
+  const biomarker = BIOMARKERS.find((m) => m.id === biomarkerId)
 
   useEffect(() => {
     const hash = location.hash
-    console.log('hash', hash)
     if (hash) {
       const id = hash.replace('#', '')
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
     }
   }, [location])
 
-  if (!metric) {
+  if (!biomarker) {
     return <>404</>
   }
   const data =
-    profile?.biomarkers[biomarkerId]?.sort((a, b) => a.timestamp - b.timestamp) ??
-    []
+    profile?.biomarkers[biomarkerId]?.sort(
+      (a, b) => a.timestamp - b.timestamp,
+    ) ?? []
   return (
     <Fader isVisible>
-      <TopBar metric={metric} />
+      <TopBar metric={biomarker} />
       <Col gap="2.5rem">
-        <MetricSection metric={metric} data={data} />
-        <BiomarkerHistorySection metric={metric} data={data} />
-        <Col style={{ gap: '1rem', alignItems: 'flex-start' }}>
-          <Col gap="0.5rem">
-            <h3>
-              What is <span className="metric-name">{metric.name}</span>?
-            </h3>
-          </Col>
-          <Col
-            className="card-secondary"
-            style={{ gap: '0.5rem', flexGrow: 1 }}
-          >
-            <Overline>
-              {metric.classification ?? metric.categories.join(', ')}
-            </Overline>
-            <p style={{ lineHeight: 1.5 }}>
-              {metric.description}
-              <br />
-              Optimal range:{' '}
-              {min ? (max ? `${min} - ${max}` : `> ${min}`) : `< ${max}`}{' '}
-              {metric.measurementUnit}
-            </p>
-            <Row>
-              {metric.wikipedia && (
-                <Button
-                  text="Learn more on Wikipedia"
-                  onClick={() => {
-                    window.open(metric.wikipedia, '_blank')
-                  }}
-                />
-              )}
-            </Row>
-          </Col>
-        </Col>
+        <BiomarkerAboutSection biomarker={biomarker} />
+        <MetricSection metric={biomarker} data={data} />
+        <BiomarkerHistorySection metric={biomarker} data={data} />
         <BiomarkerInterventionSection biomarkerId={biomarkerId} />
         <BiomarkerImportanceSection biomarkerId={biomarkerId} />
         <BiomarkerTestSection biomarkerId={biomarkerId} />

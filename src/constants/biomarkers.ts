@@ -91,7 +91,8 @@ export const BIOMARKERS: Biomarker[] = [
   {
     id: BiomarkerId.Hct,
     name: 'Hematocrit',
-    description: 'Measures the proportion of red blood cells in your blood.',
+    description:
+      'The hematocrit, also known by several other names, is the volume percentage of red blood cells in blood, measured as part of a blood test. The measurement depends on the number and size of red blood cells.',
     categories: [BiomarkerCategory.BloodCellCounts],
     classification: BiomarkerClassification.Percentage,
     measurementUnit: '%',
@@ -689,7 +690,7 @@ export const BIOMARKERS: Biomarker[] = [
     wikipedia: 'https://en.wikipedia.org/wiki/Creatine_kinase',
   },
   {
-    id: BiomarkerId.HgbA1c,
+    id: BiomarkerId.HbA1c,
     name: 'Hemoglobin A1C',
     description:
       'Hemoglobin A1C is a test that measures the average blood sugar level over the past 2-3 months.',
@@ -697,5 +698,5 @@ export const BIOMARKERS: Biomarker[] = [
     categories: [BiomarkerCategory.Diabetes],
     measurementUnit: '%',
     wikipedia: 'https://en.wikipedia.org/wiki/Glycated_hemoglobin',
-  }
+  },
 ]

@@ -301,7 +301,7 @@ export const PROVIDER_TESTS: Record<ProviderId, ProviderTest[]> = {
       price: 89,
       priceUnit: 'USD',
       measuredBiomarkers: [
-        BiomarkerId.HgbA1c,
+        BiomarkerId.HbA1c,
         BiomarkerId.CHOL,
         BiomarkerId.HDL,
         BiomarkerId.LDL,
@@ -317,6 +317,16 @@ export const PROVIDER_TESTS: Record<ProviderId, ProviderTest[]> = {
       price: 89,
       priceUnit: 'USD',
       measuredBiomarkers: [BiomarkerId.B12, BiomarkerId.FOL],
+    },
+    {
+      name: 'Inflammation (hs-CRP) Test',
+      description:
+        'This test measures the levels of hs-CRP in your blood to help you monitor your inflammation levels and overall health.',
+      link: 'https://www.ondemand.labcorp.com/lab-tests/inflammation-hs-crp-test',
+      providerId: 'LABCORP',
+      price: 59,
+      priceUnit: 'USD',
+      measuredBiomarkers: [BiomarkerId.hsCRP],
     },
   ],
   MYDNAGE: [

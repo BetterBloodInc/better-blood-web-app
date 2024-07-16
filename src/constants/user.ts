@@ -4,7 +4,7 @@ import { BiomarkerMeasurements } from '~src/types/user-types'
 export const INITIAL_INTERVENTIONS = {}
 
 export const INITIAL_BIOMARKER_MEASUREMENTS: BiomarkerMeasurements = {
-  [BiomarkerId.HgbA1c]: [],
+  [BiomarkerId.HbA1c]: [],
   [BiomarkerId.ALT]: [],
   [BiomarkerId.ALP]: [],
   [BiomarkerId.ApoB]: [],

@@ -30,6 +30,10 @@ export const About = () => {
           answer="Better Blood is not HIPAA compliant, but because we do not store any data, we do not need to be. All of your data stays with you in your browser. Better Blood does not collect any PII (personal identifiable information), like your name or email address. If you have any concerns about privacy, please do not use Better Blood."
         />
         <FAQItemElement
+          question="Is Better Blood open source?"
+          answer="Yes, Better Blood is open source and the code is available on GitHub. https://github.com/BetterBloodInc/better-blood-web-app"
+        />
+        <FAQItemElement
           question="Who created Better Blood?"
           answer="Better Blood is created by Greg Fong, an American software engineer on a mission to make health tracking more accessible."
         />

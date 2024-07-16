@@ -5,8 +5,9 @@ import { Badge } from '~src/library/Badge'
 import { BiomarkerMeasurement } from '~src/types/user-types'
 import { Row } from '~src/library/Row'
 import { useDeleteBiomarkerMeasurementMutation } from '~src/api/profiles-api'
-import { Button } from '~src/library/Button'
 import { useToggleEditBiomarkerModal } from '~src/modals/edit-biomarker-modal/slice'
+import { IconButton } from '~src/library/IconButton'
+import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 export function MetricTable({
   metric,
   data,
@@ -62,14 +63,16 @@ export function MetricTable({
           render: ({ value, timestamp }) => {
             return (
               <Row gap="1rem" style={{ justifyContent: 'flex-end' }}>
-                <Button
-                  text="Edit"
+                <IconButton
+                  tooltip="Edit"
+                  icon={faPen}
                   onClick={() =>
                     openEditMetricModal(true, metric.id, timestamp, value)
                   }
                 />
-                <Button
-                  text="Delete"
+                <IconButton
+                  tooltip="Delete"
+                  icon={faTrash}
                   onClick={() =>
                     deleteMeasurement({ biomarkerId: metric.id, timestamp })
                   }

@@ -16,7 +16,7 @@ export function BiomarkerInterventionSection({
   return (
     <Col id="interventions" gap="1rem" className="BiomarkerInterventionSection">
       <h3>
-        How can one improve <span className="metric-name">{metric?.name}</span>?
+        How can one improve <span className="biomarker-name">{metric?.name}</span>?
       </h3>
       {/* <Col style={{ gap: '0.5rem' }}>
         <Overline>Impact By</Overline>
@@ -59,7 +59,7 @@ export function BiomarkerInterventionSection({
         <div className="grid">
           {interventions.map((intervention) => (
             <InterventionCard
-              key={intervention.intervention}
+              key={intervention.interventionId}
               intervention={intervention}
             />
           ))}

@@ -23,7 +23,7 @@ export function BiomarkerTestSection({
       <Col gap="0.5rem">
         <h3>
           How or where to test{' '}
-          <span className="metric-name">{metric?.name}</span>?
+          <span className="biomarker-name">{metric?.name}</span>?
         </h3>
         <p>
           You can ask your primary physician to order a test for you or you can

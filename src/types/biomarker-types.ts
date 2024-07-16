@@ -1,3 +1,5 @@
+import { BiomarkerRangeSourceId } from '~src/constants/biomarker-ranges'
+
 export const enum BiomarkerClassification {
   Cell = 'Cell',
   CellFragment = 'Cell Fragment',
@@ -42,7 +44,7 @@ export const enum BiomarkerId {
   ApoB = 'ApoB', // Apolipoprotein B
   As = 'As', // Arsenic
   AST = 'AST', // Aspartate Aminotransferase
-  HgbA1c = 'HgbA1c', // Hemoglobin A1C
+  HbA1c = 'HbA1c', // Hemoglobin A1C
   B12 = 'B12', // Vitamin B12
   BASOS = 'BASOS', // Basophils
   BASOS_PCT = 'BASOS_PCT', // Basophil Percentage
@@ -153,12 +155,15 @@ export enum HeightUnit {
   Cm = 'cm',
 }
 
-export type MetricRanges = Partial<
-  Record<
-    Gender,
-    Partial<Record<AgeRange, Partial<Record<Ethnicity, number[]>>>>
+export type OptimalBiomarkerRangeSet = {
+  source: BiomarkerRangeSourceId
+  range: Partial<
+    Record<
+      Gender,
+      Partial<Record<AgeRange, Partial<Record<Ethnicity, number[]>>>>
+    >
   >
->
+}
 
 export interface Biomarker {
   id: BiomarkerId

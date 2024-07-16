@@ -31,6 +31,7 @@ export function MetricSection({
   if (!data.length) {
     return (
       <Card>
+        <h3>Your measurements</h3>
         <Col
           style={{
             flexGrow: 1,
@@ -57,11 +58,14 @@ export function MetricSection({
     )
   }
   return (
-    <Row gap="2rem" className="MetricSection">
-      <BiomarkerMeasureCard metric={metric} />
-      <Row fullWidth style={{ minHeight: 400 }}>
-        <MetricLineChart metric={metric} data={data} />
+    <Col gap="1rem">
+      <h3>Your Measurements</h3>
+      <Row gap="2rem" className="MetricSection">
+        <BiomarkerMeasureCard metric={metric} />
+        <Row fullWidth style={{ minHeight: 400 }}>
+          <MetricLineChart metric={metric} data={data} />
+        </Row>
       </Row>
-    </Row>
+    </Col>
   )
 }

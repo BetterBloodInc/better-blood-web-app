@@ -17,7 +17,7 @@ export function BiomarkerImportanceSection({
   return (
     <Col id="importance" gap="1rem" className="BiomarkerImportanceSection">
       <h3>
-        Why is <span className="metric-name">{metric?.name}</span> important?
+        Why is <span className="biomarker-name">{metric?.name}</span> important?
       </h3>
       {!items.length ? (
         <div>Coming soon</div>

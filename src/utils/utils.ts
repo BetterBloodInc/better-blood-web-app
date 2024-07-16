@@ -1,4 +1,4 @@
-import { METRICS_RANGES_MAP } from '../constants/biomarker-ranges'
+import { OPTIMAL_BIOMARKER_RANGE_MAP } from '../constants/biomarker-ranges'
 import {
   AgeRange,
   Biomarker,
@@ -49,14 +49,25 @@ export function getMinMaxForMetric(
   const ageRange = getAgeRangeFromAge(demographic?.age)
   const gender = demographic?.gender ?? Gender.Other
   const ethnicity = demographic?.ethnicity ?? Ethnicity.Other
-  let byGender =
-    METRICS_RANGES_MAP[biomarkerId]?.[gender] ??
-    METRICS_RANGES_MAP[biomarkerId]?.[Gender.Other]
-  let byAgeRange = byGender?.[ageRange] ?? byGender?.[AgeRange.Unknown]
-  let byEthnicity = byAgeRange?.[ethnicity] ?? byAgeRange?.[Ethnicity.Other]
+
+  const genderRecord =
+    OPTIMAL_BIOMARKER_RANGE_MAP[biomarkerId]?.[0]?.range?.[gender]
+  const byGender =
+    genderRecord ??
+    OPTIMAL_BIOMARKER_RANGE_MAP[biomarkerId]?.[0]?.range?.[Gender.Other]
+  const ageRecord = byGender?.[ageRange]
+  const byAgeRange = ageRecord ?? byGender?.[AgeRange.Unknown]
+  const ethnicityRecord = byAgeRange?.[ethnicity]
+  const byEthnicity = ethnicityRecord ?? byAgeRange?.[Ethnicity.Other]
+
   const min = byEthnicity?.[0] ?? 0
   const max = byEthnicity?.[1] ?? 0
+  console.log(genderRecord, ageRecord, ethnicityRecord)
   return {
+    sourceId: OPTIMAL_BIOMARKER_RANGE_MAP[biomarkerId]?.[0]?.source,
+    referencedGender: genderRecord ? demographic?.gender : null,
+    referencedAgeRange: ageRecord ? ageRange : null,
+    referencedEthnicity: ethnicityRecord ? ethnicity : null,
     min,
     max,
   }
