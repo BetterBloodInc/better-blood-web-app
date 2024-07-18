@@ -211,18 +211,18 @@ export function BiomarkerTable() {
         selectedItems={displayedItems.filter((d) =>
           selectedItems.includes(d.id),
         )}
-        onSelectAll={(all) =>
-          setSelectedItems((selections) =>
-            selections.length === all.length ? [] : all.map((item) => item.id),
-          )
-        }
-        onSelectItem={(selectedItem) => {
-          setSelectedItems((existingItems) =>
-            existingItems.includes(selectedItem.id)
-              ? existingItems.filter((i) => i !== selectedItem.id)
-              : [...existingItems, selectedItem.id],
-          )
-        }}
+        // onSelectAll={(all) =>
+        //   setSelectedItems((selections) =>
+        //     selections.length === all.length ? [] : all.map((item) => item.id),
+        //   )
+        // }
+        // onSelectItem={(selectedItem) => {
+        //   setSelectedItems((existingItems) =>
+        //     existingItems.includes(selectedItem.id)
+        //       ? existingItems.filter((i) => i !== selectedItem.id)
+        //       : [...existingItems, selectedItem.id],
+        //   )
+        // }}
         onRowClick={(item) => navigate(`/biomarkers/${item.id}`)}
         additionalFilters={
           <DatePicker

@@ -81,95 +81,91 @@ export const Profile = () => {
           biometrics. This data is only saved to your browser.
         </p>
         {!isFetching && (
-          <Col gap="1rem">
-            <Card>
-              <Col style={{ gap: '1rem', alignItems: 'flex-start' }}>
-                <Input
-                  label="Name"
-                  type="text"
-                  value={name}
-                  onChangeValue={(value) => {
-                    setName(value as string)
-                  }}
-                />
-                <Input
-                  label="Age"
-                  type="number"
-                  value={age?.toString() ?? '0'}
-                  onChangeValue={(value) => {
-                    setAge((value as number) ?? 0)
-                  }}
-                />
-                <PillSelect<Gender>
-                  label="Birth Sex"
-                  options={Object.values(Gender).map((g) => ({
-                    label: g,
-                    value: g,
-                  }))}
-                  value={gender ? [gender] : []}
-                  onChange={(v) => {
-                    setGender(v[0])
-                  }}
-                />
-                <PillSelect
-                  label="Ethnicity"
-                  options={Object.values(Ethnicity).map((g) => ({
-                    label: g,
-                    value: g,
-                  }))}
-                  value={ethnicity ? [ethnicity] : []}
-                  onChange={(v) => {
-                    setEthnicity(v[0])
-                  }}
-                />
-                <Row gap="1rem" className="Weight">
-                  <Input
-                    label="Weight"
-                    type="number"
-                    value={weight?.toString() ?? '0'}
-                    onChangeValue={(value) => {
-                      setWeight((value as number) ?? 0)
-                    }}
-                  />
-                  <PillSelect
-                    label="Weight Unit"
-                    options={Object.values(WeightUnit).map((g) => ({
-                      label: g,
-                      value: g,
-                    }))}
-                    value={weightUnit ? [weightUnit] : []}
-                    onChange={(v) => {
-                      setWeightUnit(v[0])
-                    }}
-                  />
-                </Row>
-                <Row gap="1rem" className="Height">
-                  <Input
-                    label="Height"
-                    type="number"
-                    value={height?.toString() ?? '0'}
-                    onChangeValue={(value) => {
-                      setHeight((value as number) ?? '0')
-                    }}
-                  />
-                  <PillSelect
-                    label="Height Unit"
-                    options={Object.values(HeightUnit).map((g) => ({
-                      label: g,
-                      value: g,
-                    }))}
-                    value={heightUnit ? [heightUnit] : []}
-                    onChange={(v) => {
-                      setHeightUnit(v[0])
-                    }}
-                  />
-                </Row>
-                <Row justify="between" gap="1rem" fullWidth>
-                  <Button text="Save changes" onClick={onSave} />
-                  <Button text="Delete profile" onClick={onDelete} />
-                </Row>
-              </Col>
-            </Card>
+          <Col style={{ gap: '1rem', alignItems: 'flex-start' }}>
+            <Input
+              label="Name"
+              type="text"
+              value={name}
+              onChangeValue={(value) => {
+                setName(value as string)
+              }}
+            />
+            <Input
+              label="Age"
+              type="number"
+              value={age?.toString() ?? '0'}
+              onChangeValue={(value) => {
+                setAge((value as number) ?? 0)
+              }}
+            />
+            <PillSelect<Gender>
+              label="Birth Sex"
+              options={Object.values(Gender).map((g) => ({
+                label: g,
+                value: g,
+              }))}
+              value={gender ? [gender] : []}
+              onChange={(v) => {
+                setGender(v[0])
+              }}
+            />
+            <PillSelect
+              label="Ethnicity"
+              options={Object.values(Ethnicity).map((g) => ({
+                label: g,
+                value: g,
+              }))}
+              value={ethnicity ? [ethnicity] : []}
+              onChange={(v) => {
+                setEthnicity(v[0])
+              }}
+            />
+            <Row gap="1rem" className="Weight">
+              <Input
+                label="Weight"
+                type="number"
+                value={weight?.toString() ?? '0'}
+                onChangeValue={(value) => {
+                  setWeight((value as number) ?? 0)
+                }}
+              />
+              <PillSelect
+                label="Weight Unit"
+                options={Object.values(WeightUnit).map((g) => ({
+                  label: g,
+                  value: g,
+                }))}
+                value={weightUnit ? [weightUnit] : []}
+                onChange={(v) => {
+                  setWeightUnit(v[0])
+                }}
+              />
+            </Row>
+            <Row gap="1rem" className="Height">
+              <Input
+                label="Height"
+                type="number"
+                value={height?.toString() ?? '0'}
+                onChangeValue={(value) => {
+                  setHeight((value as number) ?? '0')
+                }}
+              />
+              <PillSelect
+                label="Height Unit"
+                options={Object.values(HeightUnit).map((g) => ({
+                  label: g,
+                  value: g,
+                }))}
+                value={heightUnit ? [heightUnit] : []}
+                onChange={(v) => {
+                  setHeightUnit(v[0])
+                }}
+              />
+            </Row>
+            <Row justify="between" gap="1rem" fullWidth>
+              <Button text="Save changes" onClick={onSave} />
+              <Button text="Delete profile" onClick={onDelete} />
+            </Row>
           </Col>
         )}
       </Col>

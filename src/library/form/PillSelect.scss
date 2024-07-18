@@ -26,9 +26,10 @@
   cursor: pointer;
   border: 1px solid rgba(0, 0, 0, 0.1);
   &.selected {
-    background: $primary-color;
-    color: white;
+    background: rgba($primary-color-light, 0.1);
+    color: $primary-color-light;
     font-weight: 500;
+    border-color: transparent;
   }
 }
 
