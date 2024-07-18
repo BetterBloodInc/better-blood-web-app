@@ -17,6 +17,7 @@ import {
 import { Button } from '~src/library/Button'
 import { Row } from '~src/library/Row'
 import { Profile } from '~src/db/profile-db'
+import { useDarkModeSelector } from '~src/theme-slice'
 
 export function GoogleSpreadsheetItem({
   profile,
@@ -27,8 +28,8 @@ export function GoogleSpreadsheetItem({
   googleAccessToken: string | undefined
   sheet: { id: string; name: string }
 }) {
+  const isDarkMode = useDarkModeSelector()
   const { data: spreadsheet } = useGoogleSheetQuery({ spreadSheetId: sheet.id })
-  console.log(spreadsheet)
   const loadData = async () => {
     if (!spreadsheet || !googleAccessToken) {
       toast.error('No spreadsheet or access token.')
@@ -57,7 +58,8 @@ export function GoogleSpreadsheetItem({
       style={{
         alignItems: 'center',
         justifyContent: 'space-between',
-        background: 'rgba(0,0,0,0.4)',
+        background: isDarkMode ? 'rgba(0,0,0,0.4)' : undefined,
+        border: isDarkMode ? undefined : '1px solid #ddd',
         padding: '1rem',
         borderRadius: '8px',
       }}

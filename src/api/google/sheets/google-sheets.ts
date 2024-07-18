@@ -1,9 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
-import { BLOOD_METRIC_CATEGORIES } from '~src/constants/biomarker-categories'
+import { BLOOD_BIOMARKER_CATEGORIES } from '~src/constants/biomarker-categories'
 import toast from 'react-hot-toast'
 import { BIOMARKERS } from '~src/constants/biomarkers'
 import { formatRange, getMinMaxForMetric } from '~src/utils/utils'
-import { useGoogleOAuthAccessTokenQuery } from '../google-oauth'
+import {
+  saveGoogleOAuthAccessToken,
+  useGoogleOAuthAccessTokenQuery,
+} from '../google-oauth'
 import { PROFILE_SHEET_NAME, SPREAD_SHEETS_URL } from '../constants'
 import { createSheetsThatDoNotExist } from './createSheetsThatDoNotExist'
 import { batchUpdate, fetchSpreadsheet } from './api'
@@ -18,6 +21,9 @@ const listSpreadsheets = async (googleAuthToken: string) => {
       },
     },
   )
+  if (res.status === 401) {
+    saveGoogleOAuthAccessToken(null)
+  }
   if (!res.ok) {
     throw new Error(`Failed to load sheets: ${res.status}`)
   }
@@ -25,8 +31,11 @@ const listSpreadsheets = async (googleAuthToken: string) => {
   return data.files
 }
 
-export const createSpreadsheet = async (token: string) => {
-  const sheets = BLOOD_METRIC_CATEGORIES.map((category) => {
+export const createSpreadsheet = async (
+  token: string,
+  activeProfileName: string,
+) => {
+  const sheets = BLOOD_BIOMARKER_CATEGORIES.map((category) => {
     return {
       properties: {
         title: category,
@@ -56,7 +65,7 @@ export const createSpreadsheet = async (token: string) => {
     },
     body: JSON.stringify({
       properties: {
-        title: 'New Biomarkers Spreadsheet',
+        title: `${activeProfileName}'s Biomarkers ${new Date().toISOString().split('T')[0]}`,
       },
       sheets,
     }),
@@ -66,7 +75,6 @@ export const createSpreadsheet = async (token: string) => {
     throw new Error(`HTTP error! Status: ${res.status}`)
   }
   const data = await res.json()
-  console.log('created spreadsheet: ', data)
   toast.success('Created spreadsheet')
   return data.spreadsheetId
 }
@@ -98,13 +106,19 @@ export const updateSheet = async (
   }[] = []
 
   // add user profile as sheet
-  const userProfileSheet = profile.demographic
+  const userProfileSheet = {
+    id: profile.id,
+    name: profile.name,
+    notes: profile.notes,
+    createdAt: profile.createdAt,
+    ...profile.demographic,
+  }
   const userProfileRows = Object.entries(userProfileSheet).map(
     ([key, value]) => {
       return {
         values: [
           { userEnteredValue: { stringValue: key } },
-          { userEnteredValue: { stringValue: value.toString() } },
+          { userEnteredValue: { stringValue: value?.toString() } },
         ],
       }
     },
@@ -130,10 +144,9 @@ export const updateSheet = async (
       fields: 'userEnteredValue',
     },
   })
-  console.log('requests: ', requests)
   // add categories as sheets
   requests = requests.concat(
-    BLOOD_METRIC_CATEGORIES.map((category, i) => {
+    BLOOD_BIOMARKER_CATEGORIES.map((category, i) => {
       const sheetId = existingSheetsNameToIdMap[category]
       const biomarkers = BIOMARKERS.filter((biomarker) =>
         biomarker.categories.includes(category),
@@ -219,7 +232,6 @@ export const updateSheet = async (
       }
     }),
   )
-
   await batchUpdate(spreadsheetId, token, requests)
   toast.success('Sheet updated successfully')
 }

@@ -621,4 +621,22 @@ export const BIOMARKER_INTERVENTIONS_MAP: Partial<
       requirements: [InterventionRequirement.High],
     },
   ],
+  [BiomarkerId.HRV]: [
+    {
+      biomarkerId: BiomarkerId.HRV,
+      interventionId: InterventionId.MonitorHRV,
+      description:
+        'Tracking your heart rate variability (HRV) can help you understand how your body is responding to stress and training. Use a wearable device or app to monitor your HRV regularly.',
+      resources: [],
+      requirements: [InterventionRequirement.Low, InterventionRequirement.High],
+    },
+    {
+      biomarkerId: BiomarkerId.HRV,
+      interventionId: InterventionId.IncreaseExercise,
+      description:
+        'Regular exercise can improve heart rate variability and overall cardiovascular health.',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
+    },
+  ],
 }

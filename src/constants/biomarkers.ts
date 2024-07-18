@@ -123,7 +123,7 @@ export const BIOMARKERS: Biomarker[] = [
       BiomarkerCategory.Inflammation,
       BiomarkerCategory.ImmuneSystem,
     ],
-    measurementUnit: '%',
+    measurementUnit: 'cells/µL',
     wikipedia: 'https://en.wikipedia.org/wiki/Lymphocyte',
   },
   {
@@ -146,7 +146,7 @@ export const BIOMARKERS: Biomarker[] = [
       BiomarkerCategory.Inflammation,
       BiomarkerCategory.ImmuneSystem,
     ],
-    measurementUnit: '%',
+    measurementUnit: 'cells/µL',
     wikipedia: 'https://en.wikipedia.org/wiki/Monocyte',
   },
   {
@@ -172,7 +172,7 @@ export const BIOMARKERS: Biomarker[] = [
       BiomarkerCategory.BloodCellCounts,
       BiomarkerCategory.Inflammation,
     ],
-    measurementUnit: '%',
+    measurementUnit: 'cells/µL',
     wikipedia: 'https://en.wikipedia.org/wiki/Neutrophil',
   },
   {
@@ -628,7 +628,7 @@ export const BIOMARKERS: Biomarker[] = [
       'Basophils are a type of white blood cell that helps fight infection and inflammation.',
     classification: BiomarkerClassification.Cell,
     categories: [BiomarkerCategory.BloodCellCounts],
-    measurementUnit: '%',
+    measurementUnit: 'cells/µL',
     wikipedia: 'https://en.wikipedia.org/wiki/Basophil',
   },
   {
@@ -647,7 +647,7 @@ export const BIOMARKERS: Biomarker[] = [
       'Eosinophils are a type of white blood cell that helps fight infection and inflammation.',
     classification: BiomarkerClassification.Cell,
     categories: [BiomarkerCategory.BloodCellCounts],
-    measurementUnit: '%',
+    measurementUnit: 'cells/µL',
     wikipedia: 'https://en.wikipedia.org/wiki/Eosinophil',
   },
   {
@@ -698,5 +698,14 @@ export const BIOMARKERS: Biomarker[] = [
     categories: [BiomarkerCategory.Diabetes],
     measurementUnit: '%',
     wikipedia: 'https://en.wikipedia.org/wiki/Glycated_hemoglobin',
+  },
+  {
+    id: BiomarkerId.HRV,
+    name: 'Heart Rate Variability',
+    description:
+      'Heart rate variability is a measure of the variation in time between heartbeats, which can indicate the health of the autonomic nervous system.',
+    categories: [BiomarkerCategory.Cardio],
+    measurementUnit: 'ms',
+    wikipedia: 'https://en.wikipedia.org/wiki/Heart_rate_variability',
   },
 ]

@@ -1,5 +1,5 @@
 export const CLIENT_ID =
-  '789424328738-dh2h8165s8fgvrbilld5c3v225jjeh28.apps.googleusercontent.com'
+  '136443744009-u8l5jlfefhnk6di0779obm72q7gmnhm7.apps.googleusercontent.com'
 
 export const VERTEX_AI_SCOPE = 'https://www.googleapis.com/auth/cloud-platform'
 

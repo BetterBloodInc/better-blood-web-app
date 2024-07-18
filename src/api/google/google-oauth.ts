@@ -35,10 +35,14 @@ export const useGoogleOAuthAccessTokenQuery = () =>
     },
   })
 
-export const saveGoogleOAuthAccessToken = (apiKey: string) => {
+export const saveGoogleOAuthAccessToken = (apiKey: string | null) => {
   try {
     if (localStorage) {
-      localStorage.setItem('user.google.oauth.accessToken', apiKey)
+      if (!apiKey) {
+        localStorage.removeItem('user.google.oauth.accessToken')
+      } else {
+        localStorage.setItem('user.google.oauth.accessToken', apiKey)
+      }
     }
   } catch (e) {
     console.error(e)

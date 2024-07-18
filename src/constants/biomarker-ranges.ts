@@ -9,6 +9,11 @@ import {
 export const enum BiomarkerRangeSourceId {
   MayClinicCBC = 'MayClinicCBC',
   Blueprint = 'Blueprint',
+  ClevelandClinicLymphocytes = 'ClevelandClinicLymphocytes',
+  ClevelandClinicBasophils = 'ClevelandClinicBasophils',
+  TestingCreatinineKinase = 'TestingCreatinineKinase',
+  WebMDEosinophils = 'WebMDEosinophils',
+  WhoopHRV = 'WhoopHRV',
   Other = 'Other',
 }
 
@@ -31,6 +36,31 @@ export const BIOMARKER_RANGE_SOURCES: Record<
     id: BiomarkerRangeSourceId.Blueprint,
     name: 'Blueprint Protocol',
     url: 'https://protocol.bryanjohnson.com/',
+  },
+  [BiomarkerRangeSourceId.ClevelandClinicLymphocytes]: {
+    id: BiomarkerRangeSourceId.ClevelandClinicLymphocytes,
+    name: 'Cleveland Clinic - Lymphocytes',
+    url: 'https://my.clevelandclinic.org/health/body/23342-lymphocytes',
+  },
+  [BiomarkerRangeSourceId.ClevelandClinicBasophils]: {
+    id: BiomarkerRangeSourceId.ClevelandClinicBasophils,
+    name: 'Cleveland Clinic - Basophils',
+    url: 'https://my.clevelandclinic.org/health/body/23256-basophils',
+  },
+  [BiomarkerRangeSourceId.TestingCreatinineKinase]: {
+    id: BiomarkerRangeSourceId.TestingCreatinineKinase,
+    name: 'Testing.com - Creatinine Kinase',
+    url: 'https://www.testing.com/tests/creatine-kinase-ck',
+  },
+  [BiomarkerRangeSourceId.WebMDEosinophils]: {
+    id: BiomarkerRangeSourceId.WebMDEosinophils,
+    name: 'WebMD - Eosinophils',
+    url: 'https://www.webmd.com/asthma/eosinophil-count-facts',
+  },
+  [BiomarkerRangeSourceId.WhoopHRV]: {
+    id: BiomarkerRangeSourceId.WhoopHRV,
+    name: 'Whoop - HRV',
+    url: 'https://www.whoop.com/us/en/thelocker/heart-rate-variability-hrv/',
   },
   [BiomarkerRangeSourceId.Other]: {
     id: BiomarkerRangeSourceId.Other,
@@ -802,21 +832,21 @@ export const OPTIMAL_BIOMARKER_RANGE_MAP: Partial<
   ],
   BASOS: [
     {
-      source: BiomarkerRangeSourceId.Other,
+      source: BiomarkerRangeSourceId.ClevelandClinicBasophils,
       range: {
         [Gender.Other]: {
           [AgeRange.Unknown]: {
-            [Ethnicity.Other]: [0.01, 0.03],
+            [Ethnicity.Other]: [0, 300],
           },
         },
         [Gender.Male]: {
           [AgeRange.Unknown]: {
-            [Ethnicity.Other]: [0.01, 0.03],
+            [Ethnicity.Other]: [0, 300],
           },
         },
         [Gender.Female]: {
           [AgeRange.Unknown]: {
-            [Ethnicity.Other]: [0.01, 0.03],
+            [Ethnicity.Other]: [0, 300],
           },
         },
       },
@@ -890,6 +920,26 @@ export const OPTIMAL_BIOMARKER_RANGE_MAP: Partial<
   ],
   CK: [
     {
+      source: BiomarkerRangeSourceId.TestingCreatinineKinase,
+      range: {
+        [Gender.Other]: {
+          [AgeRange.Unknown]: {
+            [Ethnicity.Other]: [30, 170],
+          },
+        },
+        [Gender.Male]: {
+          [AgeRange.Unknown]: {
+            [Ethnicity.Other]: [55, 170],
+          },
+        },
+        [Gender.Female]: {
+          [AgeRange.Unknown]: {
+            [Ethnicity.Other]: [30, 145],
+          },
+        },
+      },
+    },
+    {
       source: BiomarkerRangeSourceId.Other,
       range: {
         [Gender.Other]: {
@@ -956,21 +1006,21 @@ export const OPTIMAL_BIOMARKER_RANGE_MAP: Partial<
   ],
   EOS: [
     {
-      source: BiomarkerRangeSourceId.Other,
+      source: BiomarkerRangeSourceId.WebMDEosinophils,
       range: {
         [Gender.Other]: {
           [AgeRange.Unknown]: {
-            [Ethnicity.Other]: [0, 0.4],
+            [Ethnicity.Other]: [30, 350],
           },
         },
         [Gender.Male]: {
           [AgeRange.Unknown]: {
-            [Ethnicity.Other]: [0, 0.4],
+            [Ethnicity.Other]: [30, 350],
           },
         },
         [Gender.Female]: {
           [AgeRange.Unknown]: {
-            [Ethnicity.Other]: [0, 0.4],
+            [Ethnicity.Other]: [30, 350],
           },
         },
       },
@@ -1133,21 +1183,11 @@ export const OPTIMAL_BIOMARKER_RANGE_MAP: Partial<
   ],
   LYMPHS: [
     {
-      source: BiomarkerRangeSourceId.Other,
+      source: BiomarkerRangeSourceId.ClevelandClinicLymphocytes,
       range: {
         [Gender.Other]: {
           [AgeRange.Unknown]: {
-            [Ethnicity.Other]: [1.0, 4.0],
-          },
-        },
-        [Gender.Male]: {
-          [AgeRange.Unknown]: {
-            [Ethnicity.Other]: [1.0, 4.0],
-          },
-        },
-        [Gender.Female]: {
-          [AgeRange.Unknown]: {
-            [Ethnicity.Other]: [1.0, 4.0],
+            [Ethnicity.Other]: [1000, 4800],
           },
         },
       },
@@ -1269,17 +1309,17 @@ export const OPTIMAL_BIOMARKER_RANGE_MAP: Partial<
       range: {
         [Gender.Other]: {
           [AgeRange.Unknown]: {
-            [Ethnicity.Other]: [0.2, 1.0],
+            [Ethnicity.Other]: [200, 1000],
           },
         },
         [Gender.Male]: {
           [AgeRange.Unknown]: {
-            [Ethnicity.Other]: [0.2, 1.0],
+            [Ethnicity.Other]: [200, 1000],
           },
         },
         [Gender.Female]: {
           [AgeRange.Unknown]: {
-            [Ethnicity.Other]: [0.2, 1.0],
+            [Ethnicity.Other]: [200, 1000],
           },
         },
       },
@@ -1335,17 +1375,17 @@ export const OPTIMAL_BIOMARKER_RANGE_MAP: Partial<
       range: {
         [Gender.Other]: {
           [AgeRange.Unknown]: {
-            [Ethnicity.Other]: [1.5, 7.5],
+            [Ethnicity.Other]: [1500, 7500],
           },
         },
         [Gender.Male]: {
           [AgeRange.Unknown]: {
-            [Ethnicity.Other]: [1.5, 7.5],
+            [Ethnicity.Other]: [1500, 7500],
           },
         },
         [Gender.Female]: {
           [AgeRange.Unknown]: {
-            [Ethnicity.Other]: [1.5, 7.5],
+            [Ethnicity.Other]: [1500, 7500],
           },
         },
       },
@@ -1735,6 +1775,70 @@ export const OPTIMAL_BIOMARKER_RANGE_MAP: Partial<
         [Gender.Other]: {
           [AgeRange.Unknown]: {
             [Ethnicity.Other]: [0, 22.5],
+          },
+        },
+      },
+    },
+  ],
+  HRV: [
+    {
+      source: BiomarkerRangeSourceId.WhoopHRV,
+      range: {
+        [Gender.Other]: {
+          [AgeRange.Unknown]: {
+            [Ethnicity.Other]: [40, 65],
+          },
+        },
+        [Gender.Male]: {
+          [AgeRange.Unknown]: {
+            [Ethnicity.Other]: [45, 65],
+          },
+          [AgeRange.Twenties]: {
+            [Ethnicity.Other]: [45, 65],
+          },
+          [AgeRange.Thirties]: {
+            [Ethnicity.Other]: [40, 60],
+          },
+          [AgeRange.Forties]: {
+            [Ethnicity.Other]: [35, 55],
+          },
+          [AgeRange.Fifties]: {
+            [Ethnicity.Other]: [30, 50],
+          },
+          [AgeRange.Sixties]: {
+            [Ethnicity.Other]: [25, 45],
+          },
+          [AgeRange.Seventies]: {
+            [Ethnicity.Other]: [25, 45],
+          },
+          [AgeRange.Eighties]: {
+            [Ethnicity.Other]: [25, 45],
+          },
+        },
+        [Gender.Female]: {
+          [AgeRange.Unknown]: {
+            [Ethnicity.Other]: [40, 60],
+          },
+          [AgeRange.Twenties]: {
+            [Ethnicity.Other]: [40, 60],
+          },
+          [AgeRange.Thirties]: {
+            [Ethnicity.Other]: [35, 55],
+          },
+          [AgeRange.Forties]: {
+            [Ethnicity.Other]: [30, 50],
+          },
+          [AgeRange.Fifties]: {
+            [Ethnicity.Other]: [25, 45],
+          },
+          [AgeRange.Sixties]: {
+            [Ethnicity.Other]: [20, 40],
+          },
+          [AgeRange.Seventies]: {
+            [Ethnicity.Other]: [20, 40],
+          },
+          [AgeRange.Eighties]: {
+            [Ethnicity.Other]: [20, 40],
           },
         },
       },

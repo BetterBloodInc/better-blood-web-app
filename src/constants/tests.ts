@@ -189,6 +189,46 @@ export const PROVIDER_TESTS: Record<ProviderId, ProviderTest[]> = {
       priceUnit: 'USD',
       measuredBiomarkers: [BiomarkerId.As, BiomarkerId.Pb, BiomarkerId.Hg],
     },
+    {
+      name: 'Creatine Kinase (CK), Total',
+      description:
+        'This blood test is used to evaluate levels of creatine kinase (CK), an enzyme release when muscle damage occurs.',
+      link: 'https://www.healthlabs.com/creatine-kinase-ck-total',
+      providerId: 'HEALTHLABS',
+      price: 28,
+      priceUnit: 'USD',
+      measuredBiomarkers: [BiomarkerId.CK],
+    },
+    {
+      name: 'Calcium, Blood Test',
+      description:
+        'This test measures the levels of calcium in your blood to help you monitor your bone health and overall health.',
+      link: 'https://www.healthlabs.com/calcium-testing-blood',
+      providerId: 'HEALTHLABS',
+      price: 29,
+      priceUnit: 'USD',
+      measuredBiomarkers: [BiomarkerId.Ca],
+    },
+    {
+      name: 'Testosterone Test, Total',
+      description:
+        'This test measures the levels of total testosterone in your blood to help you monitor your hormone levels and overall health.',
+      link: 'https://www.healthlabs.com/testosterone-testing-total',
+      providerId: 'HEALTHLABS',
+      price: 49,
+      priceUnit: 'USD',
+      measuredBiomarkers: [BiomarkerId.T],
+    },
+    {
+      name: 'Testosterone Test, Free',
+      description:
+        'This test measures the levels of free testosterone in your blood to help you monitor your hormone levels and overall health.',
+      link: 'https://www.healthlabs.com/testosterone-free-direct-testing',
+      providerId: 'HEALTHLABS',
+      price: 59,
+      priceUnit: 'USD',
+      measuredBiomarkers: [BiomarkerId.FT],
+    },
   ],
   INSIDETRACKER: [],
   LABCORP: [

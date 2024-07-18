@@ -1,3 +1,5 @@
+import { ProductId } from './product-types'
+
 export const enum InterventionId {
   // therapy
   ChelationTherapy = 'ChelationTherapy',
@@ -23,6 +25,9 @@ export const enum InterventionId {
 
   // stop
   QuitSmoking = 'QuitSmoking',
+
+  // monitor
+  MonitorHRV = 'MonitorHRV',
 
   // limit
   LimitSugar = 'LimitSugar',
@@ -147,14 +152,7 @@ export interface Intervention {
   name: string
   category: InterventionCategory
   description: string
-  products: Product[]
-}
-
-export interface Product {
-  id: string
-  name: string
-  description: string
-  link: string
+  products: ProductId[]
 }
 
 /**
@@ -163,6 +161,5 @@ export interface Product {
 export enum InterventionRequirement {
   None = 'None',
   Low = 'Low',
-  Medium = 'Medium',
   High = 'High',
 }

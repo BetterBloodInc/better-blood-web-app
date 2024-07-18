@@ -2,9 +2,10 @@ import React from 'react'
 import { Overline } from '~src/library/text/Overline'
 import { BiomarkerIntervention } from '~src/constants/biomarker-interventions'
 import { INTERVENTIONS } from '~src/constants/interventions'
-import './InterventionCard.scss'
 import { ResourceLink } from '../resource-link/ResourceLink'
 import { Col } from '~src/library/Col'
+import { ProductLink } from '../product-link/ProductLink'
+import './InterventionCard.scss'
 
 export function InterventionCard({
   intervention,
@@ -34,6 +35,16 @@ export function InterventionCard({
               </li>
             ))}
           </ul>
+        </>
+      )}
+      {!!lookedUpIntervention.products?.length && (
+        <>
+          <Overline>Products</Overline>
+          <Col gap="0.5rem">
+            {lookedUpIntervention.products.map((product) => (
+              <ProductLink key={product} productId={product} />
+            ))}
+          </Col>
         </>
       )}
     </div>

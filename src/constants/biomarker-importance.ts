@@ -1,4 +1,5 @@
 import { BiomarkerId } from '~src/types/biomarker-types'
+import { ResourceId } from '~src/types/resource-types'
 
 export enum BiomarkerImportanceLevel {
   LOW = 'LOW',
@@ -29,6 +30,7 @@ export interface BiomarkerImportance {
   category: BiomarkerHealthImpact
   description: string
   importance: BiomarkerImportanceLevel
+  resources?: ResourceId[]
 }
 
 export const BIOMARKER_IMPORTANCE_MAP: Partial<
@@ -640,6 +642,45 @@ export const BIOMARKER_IMPORTANCE_MAP: Partial<
         'Rheumatoid Arthritis: High hsCRP levels can be a marker for active inflammation in autoimmune diseases like rheumatoid arthritis and lupus.',
       importance: BiomarkerImportanceLevel.HIGH,
       category: BiomarkerHealthImpact.IMMUNE,
+    },
+  ],
+  [BiomarkerId.FT]: [
+    {
+      biomarkerId: BiomarkerId.FT,
+      description:
+        'Free testosterone (FT) is a hormone that plays a key role in reproductive health and development. Abnormal FT levels can indicate hormonal imbalances and other health problems. Monitoring FT levels can help diagnose and manage testosterone-related conditions.',
+      importance: BiomarkerImportanceLevel.HIGH,
+      category: BiomarkerHealthImpact.REPRODUCTIVE,
+    },
+    {
+      biomarkerId: BiomarkerId.FT,
+      description:
+        'Free testosterone plays a crucial role in the development and maintenance of muscle mass and strength. It stimulates muscle protein synthesis, which helps build and repair muscle tissue. Adequate levels of free testosterone are essential for physical performance, especially in athletes and individuals engaging in resistance training.',
+      importance: BiomarkerImportanceLevel.HIGH,
+      category: BiomarkerHealthImpact.MUSCLE,
+    },
+    {
+      biomarkerId: BiomarkerId.FT,
+      description:
+        'Free testosterone contributes significantly to bone health by promoting bone density and reducing the risk of osteoporosis. It stimulates bone formation and inhibits bone resorption, helping to maintain strong and healthy bones, particularly in aging individuals.',
+      importance: BiomarkerImportanceLevel.HIGH,
+      category: BiomarkerHealthImpact.BONE,
+    },
+    {
+      biomarkerId: BiomarkerId.FT,
+      description:
+        'Free testosterone has an impact on mood and cognitive function. It is associated with improved mood, reduced risk of depression, and better cognitive abilities such as memory and concentration. Low levels of free testosterone have been linked to mood disorders and cognitive decline.',
+      importance: BiomarkerImportanceLevel.HIGH,
+      category: BiomarkerHealthImpact.NEUROLOGICAL,
+    },
+  ],
+  [BiomarkerId.HRV]: [
+    {
+      biomarkerId: BiomarkerId.HRV,
+      description:
+        'Heart rate variability (HRV) is a measure of the variation in time between heartbeats. High HRV is associated with good health and fitness, while low HRV is associated with stress and poor health. Monitoring HRV can help assess overall health and fitness levels.',
+      importance: BiomarkerImportanceLevel.HIGH,
+      category: BiomarkerHealthImpact.CARDIOVASCULAR,
     },
   ],
 }

@@ -3,6 +3,7 @@ import {
   InterventionCategory,
   InterventionId,
 } from '~src/types/intervention-types'
+import { ProductId } from '~src/types/product-types'
 
 export const INTERVENTIONS: Partial<Record<InterventionId, Intervention>> = {
   [InterventionId.QuitSmoking]: {
@@ -260,5 +261,29 @@ export const INTERVENTIONS: Partial<Record<InterventionId, Intervention>> = {
     description:
       'Docosahexaenoic acid (DHA) is an omega-3 fatty acid that is important for brain health and development. It is found in fatty fish and algae.',
     products: [],
+  },
+  [InterventionId.RestAndRecover]: {
+    id: InterventionId.RestAndRecover,
+    name: 'Rest and Recover',
+    category: InterventionCategory.Lifestyle,
+    description:
+      'Rest and recovery are important for your health and well-being. Make sure to get enough sleep, take breaks when needed, and practice relaxation techniques.',
+    products: [],
+  },
+  [InterventionId.IncreaseSunExposure]: {
+    id: InterventionId.IncreaseSunExposure,
+    name: 'Increase Sun Exposure',
+    category: InterventionCategory.Lifestyle,
+    description:
+      'Sun exposure is important for vitamin D production in your body. Try to spend some time outdoors each day to get enough sunlight.',
+    products: [],
+  },
+  [InterventionId.MonitorHRV]: {
+    id: InterventionId.MonitorHRV,
+    name: 'Monitor Heart Rate Variability (HRV)',
+    category: InterventionCategory.Lifestyle,
+    description:
+      'Heart rate variability (HRV) is a measure of the variation in time between heartbeats. Monitoring HRV can help you assess your stress levels and recovery status.',
+    products: [ProductId.Whoop],
   },
 }

@@ -78,6 +78,7 @@ export const enum BiomarkerId {
   Hg = 'Hg', // Mercury
   Hgb = 'Hgb', // Hemoglobin
   HORVATH = 'HORVATH', // Horvath Clock
+  HRV = 'HRV', // Heart Rate Variability
   hsCRP = 'hsCRP', // High-Sensitivity C-Reactive Protein
   IGF1 = 'IGF1', // Insulin-like Growth Factor 1
   Ins = 'Ins', // Insulin

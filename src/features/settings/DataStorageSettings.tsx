@@ -25,11 +25,13 @@ export function DataStorageSettings() {
     data: googleSheetsData,
     error: googleSheetsError,
     isLoading: loadingSheets,
+    refetch: refetchGoogleSheets,
   } = useGoogleSpreadsheetListQuery()
 
   useEffect(() => {
     if (handleRedirectCallback()) {
       refetchGoogleToken()
+      refetchGoogleSheets()
     }
   }, [refetchGoogleToken])
 
@@ -54,23 +56,37 @@ export function DataStorageSettings() {
           </Col>
           <Button
             text="Create Google Sheet"
-            onClick={() => {
+            onClick={async () => {
               if (!googleOAuthAccessToken) {
                 toast.error('Please connect to Google OAuth first.')
                 return
               }
-              createSpreadsheet(googleOAuthAccessToken)
+              await createSpreadsheet(
+                googleOAuthAccessToken,
+                profile?.name ?? 'User',
+              )
+              await refetchGoogleSheets()
             }}
           />
         </Row>
-        {googleOAuthAccessToken ? (
+        {loadingSheets && (
+          <p style={{ marginTop: '1rem' }}>Loading Google Sheets...</p>
+        )}
+        {googleSheetsError && (
           <>
-            {loadingSheets && <p>Loading Google Sheets...</p>}
-            {googleSheetsError && (
-              <p className="text-red">
+            {googleSheetsError.message.includes('401') ? (
+              <p style={{ marginTop: '1rem' }}>
+                Your session has expired. Please reconnect to Google OAuth.
+              </p>
+            ) : (
+              <p className="text-red" style={{ marginTop: '1rem' }}>
                 Error loading Google Sheets: {googleSheetsError.message}
               </p>
             )}
+          </>
+        )}
+        {googleOAuthAccessToken && !googleSheetsError ? (
+          <>
             {googleSheetsData && profile && (
               <Col style={{ marginTop: '1rem' }} gap="1rem">
                 {googleSheetsData.map((sheet: any) => (

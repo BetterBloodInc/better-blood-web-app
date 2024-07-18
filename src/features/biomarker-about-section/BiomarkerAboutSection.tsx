@@ -99,22 +99,45 @@ function formatReferenceText(
   referencedAgeRange: AgeRange | undefined | null,
   referencedEthnicity: Ethnicity | undefined | null,
 ) {
-  if (referencedGender && referencedAgeRange && referencedEthnicity) {
+  if (
+    referencedGender &&
+    referencedGender !== Gender.Other &&
+    referencedAgeRange &&
+    referencedAgeRange !== AgeRange.Unknown &&
+    referencedEthnicity &&
+    referencedEthnicity !== Ethnicity.Other
+  ) {
     return `This is the optimal range for ${referencedEthnicity?.toLowerCase()} ${GENDER_MAP[referencedGender]} in their ${referencedAgeRange}.`
   }
-  if (referencedGender && referencedAgeRange) {
-    return `This is the optimal range for ${GENDER_MAP[referencedGender]} in their ${referencedAgeRange}s.`
+  if (
+    referencedGender &&
+    referencedGender !== Gender.Other &&
+    referencedAgeRange &&
+    referencedAgeRange !== AgeRange.Unknown
+  ) {
+    return `This is the optimal range for ${GENDER_MAP[referencedGender]} in their ${referencedAgeRange}.`
   }
-  if (referencedGender && referencedEthnicity) {
+  if (
+    referencedGender &&
+    referencedGender !== Gender.Other &&
+    referencedEthnicity &&
+    referencedEthnicity !== Ethnicity.Other
+  ) {
     return `This is the optimal range for ${referencedEthnicity?.toLowerCase()} ${GENDER_MAP[referencedGender]}.`
   }
-  if (referencedAgeRange && referencedEthnicity) {
+  if (
+    referencedAgeRange &&
+    referencedAgeRange !== AgeRange.Unknown &&
+    referencedEthnicity &&
+    referencedEthnicity !== Ethnicity.Other
+  ) {
     return `This is the optimal range for ${referencedEthnicity.toLowerCase()}s in their ${referencedAgeRange}.`
   }
-  if (referencedGender) {
+  if (referencedGender && referencedGender !== Gender.Other) {
     return `This is the optimal range for ${GENDER_MAP[referencedGender]}.`
   }
-  if (referencedAgeRange) {
+  if (referencedAgeRange && referencedAgeRange !== AgeRange.Unknown) {
     return `This is the optimal range for all individuals in their ${referencedAgeRange}.`
   }
+  return 'This is the optimal range for all individuals.'
 }

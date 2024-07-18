@@ -21,7 +21,7 @@ import { BiomarkerStatus } from '../biomarker-status/BiomarkerStatus'
 import { useToggleUploadFileModal } from '~src/modals/upload-file-modal/slice'
 import { DatePicker } from '~src/library/form/DatePicker'
 import { BiomarkerMeasurement } from '~src/types/user-types'
-import { BLOOD_METRIC_CATEGORIES } from '~src/constants/biomarker-categories'
+import { BLOOD_BIOMARKER_CATEGORIES } from '~src/constants/biomarker-categories'
 import { Tag, TagSelect } from '~src/library/form/TagSelect'
 import {
   saveSelectedCategories,
@@ -174,7 +174,7 @@ export function BiomarkerTable() {
         />
         <TagSelect
           options={[
-            ...BLOOD_METRIC_CATEGORIES.map((c) => ({
+            ...BLOOD_BIOMARKER_CATEGORIES.map((c) => ({
               label: c,
               value: c,
             })),

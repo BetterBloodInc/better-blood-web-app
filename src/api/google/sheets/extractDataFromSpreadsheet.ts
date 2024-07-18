@@ -46,21 +46,23 @@ export const extractDataFromSpreadsheet = async (
     createdAt: userProfile.createdAt,
     demographic: userProfile,
     healthConditions: {},
-    biomarkers: bloodData.reduce<Record<BiomarkerId, BiomarkerMeasurement[]>>((acc, sheet) => {
-      sheet.biomarkers.flat().forEach((biomarker) => {
-        if (!acc[biomarker.biomarkerId]) {
-          acc[biomarker.biomarkerId] = []
-        }
-        acc[biomarker.biomarkerId].push({
-          value: parseFloat(biomarker.value ?? '0'),
-          timestamp: parseInt(biomarker.timestamp ?? '0'),
-          biomarkerId: biomarker.biomarkerId,
+    biomarkers: bloodData.reduce<Record<BiomarkerId, BiomarkerMeasurement[]>>(
+      (acc, sheet) => {
+        sheet.biomarkers.flat().forEach((biomarker) => {
+          if (!acc[biomarker.biomarkerId]) {
+            acc[biomarker.biomarkerId] = []
+          }
+          acc[biomarker.biomarkerId].push({
+            value: parseFloat(biomarker.value ?? '0'),
+            timestamp: parseInt(biomarker.timestamp ?? '0'),
+            biomarkerId: biomarker.biomarkerId,
+          })
         })
-      })
-      return acc
-    }, INITIAL_BIOMARKER_MEASUREMENTS),
+        return acc
+      },
+      INITIAL_BIOMARKER_MEASUREMENTS,
+    ),
     interventions: {},
   }
-  console.log('extractedData: ', extractedData)
   return extractedData
 }

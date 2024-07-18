@@ -1,4 +1,4 @@
-import { BLOOD_METRIC_CATEGORIES } from '~src/constants/biomarker-categories'
+import { BLOOD_BIOMARKER_CATEGORIES } from '~src/constants/biomarker-categories'
 import { PROFILE_SHEET_NAME } from '../constants'
 import { batchUpdate } from './api'
 
@@ -14,7 +14,6 @@ export const createSheetsThatDoNotExist = async (
     return acc
   }, {})
   const userProfileSheetId = existingSheetsNameToIdMap[PROFILE_SHEET_NAME]
-  console.log('userProfileSheetId: ', userProfileSheetId)
   let requests: { addSheet: gapi.client.sheets.AddSheetRequest }[] = []
   // create a new sheet if user profile sheet doesn't exist
   if (!userProfileSheetId) {
@@ -30,7 +29,7 @@ export const createSheetsThatDoNotExist = async (
   const existingSheetsNameSet = new Set(
     existingSheets.map((sheet) => sheet.properties?.title),
   )
-  const missingSheets = BLOOD_METRIC_CATEGORIES.filter(
+  const missingSheets = BLOOD_BIOMARKER_CATEGORIES.filter(
     (category) => !existingSheetsNameSet.has(category),
   )
 

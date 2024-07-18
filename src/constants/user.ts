@@ -80,4 +80,5 @@ export const INITIAL_BIOMARKER_MEASUREMENTS: BiomarkerMeasurements = {
   [BiomarkerId.PSA]: [],
   [BiomarkerId.Se]: [],
   [BiomarkerId.Zn]: [],
+  [BiomarkerId.HRV]: [],
 }
