@@ -603,6 +603,40 @@ export const BIOMARKER_INTERVENTIONS_MAP: Partial<
       requirements: [InterventionRequirement.High],
     },
   ],
+  [BiomarkerId.DunedinPACE]: [
+    {
+      biomarkerId: BiomarkerId.DunedinPACE,
+      interventionId: InterventionId.QuitSmoking,
+      description:
+        'Smoking can accelerate the aging process and increase the risk of age-related diseases. Quitting can help slow down the aging process and improve overall health.',
+      resources: [],
+      requirements: [InterventionRequirement.High],
+    },
+    {
+      biomarkerId: BiomarkerId.DunedinPACE,
+      interventionId: InterventionId.SupplementGrowthHormone,
+      description:
+        'Growth hormone supplements are sometimes used to support healthy aging. Talk to your doctor before taking any growth hormone supplements.',
+      resources: [ResourceId.Nature_d41586_019_02638_w],
+      requirements: [InterventionRequirement.High],
+    },
+    {
+      biomarkerId: BiomarkerId.DunedinPACE,
+      interventionId: InterventionId.SupplementDHEA,
+      description:
+        'DHEA is a hormone that declines with age. Supplementing with DHEA may support healthy aging, but consult your doctor before taking any DHEA supplements.',
+      resources: [ResourceId.Nature_d41586_019_02638_w],
+      requirements: [InterventionRequirement.High],
+    },
+    {
+      biomarkerId: BiomarkerId.DunedinPACE,
+      interventionId: InterventionId.SupplementMetformin,
+      description:
+        'Metformin is a medication used to treat type 2 diabetes that has been studied for its potential anti-aging effects. Talk to your doctor before taking metformin for anti-aging purposes.',
+      resources: [ResourceId.Nature_d41586_019_02638_w],
+      requirements: [InterventionRequirement.High],
+    },
+  ],
   [BiomarkerId.hsCRP]: [
     {
       biomarkerId: BiomarkerId.hsCRP,
@@ -635,6 +669,16 @@ export const BIOMARKER_INTERVENTIONS_MAP: Partial<
       interventionId: InterventionId.IncreaseExercise,
       description:
         'Regular exercise can improve heart rate variability and overall cardiovascular health.',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
+    },
+  ],
+  [BiomarkerId.VO2Max]: [
+    {
+      biomarkerId: BiomarkerId.VO2Max,
+      interventionId: InterventionId.IncreaseExercise,
+      description:
+        'Regular aerobic exercise can help improve your VO2 max and overall cardiovascular fitness.',
       resources: [],
       requirements: [InterventionRequirement.Low],
     },

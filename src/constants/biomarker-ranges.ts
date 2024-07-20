@@ -14,6 +14,7 @@ export const enum BiomarkerRangeSourceId {
   TestingCreatinineKinase = 'TestingCreatinineKinase',
   WebMDEosinophils = 'WebMDEosinophils',
   WhoopHRV = 'WhoopHRV',
+  FitnescityVO2Max = 'FitnescityVO2Max',
   Other = 'Other',
 }
 
@@ -61,6 +62,11 @@ export const BIOMARKER_RANGE_SOURCES: Record<
     id: BiomarkerRangeSourceId.WhoopHRV,
     name: 'Whoop - HRV',
     url: 'https://www.whoop.com/us/en/thelocker/heart-rate-variability-hrv/',
+  },
+  [BiomarkerRangeSourceId.FitnescityVO2Max]: {
+    id: BiomarkerRangeSourceId.FitnescityVO2Max,
+    name: 'Fitnescity - VO2 Max',
+    url: 'https://www.fitnescity.com/understanding-vo2-max',
   },
   [BiomarkerRangeSourceId.Other]: {
     id: BiomarkerRangeSourceId.Other,
@@ -1839,6 +1845,70 @@ export const OPTIMAL_BIOMARKER_RANGE_MAP: Partial<
           },
           [AgeRange.Eighties]: {
             [Ethnicity.Other]: [20, 40],
+          },
+        },
+      },
+    },
+  ],
+  [BiomarkerId.VO2Max]: [
+    {
+      source: BiomarkerRangeSourceId.FitnescityVO2Max,
+      range: {
+        [Gender.Other]: {
+          [AgeRange.Unknown]: {
+            [Ethnicity.Other]: [33],
+          },
+        },
+        [Gender.Male]: {
+          [AgeRange.Unknown]: {
+            [Ethnicity.Other]: [33],
+          },
+          [AgeRange.Twenties]: {
+            [Ethnicity.Other]: [52],
+          },
+          [AgeRange.Thirties]: {
+            [Ethnicity.Other]: [49],
+          },
+          [AgeRange.Forties]: {
+            [Ethnicity.Other]: [43],
+          },
+          [AgeRange.Fifties]: {
+            [Ethnicity.Other]: [39],
+          },
+          [AgeRange.Sixties]: {
+            [Ethnicity.Other]: [33],
+          },
+          [AgeRange.Seventies]: {
+            [Ethnicity.Other]: [33],
+          },
+          [AgeRange.Eighties]: {
+            [Ethnicity.Other]: [33],
+          },
+        },
+        [Gender.Female]: {
+          [AgeRange.Unknown]: {
+            [Ethnicity.Other]: [28],
+          },
+          [AgeRange.Twenties]: {
+            [Ethnicity.Other]: [47],
+          },
+          [AgeRange.Thirties]: {
+            [Ethnicity.Other]: [45],
+          },
+          [AgeRange.Forties]: {
+            [Ethnicity.Other]: [38],
+          },
+          [AgeRange.Fifties]: {
+            [Ethnicity.Other]: [34],
+          },
+          [AgeRange.Sixties]: {
+            [Ethnicity.Other]: [32],
+          },
+          [AgeRange.Seventies]: {
+            [Ethnicity.Other]: [28],
+          },
+          [AgeRange.Eighties]: {
+            [Ethnicity.Other]: [28],
           },
         },
       },

@@ -286,4 +286,28 @@ export const INTERVENTIONS: Partial<Record<InterventionId, Intervention>> = {
       'Heart rate variability (HRV) is a measure of the variation in time between heartbeats. Monitoring HRV can help you assess your stress levels and recovery status.',
     products: [ProductId.Whoop],
   },
+  [InterventionId.LimitAlcohol]: {
+    id: InterventionId.LimitAlcohol,
+    name: 'Limit Alcohol',
+    category: InterventionCategory.Lifestyle,
+    description:
+      'Limiting alcohol consumption can help reduce your risk of liver disease, heart disease, and other health problems.',
+    products: [],
+  },
+  [InterventionId.SupplementDHEA]: {
+    id: InterventionId.SupplementDHEA,
+    name: 'Supplement Dehydroepiandrosterone (DHEA)',
+    category: InterventionCategory.Supplement,
+    description:
+      'Dehydroepiandrosterone (DHEA) is a hormone that is produced by your adrenal glands. It is sometimes used as a supplement to treat hormonal imbalances and other conditions.',
+    products: [],
+  },
+  [InterventionId.SupplementMetformin]: {
+    id: InterventionId.SupplementMetformin,
+    name: 'Supplement Metformin',
+    category: InterventionCategory.Supplement,
+    description:
+      'Metformin is a medication that is commonly used to treat type 2 diabetes. It is thought to have anti-aging and other health benefits.',
+    products: [],
+  },
 }

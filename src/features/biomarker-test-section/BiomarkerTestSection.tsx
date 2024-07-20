@@ -26,8 +26,9 @@ export function BiomarkerTestSection({
           <span className="biomarker-name">{metric?.name}</span>?
         </h3>
         <p>
-          You can ask your primary physician to order a test for you or you can
-          order a test yourself through one of the providers below.
+          {!uniqueTests.length
+            ? 'You can ask your primary physician on getting this tested.'
+            : 'You can ask your primary physician to order a test for you or you canorder a test yourself through one of the providers below.'}
         </p>
       </Col>
       {!uniqueTests ? (

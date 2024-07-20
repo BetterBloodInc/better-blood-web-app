@@ -308,7 +308,12 @@ export function BiomarkerTable() {
                   style={{ alignItems: 'center', whiteSpace: 'nowrap' }}
                 >
                   <span style={{ fontWeight: '500' }}>
-                    {min === 0 ? '<' : `${abbrNumber(min)} -`} {abbrNumber(max)}
+                    {min === 0
+                      ? '<'
+                      : max === 0
+                        ? `> ${abbrNumber(min)}`
+                        : `${abbrNumber(min)} -`}{' '}
+                    {max !== 0 && abbrNumber(max)}
                   </span>{' '}
                   <span style={{ opacity: 0.5 }}>{units}</span>
                 </Row>

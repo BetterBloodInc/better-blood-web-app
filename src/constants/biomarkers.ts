@@ -319,8 +319,9 @@ export const BIOMARKERS: Biomarker[] = [
   },
   {
     id: BiomarkerId.DunedinPACE,
-    name: 'DunedinPACE',
-    description: 'A DNA methylation biomarker of the pace of aging',
+    name: 'Pace of Aging (DunedinPACE)',
+    description:
+      "DunedinPACE, or Pace of Aging Calculated from the Epigenome, is a blood test that measures how fast a person is aging based on DNA methylation marks in white blood cells. The test estimates a person's pace of aging from a single sample and can be used in studies to investigate how aging rates may be affected by environmental factors, drugs, or behavior.",
     categories: [BiomarkerCategory.Aging],
     measurementUnit: 'years',
   },
@@ -708,4 +709,21 @@ export const BIOMARKERS: Biomarker[] = [
     measurementUnit: 'ms',
     wikipedia: 'https://en.wikipedia.org/wiki/Heart_rate_variability',
   },
+  {
+    id: BiomarkerId.VO2Max,
+    name: 'VO2 Max',
+    description:
+      'VO2 max is a measure of the maximum amount of oxygen your body can use during exercise, which can indicate cardiovascular fitness.',
+    categories: [BiomarkerCategory.Cardio],
+    measurementUnit: 'mL/kg/min',
+    wikipedia: 'https://en.wikipedia.org/wiki/VO2_max',
+  }
+  // {
+  //   id: BiomarkerId.IT_BioAge,
+  //   name: 'Biological Age (InsideTracker)',
+  //   description:
+  //     'Biological age is a measure of how well your body is aging based on a combination of biomarkers and lifestyle factors.',
+  //   categories: [BiomarkerCategory.Aging],
+  //   measurementUnit: 'years',
+  // },
 ]

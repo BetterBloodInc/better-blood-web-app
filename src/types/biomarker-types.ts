@@ -81,6 +81,7 @@ export const enum BiomarkerId {
   HRV = 'HRV', // Heart Rate Variability
   hsCRP = 'hsCRP', // High-Sensitivity C-Reactive Protein
   IGF1 = 'IGF1', // Insulin-like Growth Factor 1
+  IT_BioAge = 'BioAge (IT)', // Inner Age (InsideTracker)
   Ins = 'Ins', // Insulin
   K = 'K', // Potassium
   LDL = 'LDL', // Low-Density Lipoprotein Cholesterol
@@ -101,6 +102,7 @@ export const enum BiomarkerId {
   PLT = 'PLT', // Platelets
   PSA = 'PSA', // Prostate-Specific Antigen
   RBC = 'RBC', // Red Blood Cell Count
+  RC = 'RC', // Reticulocyte Count
   RDW = 'RDW', // Red Cell Distribution Width
   SCr = 'SCr', // Serum Creatinine
   Se = 'Se', // Selenium
@@ -113,6 +115,7 @@ export const enum BiomarkerId {
   TSH = 'TSH', // Thyroid-Stimulating Hormone
   UA = 'UA', // Uric Acid
   VLDL = 'VLDL', // Very Low-Density Lipoprotein Cholesterol
+  VO2Max = 'VO2Max', // VO2 Max
   WBC = 'WBC', // White Blood Cell Count
   Zn = 'Zn', // Zinc
 }

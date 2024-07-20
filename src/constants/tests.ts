@@ -368,6 +368,39 @@ export const PROVIDER_TESTS: Record<ProviderId, ProviderTest[]> = {
       priceUnit: 'USD',
       measuredBiomarkers: [BiomarkerId.hsCRP],
     },
+    {
+      name: 'Ferritin Test',
+      description:
+        'This test measures the levels of ferritin in your blood to help you monitor your iron levels and overall health.',
+      link: 'https://www.ondemand.labcorp.com/lab-tests/ferritin-test',
+      providerId: 'LABCORP',
+      price: 59,
+      priceUnit: 'USD',
+      measuredBiomarkers: [BiomarkerId.Fer],
+    },
+    {
+      name: 'Anemia Test',
+      description:
+        'This test measures the levels of hemoglobin in your blood to help you monitor your risk of anemia.',
+      link: 'https://www.ondemand.labcorp.com/lab-tests/anemia-test',
+      providerId: 'LABCORP',
+      price: 179,
+      priceUnit: 'USD',
+      measuredBiomarkers: [
+        BiomarkerId.Hgb,
+        BiomarkerId.Fer,
+        BiomarkerId.TIBC,
+        BiomarkerId.B12,
+        BiomarkerId.FOL,
+        BiomarkerId.RBC,
+        BiomarkerId.WBC,
+        BiomarkerId.PLT,
+        BiomarkerId.Hct,
+        BiomarkerId.Fe,
+        BiomarkerId.TIBC,
+        BiomarkerId.RC,
+      ],
+    },
   ],
   MYDNAGE: [
     {

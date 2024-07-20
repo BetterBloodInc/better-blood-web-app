@@ -27,6 +27,7 @@ export enum BiomarkerHealthImpact {
 
 export interface BiomarkerImportance {
   biomarkerId: BiomarkerId
+  title?: string
   category: BiomarkerHealthImpact
   description: string
   importance: BiomarkerImportanceLevel
@@ -679,6 +680,33 @@ export const BIOMARKER_IMPORTANCE_MAP: Partial<
       biomarkerId: BiomarkerId.HRV,
       description:
         'Heart rate variability (HRV) is a measure of the variation in time between heartbeats. High HRV is associated with good health and fitness, while low HRV is associated with stress and poor health. Monitoring HRV can help assess overall health and fitness levels.',
+      importance: BiomarkerImportanceLevel.HIGH,
+      category: BiomarkerHealthImpact.CARDIOVASCULAR,
+    },
+  ],
+  [BiomarkerId.DunedinPACE]: [
+    {
+      biomarkerId: BiomarkerId.DunedinPACE,
+      title: 'Predictive Power for Health Outcomes',
+      description:
+        "DunedinPACE has demonstrated strong associations with key health outcomes, including morbidity, disability, and mortality. This makes it a valuable tool for predicting future health risks and understanding an individual's biological aging process more accurately than chronological age alone.",
+      importance: BiomarkerImportanceLevel.HIGH,
+      category: BiomarkerHealthImpact.AGE,
+    },
+    {
+      biomarkerId: BiomarkerId.DunedinPACE,
+      title: 'Monitoring and Evaluating Interventions',
+      description:
+        'DunedinPACE provides a quantitative measure of the rate of biological aging, which can be used to monitor the effectiveness of lifestyle changes, medical treatments, and other interventions aimed at slowing down the aging process. It can help assess whether specific interventions are beneficial in reducing the pace of aging.',
+      importance: BiomarkerImportanceLevel.HIGH,
+      category: BiomarkerHealthImpact.AGE,
+    },
+  ],
+  [BiomarkerId.VO2Max]: [
+    {
+      biomarkerId: BiomarkerId.VO2Max,
+      description:
+        'VO2 max is a measure of the maximum amount of oxygen that an individual can utilize during intense exercise. It is a key indicator of cardiovascular fitness and endurance. Improving VO2 max through regular exercise can enhance overall health and athletic performance.',
       importance: BiomarkerImportanceLevel.HIGH,
       category: BiomarkerHealthImpact.CARDIOVASCULAR,
     },

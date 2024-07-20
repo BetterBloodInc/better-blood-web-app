@@ -12,6 +12,7 @@ export function ImportanceCard({
   return (
     <Col className="importance-card">
       <Overline>{data.category}</Overline>
+      {data.title && <h4>{data.title}</h4>}
       <p>{data.description}</p>
     </Col>
   )
