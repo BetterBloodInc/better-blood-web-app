@@ -5,13 +5,20 @@ import { INTERVENTIONS } from '~src/constants/interventions'
 import { ResourceLink } from '../resource-link/ResourceLink'
 import { Col } from '~src/library/Col'
 import { ProductLink } from '../product-link/ProductLink'
+import { Row } from '~src/library/Row'
+import { Badge } from '~src/library/Badge'
+import { InterventionRequirement } from '~src/types/intervention-types'
+import { useDarkModeSelector } from '~src/theme-slice'
 import './InterventionCard.scss'
 
 export function InterventionCard({
   intervention,
+  status,
 }: {
   intervention: BiomarkerIntervention
+  status: InterventionRequirement
 }): JSX.Element {
+  const isDarkMode = useDarkModeSelector()
   const lookedUpIntervention = INTERVENTIONS[intervention.interventionId]
   if (!lookedUpIntervention) {
     return (
@@ -22,8 +29,24 @@ export function InterventionCard({
   }
   return (
     <div className="intervention-card">
-      <Overline>{lookedUpIntervention?.category}</Overline>
-      <h4>{lookedUpIntervention?.name}</h4>
+      <Row justify="between" gap="4px" align="start">
+        <Col gap="0.5rem">
+          <Overline>{lookedUpIntervention?.category}</Overline>
+          <h4>{lookedUpIntervention?.name}</h4>
+        </Col>
+        <Badge
+          color={intervention.requirements.includes(status) ? 'green' : 'red'}
+          dark={isDarkMode}
+          text={
+            intervention.requirements.length === 1
+              ? intervention.requirements[0] === InterventionRequirement.Low
+                ? 'TO INCREASE'
+                : 'TO REDUCE'
+              : 'TO OPTIMIZE'
+          }
+        />
+      </Row>
+
       <p>{intervention?.description}</p>
       {!!intervention.resources?.length && (
         <>

@@ -5,18 +5,37 @@ import { InterventionCard } from '../intervention-card/InterventionCard'
 import { BIOMARKER_INTERVENTIONS_MAP } from '~src/constants/biomarker-interventions'
 import './BiomarkerInterventionSection.scss'
 import { BIOMARKERS } from '~src/constants/biomarkers'
+import { useActiveProfileQuery } from '~src/api/profiles-api'
+import { getMinMaxForMetric } from '~src/utils/utils'
+import { InterventionRequirement } from '~src/types/intervention-types'
 
 export function BiomarkerInterventionSection({
   biomarkerId,
 }: {
   biomarkerId: BiomarkerId
 }): JSX.Element {
-  const metric = BIOMARKERS.find((m) => m.id === biomarkerId)
+  const biomarker = BIOMARKERS.find((m) => m.id === biomarkerId)
   const interventions = BIOMARKER_INTERVENTIONS_MAP[biomarkerId] ?? []
+  const { data: userData, isFetching } = useActiveProfileQuery()
+  const demographic = userData?.demographic
+  const { min, max } = getMinMaxForMetric(biomarkerId, demographic)
+  const data =
+    userData?.biomarkers[biomarkerId]?.sort(
+      (a, b) => b.timestamp - a.timestamp,
+    ) ?? []
+  const latestMetric = data[0]
+  const latestValue = latestMetric?.value ?? 0
+  const status =
+    latestValue < min
+      ? InterventionRequirement.Low
+      : latestValue > max
+        ? InterventionRequirement.High
+        : InterventionRequirement.None
   return (
     <Col id="interventions" gap="1rem" className="BiomarkerInterventionSection">
       <h3>
-        How can one improve <span className="biomarker-name">{metric?.name}</span>?
+        How can one improve{' '}
+        <span className="biomarker-name">{biomarker?.name}</span>?
       </h3>
       {/* <Col style={{ gap: '0.5rem' }}>
         <Overline>Impact By</Overline>
@@ -61,6 +80,7 @@ export function BiomarkerInterventionSection({
             <InterventionCard
               key={intervention.interventionId}
               intervention={intervention}
+              status={status}
             />
           ))}
         </div>

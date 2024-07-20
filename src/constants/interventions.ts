@@ -310,4 +310,12 @@ export const INTERVENTIONS: Partial<Record<InterventionId, Intervention>> = {
       'Metformin is a medication that is commonly used to treat type 2 diabetes. It is thought to have anti-aging and other health benefits.',
     products: [],
   },
+  [InterventionId.LimitRedMeat]: {
+    id: InterventionId.LimitRedMeat,
+    name: 'Limit Red Meat',
+    category: InterventionCategory.Diet,
+    description:
+      'Limiting red meat in your diet can help reduce your risk of heart disease, cancer, and other health problems.',
+    products: [],
+  },
 }

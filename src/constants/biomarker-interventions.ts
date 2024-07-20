@@ -683,4 +683,22 @@ export const BIOMARKER_INTERVENTIONS_MAP: Partial<
       requirements: [InterventionRequirement.Low],
     },
   ],
+  [BiomarkerId.Fe]: [
+    {
+      biomarkerId: BiomarkerId.Fe,
+      interventionId: InterventionId.SupplementIron,
+      description:
+        'Iron is essential for red blood cell production and may help support healthy iron levels.',
+      resources: [],
+      requirements: [InterventionRequirement.Low],
+    },
+    {
+      biomarkerId: BiomarkerId.Fe,
+      interventionId: InterventionId.LimitRedMeat,
+      description:
+        'Red meat is a good source of heme iron, but excessive consumption can lead to elevated iron levels. Limit your intake to support healthy iron levels.',
+      resources: [],
+      requirements: [InterventionRequirement.High],
+    },
+  ],
 }
