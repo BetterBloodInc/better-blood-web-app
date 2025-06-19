@@ -63,6 +63,7 @@ export const extractDataFromSpreadsheet = async (
       INITIAL_BIOMARKER_MEASUREMENTS,
     ),
     interventions: {},
+    referenceRanges: {},
   }
   return extractedData
 }

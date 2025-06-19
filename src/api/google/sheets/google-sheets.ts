@@ -175,6 +175,7 @@ export const updateSheet = async (
         const { min, max } = getMinMaxForMetric(
           biomarker.id,
           profile.demographic,
+          profile.referenceRanges?.[biomarker.id],
         )
         const biomarkerRangeCell: gapi.client.sheets.CellData = {
           userEnteredValue: { stringValue: formatRange(min, max) },

@@ -13,7 +13,13 @@ export function MetricChip({
 }) {
   const { data: userData, isFetching } = useActiveProfileQuery()
   const demographic = userData?.demographic
-  const { min, max } = getMinMaxForMetric(biomarkerId, demographic)
+  const customReferenceRange =
+    biomarkerId && userData?.referenceRanges?.[biomarkerId]
+  const { min, max } = getMinMaxForMetric(
+    biomarkerId,
+    demographic,
+    customReferenceRange,
+  )
   const isOptimized = value >= min && value <= max
   return (
     <dl className={`metric-chip ${isOptimized ? 'optimized' : ''}`}>

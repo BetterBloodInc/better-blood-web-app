@@ -8,7 +8,13 @@ import { getMinMaxForMetric } from '~src/utils/utils'
 export function BiomarkerMeasureCard({ metric }: { metric: Biomarker }) {
   const { data: userData, isFetching } = useActiveProfileQuery()
   const demographic = userData?.demographic
-  const { min, max } = getMinMaxForMetric(metric.id, demographic)
+  const customReferenceRange =
+    metric.id && userData?.referenceRanges?.[metric.id]
+  const { min, max } = getMinMaxForMetric(
+    metric.id,
+    demographic,
+    customReferenceRange,
+  )
   const data =
     userData?.biomarkers[metric.id]?.sort(
       (a, b) => b.timestamp - a.timestamp,

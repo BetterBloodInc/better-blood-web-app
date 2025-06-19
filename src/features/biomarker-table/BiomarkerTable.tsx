@@ -89,7 +89,13 @@ export function BiomarkerTable() {
         acc.all.push(item)
         return acc
       }
-      const { min, max } = getMinMaxForMetric(item.id, userData?.demographic)
+      const customReferenceRange =
+        item.id && userData?.referenceRanges?.[item.id]
+      const { min, max } = getMinMaxForMetric(
+        item.id,
+        userData?.demographic,
+        customReferenceRange,
+      )
       if (item.value < min) {
         item.status = 'low'
         acc.low.push(item)
@@ -297,7 +303,13 @@ export function BiomarkerTable() {
             label: 'Optimal Range',
             sortDisabled: true,
             render: ({ id, units }) => {
-              const { min, max } = getMinMaxForMetric(id, userData?.demographic)
+              const customReferenceRange =
+                id && userData?.referenceRanges?.[id]
+              const { min, max } = getMinMaxForMetric(
+                id,
+                userData?.demographic,
+                customReferenceRange,
+              )
               if (!min && !max) {
                 return 'TBD'
               }

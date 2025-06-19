@@ -30,12 +30,20 @@ export function MetricLineChart({
   const isDarkMode = useDarkModeSelector()
   const { data: userData, isFetching } = useActiveProfileQuery()
   const demographic = userData?.demographic
-  const { min, max } = getMinMaxForMetric(metric.id, demographic)
+  const customReferenceRange =
+    metric.id && userData?.referenceRanges?.[metric.id]
+  const { min, max } = getMinMaxForMetric(
+    metric.id,
+    demographic,
+    customReferenceRange,
+  )
 
-  const formattedData = data.map((m) => ({
-    ...m,
-    date: new Date(m.timestamp).toISOString().split('T')[0],
-  }))
+  const formattedData = [...data]
+    .map((m) => ({
+      ...m,
+      date: new Date(m.timestamp).toISOString().split('T')[0],
+    }))
+    .sort((a, b) => a.date.localeCompare(b.date))
 
   const baseColor = isDarkMode ? '#FFF' : '#000'
 
@@ -56,7 +64,7 @@ export function MetricLineChart({
         borderRadius: 4,
       }}
     >
-      <h3>Measurements</h3>
+      <h3>Measurements Trend</h3>
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
           data={formattedData}

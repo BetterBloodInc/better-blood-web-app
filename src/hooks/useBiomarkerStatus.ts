@@ -8,7 +8,13 @@ export function useBiomarkerStatus(
   value: number | null | undefined,
 ) {
   const { data: userData } = useActiveProfileQuery()
-  const { min, max } = getMinMaxForMetric(biomarkerId, userData?.demographic)
+  const customReferenceRange =
+    biomarkerId && userData?.referenceRanges?.[biomarkerId]
+  const { min, max } = getMinMaxForMetric(
+    biomarkerId,
+    userData?.demographic,
+    customReferenceRange,
+  )
   let label = ''
   let status: Status = 'unknown'
   if (!min && !max) {

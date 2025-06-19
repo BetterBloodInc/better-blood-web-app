@@ -18,7 +18,13 @@ export function BiomarkerInterventionSection({
   const interventions = BIOMARKER_INTERVENTIONS_MAP[biomarkerId] ?? []
   const { data: userData, isFetching } = useActiveProfileQuery()
   const demographic = userData?.demographic
-  const { min, max } = getMinMaxForMetric(biomarkerId, demographic)
+  const customReferenceRange =
+    biomarkerId && userData?.referenceRanges?.[biomarkerId]
+  const { min, max } = getMinMaxForMetric(
+    biomarkerId,
+    demographic,
+    customReferenceRange,
+  )
   const data =
     userData?.biomarkers[biomarkerId]?.sort(
       (a, b) => b.timestamp - a.timestamp,
