@@ -2,6 +2,7 @@ import { OPTIMAL_BIOMARKER_RANGE_MAP } from '../constants/biomarker-ranges'
 import {
   AgeRange,
   BiomarkerId,
+  BiomarkerRange,
   Ethnicity,
   Gender,
 } from '../types/biomarker-types'
@@ -44,6 +45,7 @@ export function getAgeRangeFromAge(age: number | undefined | null): AgeRange {
 export function getMinMaxForMetric(
   biomarkerId: BiomarkerId,
   demographic: Demographic | undefined,
+  customRange: BiomarkerRange | undefined,
 ) {
   const ageRange = getAgeRangeFromAge(demographic?.age)
   const gender = demographic?.gender ?? Gender.Other
@@ -59,10 +61,10 @@ export function getMinMaxForMetric(
   const ethnicityRecord = byAgeRange?.[ethnicity]
   const byEthnicity = ethnicityRecord ?? byAgeRange?.[Ethnicity.Other]
 
-  const min = byEthnicity?.[0] ?? 0
-  const max = byEthnicity?.[1] ?? 0
+  const min = customRange?.min ?? byEthnicity?.[0] ?? 0
+  const max = customRange?.max ?? byEthnicity?.[1] ?? 0
   return {
-    sourceId: OPTIMAL_BIOMARKER_RANGE_MAP[biomarkerId]?.[0]?.source,
+    sourceId: customRange?.source ?? OPTIMAL_BIOMARKER_RANGE_MAP[biomarkerId]?.[0]?.source,
     referencedGender: genderRecord ? demographic?.gender : null,
     referencedAgeRange: ageRecord ? ageRange : null,
     referencedEthnicity: ethnicityRecord ? ethnicity : null,

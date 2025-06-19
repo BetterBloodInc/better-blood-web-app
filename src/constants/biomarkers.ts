@@ -554,7 +554,7 @@ export const BIOMARKERS: Biomarker[] = [
     id: BiomarkerId.ALT,
     name: 'Alanine Aminotransferase',
     description:
-      'Measures the level of ALT, an enzyme found in the liver that can indicate liver damage.',
+      'Alanine aminotransferase (ALT) is an enzyme found predominantly in the liver, but also in other tissues like the kidneys, heart, and muscles. It plays a role in protein metabolism, helping the liver break down proteins. An ALT blood test is often used to assess liver health, as elevated levels can indicate liver damage or disease, according to Mayo Clinic.',
     categories: [BiomarkerCategory.Liver],
     measurementUnit: 'IU/L',
     wikipedia: 'https://en.wikipedia.org/wiki/Alanine_transaminase',
@@ -717,7 +717,7 @@ export const BIOMARKERS: Biomarker[] = [
     categories: [BiomarkerCategory.Cardio],
     measurementUnit: 'mL/kg/min',
     wikipedia: 'https://en.wikipedia.org/wiki/VO2_max',
-  }
+  },
   // {
   //   id: BiomarkerId.IT_BioAge,
   //   name: 'Biological Age (InsideTracker)',

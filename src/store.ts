@@ -5,6 +5,7 @@ import { MenuReducer } from './layout/menu-slice'
 import { ConversationDrawerReducer } from './layout/conversation-drawer/slice'
 import { UploadFileReducer } from './modals/upload-file-modal/slice'
 import { EditBiomarkerModalReducer } from './modals/edit-biomarker-modal/slice'
+import { EditBiomarkerReferenceRangeModalReducer } from './modals/edit-biomarker-reference-range-modal/slice'
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     conversationDrawer: ConversationDrawerReducer,
     addBloodMetricsModal: AddBloodMetricsReducer,
     editBiomarkerModal: EditBiomarkerModalReducer,
+    editBiomarkerReferenceRangeModal: EditBiomarkerReferenceRangeModalReducer,
     uploadFileModal: UploadFileReducer,
   },
 })

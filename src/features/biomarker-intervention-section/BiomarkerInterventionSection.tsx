@@ -26,11 +26,13 @@ export function BiomarkerInterventionSection({
   const latestMetric = data[0]
   const latestValue = latestMetric?.value ?? 0
   const status =
-    latestValue < min
-      ? InterventionRequirement.Low
-      : latestValue > max
-        ? InterventionRequirement.High
-        : InterventionRequirement.None
+    latestMetric?.value === null || latestMetric?.value === undefined
+      ? InterventionRequirement.None
+      : latestValue < min
+        ? InterventionRequirement.Low
+        : latestValue > max
+          ? InterventionRequirement.High
+          : InterventionRequirement.None
   return (
     <Col id="interventions" gap="1rem" className="BiomarkerInterventionSection">
       <h3>

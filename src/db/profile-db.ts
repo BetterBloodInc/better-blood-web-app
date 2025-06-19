@@ -3,7 +3,7 @@ import { getDatabase } from './database'
 import { HealthConditions } from '~src/types/health-condition-types'
 import { INITIAL_BIOMARKER_MEASUREMENTS } from '~src/constants/user'
 import { IProfile } from '~src/types/user-types'
-
+import { BiomarkerId, BiomarkerRange } from '~src/types/biomarker-types'
 export class Profile implements IProfile {
   id?: number
   name: string // nickname
@@ -13,6 +13,7 @@ export class Profile implements IProfile {
   biomarkers: BiomarkerMeasurements
   interventions: any // TODO
   createdAt: number
+  referenceRanges: Partial<{ [key in BiomarkerId]: BiomarkerRange }>
 
   constructor(name: string) {
     this.name = name
@@ -20,6 +21,7 @@ export class Profile implements IProfile {
     this.demographic = {}
     this.healthConditions = {}
     this.biomarkers = INITIAL_BIOMARKER_MEASUREMENTS
+    this.referenceRanges = {}
   }
 
   add() {

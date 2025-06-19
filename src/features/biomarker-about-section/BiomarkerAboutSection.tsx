@@ -7,6 +7,8 @@ import { Button } from '~src/library/Button'
 import { Col } from '~src/library/Col'
 import { Row } from '~src/library/Row'
 import { Overline } from '~src/library/text/Overline'
+import { EditBiomarkerReferenceRangeModal } from '~src/modals/edit-biomarker-reference-range-modal/EditBiomarkerReferenceRangeModal'
+import { useToggleEditBiomarkerReferenceRangeModal } from '~src/modals/edit-biomarker-reference-range-modal/slice'
 import {
   AgeRange,
   Biomarker,
@@ -23,6 +25,8 @@ const GENDER_MAP = {
 
 export function BiomarkerAboutSection({ biomarker }: { biomarker: Biomarker }) {
   const { data: profile, isFetching } = useActiveProfileQuery()
+  const customReferenceRange =
+    biomarker.id && profile?.referenceRanges?.[biomarker.id]
   const {
     min,
     max,
@@ -30,8 +34,13 @@ export function BiomarkerAboutSection({ biomarker }: { biomarker: Biomarker }) {
     referencedAgeRange,
     referencedEthnicity,
     referencedGender,
-  } = getMinMaxForMetric(biomarker.id, profile?.demographic)
+  } = getMinMaxForMetric(
+    biomarker.id,
+    profile?.demographic,
+    customReferenceRange,
+  )
   const source = sourceId ? BIOMARKER_RANGE_SOURCES[sourceId] : null
+  const openModal = useToggleEditBiomarkerReferenceRangeModal()
   return (
     <Col style={{ gap: '1rem', alignItems: 'flex-start' }}>
       <Col gap="0.5rem">
@@ -74,13 +83,15 @@ export function BiomarkerAboutSection({ biomarker }: { biomarker: Biomarker }) {
             {biomarker.measurementUnit}
           </div>
           <p>
-            {formatReferenceText(
-              referencedGender,
-              referencedAgeRange,
-              referencedEthnicity,
-            )}
+            {customReferenceRange
+              ? 'This is your personally set reference range.'
+              : formatReferenceText(
+                  referencedGender,
+                  referencedAgeRange,
+                  referencedEthnicity,
+                )}
           </p>
-          {source?.url && (
+          {source?.url && !customReferenceRange && (
             <p>
               Reference range from{' '}
               <a href={source.url} style={{ fontSize: 16 }}>
@@ -88,8 +99,19 @@ export function BiomarkerAboutSection({ biomarker }: { biomarker: Biomarker }) {
               </a>
             </p>
           )}
+          <Row>
+            <Button
+              text={
+                customReferenceRange ? 'Edit custom range' : 'Set custom range'
+              }
+              onClick={() => {
+                openModal(true, biomarker.id, sourceId, min, max)
+              }}
+            />
+          </Row>
         </Col>
       </Row>
+      <EditBiomarkerReferenceRangeModal />
     </Col>
   )
 }

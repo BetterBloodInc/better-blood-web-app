@@ -447,7 +447,7 @@ export const PROVIDER_TESTS: Record<ProviderId, ProviderTest[]> = {
         'This panel measures your red blood cell count, hemoglobin, hematocrit, and other markers to help you monitor your risk of anemia.',
       link: 'https://www.questhealth.com/product/anemia-test-panel-12977M.html',
       providerId: 'QUESTHEALTH',
-      price: 64,
+      price: 185,
       priceUnit: 'USD',
       measuredBiomarkers: [
         BiomarkerId.Hgb,

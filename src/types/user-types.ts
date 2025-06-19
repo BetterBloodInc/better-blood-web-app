@@ -1,4 +1,9 @@
-import { BiomarkerId, Ethnicity, Gender } from './biomarker-types'
+import {
+  BiomarkerId,
+  BiomarkerRange,
+  Ethnicity,
+  Gender,
+} from './biomarker-types'
 import {
   ConditionSeverity,
   HealthConditionID,
@@ -14,6 +19,7 @@ export interface IProfile {
   biomarkers: BiomarkerMeasurements
   interventions: any // TODO
   createdAt: number
+  referenceRanges: Partial<{ [key in BiomarkerId]: BiomarkerRange }>
 }
 
 export type Demographic = {

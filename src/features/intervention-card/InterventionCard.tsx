@@ -27,15 +27,21 @@ export function InterventionCard({
       </div>
     )
   }
+  const badgeColor =
+    status === InterventionRequirement.None
+      ? 'yellow'
+      : intervention.requirements.includes(status)
+        ? 'green'
+        : 'red'
   return (
     <div className="intervention-card">
-      <Row justify="between" gap="4px" align="start">
-        <Col gap="0.5rem">
+      <Row justify="between" gap="1rem" align="start">
+        <Col gap="4px">
           <Overline>{lookedUpIntervention?.category}</Overline>
           <h4>{lookedUpIntervention?.name}</h4>
         </Col>
         <Badge
-          color={intervention.requirements.includes(status) ? 'green' : 'red'}
+          color={badgeColor}
           dark={isDarkMode}
           text={
             intervention.requirements.length === 1
@@ -46,7 +52,6 @@ export function InterventionCard({
           }
         />
       </Row>
-
       <p>{intervention?.description}</p>
       {!!intervention.resources?.length && (
         <>

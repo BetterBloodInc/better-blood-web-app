@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
-import { BiomarkerId } from '~src/types/biomarker-types'
+import { BiomarkerId, BiomarkerRange } from '~src/types/biomarker-types'
 import { Demographic, BiomarkerMeasurement } from '~src/types/user-types'
 import { Profile } from '~src/db/profile-db'
 
@@ -115,6 +115,42 @@ export const useDeleteBiomarkerMeasurementMutation = () => {
       profile.biomarkers[biomarkerId] = profile.biomarkers[biomarkerId].filter(
         (m) => m.timestamp !== timestamp,
       )
+      await profile.save()
+      refetch()
+    },
+  })
+}
+
+export const useAddBiomarkerReferenceRangeMutation = () => {
+  const { data: profile, refetch } = useActiveProfileQuery()
+  return useMutation({
+    mutationKey: ['useAddBiomarkerReferenceRangeMutation'],
+    mutationFn: async (range: BiomarkerRange) => {
+      if (!profile) {
+        return
+      }
+      if (!profile.referenceRanges) {
+        profile.referenceRanges = {}
+      }
+      profile.referenceRanges[range.id] = range
+      await profile.save()
+      refetch()
+    },
+  })
+}
+
+export const useDeleteBiomarkerReferenceRangeMutation = () => {
+  const { data: profile, refetch } = useActiveProfileQuery()
+  return useMutation({
+    mutationKey: ['useDeleteBiomarkerReferenceRangeMutation'],
+    mutationFn: async (id: BiomarkerId) => {
+      if (!profile) {
+        return
+      }
+      if (!profile.referenceRanges) {
+        profile.referenceRanges = {}
+      }
+      delete profile.referenceRanges[id]
       await profile.save()
       refetch()
     },

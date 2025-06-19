@@ -178,3 +178,10 @@ export interface Biomarker {
   measurementUnit: string
   wikipedia?: string
 }
+
+export interface BiomarkerRange {
+  id: BiomarkerId
+  source?: BiomarkerRangeSourceId
+  min?: number
+  max?: number
+}
