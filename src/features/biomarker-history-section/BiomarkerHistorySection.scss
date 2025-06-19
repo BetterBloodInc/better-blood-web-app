@@ -16,3 +16,13 @@
     }
   }
 }
+@media print {
+  .BiomarkerHistorySection {
+    page-break-inside: avoid;
+    .button,
+    p,
+    .icon-button {
+      display: none;
+    }
+  }
+}

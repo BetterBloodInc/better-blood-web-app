@@ -4,10 +4,16 @@ import { Biomarker } from '~src/types/biomarker-types'
 import { Badge } from '~src/library/Badge'
 import { BiomarkerMeasurement } from '~src/types/user-types'
 import { Row } from '~src/library/Row'
-import { useDeleteBiomarkerMeasurementMutation } from '~src/api/profiles-api'
+import {
+  useActiveProfileQuery,
+  useDeleteBiomarkerMeasurementMutation,
+} from '~src/api/profiles-api'
 import { useToggleEditBiomarkerModal } from '~src/modals/edit-biomarker-modal/slice'
 import { IconButton } from '~src/library/IconButton'
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { getMinMaxForMetric } from '~src/utils/utils'
+import { BiomarkerStatus } from './biomarker-status/BiomarkerStatus'
+import { useBiomarkerStatus } from '~src/hooks/useBiomarkerStatus'
 export function MetricTable({
   metric,
   data,
@@ -56,6 +62,39 @@ export function MetricTable({
           render: ({ value }) => `${value} ${metric.measurementUnit}`,
         },
         // TODO add column for change since previous result
+        {
+          key: 'status',
+          label: 'Status',
+          sortDisabled: true,
+          render: ({ biomarkerId, value }) => {
+            return <BiomarkerStatus biomarkerId={biomarkerId} value={value} />
+          },
+        },
+        {
+          key: 'change',
+          label: 'Change',
+          sortDisabled: true,
+          render: ({ biomarkerId, value }, index) => {
+            const { label } = useBiomarkerStatus(biomarkerId, value)
+            const previousValue = data[index + 1]?.value ?? value
+            const delta = value - previousValue
+            return (
+              <div
+                className={
+                  delta === 0
+                    ? undefined
+                    : (label === 'Low' && delta < 0) ||
+                        (label === 'High' && delta > 0)
+                      ? 'text-red'
+                      : 'text-green'
+                }
+              >
+                {delta === 0 ? '' : delta > 0 ? '+' : '-'}
+                {Math.abs(delta).toFixed(2)} {metric.measurementUnit}
+              </div>
+            )
+          },
+        },
         {
           label: 'Actions',
           key: 'value',

@@ -31,3 +31,9 @@
     gap: 0.5rem;
   }
 }
+
+@media print {
+  .footer-links {
+    display: none;
+  }
+}

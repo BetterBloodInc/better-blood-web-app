@@ -146,3 +146,9 @@
     z-index: 99;
   }
 }
+
+@media print {
+  .nav-container {
+    display: none;
+  }
+}

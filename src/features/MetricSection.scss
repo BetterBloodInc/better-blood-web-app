@@ -86,3 +86,9 @@
     width: auto;
   }
 }
+
+@media print {
+  .MetricSection {
+    flex-direction: column;
+  }
+}

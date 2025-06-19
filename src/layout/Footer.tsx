@@ -14,7 +14,7 @@ export function Footer() {
         style={{ flexDirection: breakpoint === 'mobile' ? 'column' : 'row' }}
       >
         <Row>Better Blood Inc. is a registered non-profit organization in the United States.</Row>
-        <Row gap={12} justify="center">
+        <Row gap={12} justify="center" className="footer-links">
           <a href="/disclaimer">Disclaimer</a>
           <a href="https://betterblood.ai/privacy">Privacy</a>
         </Row>

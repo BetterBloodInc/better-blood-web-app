@@ -24,3 +24,11 @@
     display: none;
   }
 }
+
+@media print {
+  .top-bar {
+    .button {
+      display: none;
+    }
+  }
+}

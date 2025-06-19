@@ -12,3 +12,9 @@
     }
   }
 }
+
+@media print {
+  .BiomarkerInterventionSection {
+    display: none;
+  }
+}

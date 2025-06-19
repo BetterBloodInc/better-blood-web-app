@@ -17,6 +17,8 @@ import {
 } from '~src/types/biomarker-types'
 import { getMinMaxForMetric } from '~src/utils/utils'
 
+import './BiomarkerAboutSection.scss'
+
 const GENDER_MAP = {
   Male: 'men',
   Female: 'women',
@@ -42,7 +44,7 @@ export function BiomarkerAboutSection({ biomarker }: { biomarker: Biomarker }) {
   const source = sourceId ? BIOMARKER_RANGE_SOURCES[sourceId] : null
   const openModal = useToggleEditBiomarkerReferenceRangeModal()
   return (
-    <Col style={{ gap: '1rem', alignItems: 'flex-start' }}>
+    <Col style={{ gap: '1rem', alignItems: 'flex-start' }} className="biomarker-about-section">
       <Col gap="0.5rem">
         <h3>
           What is <span className="biomarker-name">{biomarker.name}</span>?

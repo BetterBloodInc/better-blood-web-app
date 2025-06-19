@@ -12,3 +12,9 @@
     }
   }
 }
+
+@media print {
+  .BiomarkerTestSection {
+    display: none;
+  }
+}

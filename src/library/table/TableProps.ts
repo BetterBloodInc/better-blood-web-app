@@ -8,7 +8,7 @@ export interface ColumnDefinition<E> {
   key: string
   label?: string
   cellClassName?: string
-  render?(item: E, index?: number): any
+  render?(item: E, index: number): any
   emptyLabel?: string
   getSortKey?(item: E): any
   sortDisabled?: boolean
