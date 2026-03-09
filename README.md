@@ -35,7 +35,8 @@ The main Better Blood app: biomarker tracking, diet log, exercise log, and AI ch
 ## Getting started
 
 ```bash
-# From repo root
+# Clone the repo
+git clone https://github.com/BetterBloodInc/better-blood-web-app.git
 cd better-blood-web-app
 
 # Use Node 22 (if using nvm)
@@ -103,6 +104,21 @@ Deploys to **AWS S3** with **CloudFront** invalidation.
    ```
 
    This runs `deploy.sh`: sources `.env`, builds with Vite, runs `copy-public.sh`, then `aws s3 sync` and `aws cloudfront create-invalidation`. Do not commit `.env`.
+
+---
+
+## Contributing
+
+- **Default branch:** `main`
+- **Repo:** https://github.com/BetterBloodInc/better-blood-web-app
+- The git repo lives in this directory (`better-blood-web-app/`). Always run git commands from here.
+- Push with `git push` — upstream is `origin/main`.
+
+```bash
+git add -A
+git commit -m "Short description of changes"
+git push
+```
 
 ---
 

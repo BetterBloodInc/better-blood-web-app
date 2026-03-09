@@ -1,0 +1,49 @@
+---
+description: Git workflow — repo structure, branching, commit, and push conventions
+globs: ""
+alwaysApply: true
+---
+
+# Git Workflow
+
+## Repository
+
+- **GitHub:** https://github.com/BetterBloodInc/better-blood-web-app
+- **Default branch:** `main`
+- The git repo lives inside `better-blood-web-app/` (not the parent workspace).
+- Always run git commands from the `better-blood-web-app/` directory.
+
+## Workspace layout
+
+The Cursor workspace may be rooted at a parent directory (e.g. `betterblood/`), but the `.git` repo is inside `better-blood-web-app/`. When committing or pushing, **always `cd` into `better-blood-web-app/` first**.
+
+```
+betterblood/                  ← workspace root (no git remote)
+└── better-blood-web-app/     ← git repo, origin → GitHub
+```
+
+## Branching
+
+- Work on `main` by default.
+- Push with `git push` (upstream is `origin/main`).
+- For feature work, branch off `main` and open a PR back to `main`.
+
+## Committing
+
+- Stage with `git add -A` (or selectively).
+- Write concise commit messages: summary line + optional bullet list of changes.
+- Never commit `.env`, credentials, or secrets.
+
+## Pushing
+
+```bash
+cd better-blood-web-app
+git add -A
+git commit -m "Your message"
+git push
+```
+
+## Important
+
+- Do NOT add a remote or push from the parent `betterblood/` directory.
+- Do NOT push to a `master` branch — the default is `main`.
