@@ -14,6 +14,12 @@ The main Better Blood app: biomarker tracking, diet log, exercise log, and AI ch
 
 ---
 
+## Legal / disclaimer
+
+Better Blood is **not a medical device** and does not provide medical advice. Use it for personal tracking and education only. Always consult a qualified healthcare professional before making decisions about your health. The app and AI chat are provided “as is” without warranty. See the in-app Disclaimer (linked in the app footer), [LICENSE](LICENSE), and [SECURITY.md](SECURITY.md) for full terms.
+
+---
+
 ## Tech stack
 
 - **Runtime:** Node 22+ (see [.nvmrc](.nvmrc))
