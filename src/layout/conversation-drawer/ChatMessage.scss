@@ -1,0 +1,58 @@
+@import '../../palette.scss';
+.ChatMessage {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  .overline {
+    font-weight: 600;
+  }
+  p:last-child {
+    margin: 0;
+  }
+}
+.ChatMessage__prompt,
+.ChatMessage__response {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-radius: 4px;
+}
+.ChatMessage__response {
+  line-height: 1.5;
+
+  background: #234;
+  color: rgba(255, 255, 255, 0.87);
+  p {
+    color: rgba(255, 255, 255, 0.87);
+  }
+  .overline:first-child {
+    color: $secondary-color;
+    opacity: 1;
+  }
+
+  li:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+  ol {
+    list-style: nth;
+    padding-left: 1.5rem;
+  }
+  ul {
+    list-style: circle;
+    padding-left: 1.5rem;
+  }
+}
+
+.dark-mode {
+  .ChatMessage__response {
+    background: #123;
+    color: rgba(255, 255, 255, 0.87);
+    p {
+      color: rgba(255, 255, 255, 0.87);
+    }
+    .overline:first-child {
+      color: $secondary-color;
+    }
+  }
+}

@@ -1,0 +1,102 @@
+@import '../../palette.scss';
+
+.Profile-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+  width: 100%;
+}
+
+.Profile-section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-lg;
+}
+
+.Profile-sectionTitle {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.Profile-sectionContent {
+  width: 100%;
+
+  // Make all form fields full width so they align to the same column width
+  > .InputContainer,
+  > .pill-select,
+  > .Row {
+    width: 100%;
+  }
+}
+
+.Profile-weightRow,
+.Profile-heightRow {
+  width: 100%;
+
+  .options {
+    flex-wrap: nowrap;
+  }
+
+  // Number input grows; unit selector stays a consistent size
+  .InputContainer {
+    flex: 1 1 0;
+    min-width: 80px;
+  }
+
+  .pill-select {
+    flex: 0 0 auto;
+    min-width: 120px;
+  }
+}
+
+.Profile-dangerZone {
+  .Profile-sectionTitle {
+    color: $primary-color-light;
+  }
+}
+
+.dark-mode .Profile-dangerZone .Profile-sectionTitle {
+  color: $primary-color;
+}
+
+.Profile-dangerDescription {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: $color-text-muted;
+}
+
+.dark-mode .Profile-dangerDescription {
+  color: $color-text-muted-dark;
+}
+
+.Profile-deleteModal {
+  padding: $space-xl;
+  min-width: 320px;
+}
+
+.Profile-deleteModalTitle {
+  margin: 0 0 $space-md;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.Profile-deleteModalMessage {
+  margin: 0 0 $space-xl;
+  font-size: 16px;
+  line-height: 1.5;
+  color: $color-text-muted;
+}
+
+.dark-mode .Profile-deleteModalMessage {
+  color: $color-text-muted-dark;
+}
+
+.Profile-deleteModalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: $space-lg;
+}

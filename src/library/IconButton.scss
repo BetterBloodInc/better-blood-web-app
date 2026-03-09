@@ -1,0 +1,35 @@
+@import '../palette.scss';
+
+button.icon-button {
+  background: $color-bg-app;
+  padding: 10px 14px;
+  color: black;
+  font-family: Poppins, sans-serif;
+  border: 1px solid $color-border-light;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: 200ms;
+  &:hover {
+    background: $color-button-hover;
+    transform: scale(1.025);
+  }
+  svg {
+    color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.dark-mode {
+  button.icon-button {
+    background: $color-bg-button-dark;
+    border: 1px solid $color-border-dark;
+    color: white;
+    &:hover {
+      background: $color-bg-button-dark-hover;
+    }
+    svg {
+      color: white;
+    }
+  }
+}

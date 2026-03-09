@@ -1,0 +1,99 @@
+@import '../../palette.scss';
+
+a.home-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  svg {
+    color: $primary-color-light;
+    font-size: 32px;
+  }
+}
+
+.dark-mode a.home-card {
+  color: white;
+  svg {
+    color: $primary-color;
+  }
+}
+
+.Home-onboarding {
+  padding: $space-2xl;
+}
+
+.Home-summaryBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-sm;
+  padding: $space-sm $space-md;
+  border-radius: $radius-lg;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+  .count {
+    font-weight: 600;
+  }
+  &:hover {
+    opacity: 0.9;
+  }
+  &.good {
+    background: rgba($tertiary-color-light, 0.15);
+    color: darken($tertiary-color-light, 15%);
+  }
+  &.bad {
+    background: rgba($primary-color-light, 0.15);
+    color: darken($primary-color-light, 15%);
+  }
+}
+
+.dark-mode .Home-summaryBadge.good {
+  background: rgba($tertiary-color, 0.2);
+  color: $tertiary-color;
+}
+
+.dark-mode .Home-summaryBadge.bad {
+  background: rgba($primary-color, 0.2);
+  color: $primary-color;
+}
+
+.Home-recent {
+  h3 {
+    color: $dark-color;
+  }
+}
+
+.dark-mode .Home-recent h3 {
+  color: white;
+}
+
+.Home-recentRow {
+  display: block;
+  padding: $space-sm $space-md;
+  border-radius: $radius-md;
+  text-decoration: none;
+  color: $dark-color;
+  transition: background 0.15s ease;
+  .name {
+    font-weight: 500;
+  }
+  .value {
+    font-weight: 600;
+  }
+  .date {
+    font-size: 13px;
+    opacity: 0.8;
+  }
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.dark-mode .Home-recentRow {
+  color: white;
+  &:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.06);
+  }
+}

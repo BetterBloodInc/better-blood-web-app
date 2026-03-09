@@ -1,0 +1,61 @@
+@import '../palette.scss';
+
+button.button {
+  background: $color-bg-app;
+  padding: 10px 14px;
+  color: black;
+  font-family: Poppins, sans-serif;
+  border: 1px solid $color-border-light;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: $radius-sm;
+  white-space: nowrap;
+  transition: 200ms;
+  &:hover:not(:disabled) {
+    cursor: pointer;
+    background: $color-button-hover;
+    transform: scale(1.025);
+  }
+  svg {
+    color: rgba(0, 0, 0, 0.5);
+  }
+  &:disabled {
+    opacity: 0.5;
+  }
+}
+
+button.button--danger {
+  background: $color-danger;
+  border-color: $color-danger;
+  color: white;
+  &:hover:not(:disabled) {
+    background: $color-danger-hover;
+    border-color: $color-danger-border;
+  }
+  svg {
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.dark-mode {
+  button.button {
+    background: $color-bg-button-dark;
+    border: 1px solid $color-border-dark;
+    color: white;
+    &:hover:not(:disabled) {
+      background: $color-bg-button-dark-hover;
+    }
+    svg {
+      color: white;
+    }
+  }
+  button.button--danger {
+    background: $color-danger-dark;
+    border-color: $color-danger-dark-border;
+    color: white;
+    &:hover:not(:disabled) {
+      background: $color-danger-dark-hover;
+      border-color: $color-danger-dark-border;
+    }
+  }
+}

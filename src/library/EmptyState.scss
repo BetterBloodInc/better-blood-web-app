@@ -1,0 +1,51 @@
+@import '../palette.scss';
+
+.EmptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $space-3xl $space-xl;
+  text-align: center;
+}
+
+.EmptyState-icon {
+  color: $color-text-placeholder;
+  font-size: 48px;
+  margin-bottom: $space-lg;
+}
+
+.dark-mode .EmptyState-icon {
+  color: $color-text-placeholder-dark;
+}
+
+.EmptyState-content {
+  max-width: 360px;
+  align-items: center;
+}
+
+.EmptyState-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: $dark-color;
+}
+
+.dark-mode .EmptyState-title {
+  color: white;
+}
+
+.EmptyState-description {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: $color-text-muted;
+}
+
+.dark-mode .EmptyState-description {
+  color: $color-text-muted-dark;
+}
+
+.EmptyState-action {
+  margin-top: $space-lg;
+}

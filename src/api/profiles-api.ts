@@ -1,0 +1,204 @@
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { BiomarkerId, BiomarkerRange } from '~src/types/biomarker-types'
+import { Demographic, BiomarkerMeasurement } from '~src/types/user-types'
+import { Profile } from '~src/db/profile-db'
+
+export const setActiveProfileId = (id: number) => {
+  if (localStorage) {
+    localStorage.setItem('activeProfileId', `${id}`)
+  }
+}
+
+export const useActiveProfileQuery = () =>
+  useQuery({
+    queryKey: ['useActiveProfileQuery'],
+    queryFn: async (): Promise<Profile | null> => {
+      try {
+        if (localStorage) {
+          const activeProfileId = localStorage.getItem('activeProfileId')
+          if (activeProfileId) {
+            const activeProfileIdNumber = parseInt(activeProfileId)
+            let foundProfile = await Profile.fetchById(activeProfileIdNumber)
+            if (!foundProfile) {
+              const profiles = await Profile.fetchAll()
+              if (profiles.length > 0) {
+                localStorage.setItem(
+                  'activeProfileId',
+                  `${profiles[0].id ?? 1}`,
+                )
+                foundProfile = profiles[0]
+              } else {
+                const profile = new Profile('New Profile')
+                await profile.save()
+                localStorage.setItem('activeProfileId', `${profile.id ?? 1}`)
+                return profile
+              }
+            }
+            return foundProfile ?? null
+          } else {
+            const profile = new Profile('New Profile')
+            await profile.save()
+            localStorage.setItem('activeProfileId', `${profile.id ?? 1}`)
+            return profile
+          }
+        }
+      } catch (e) {
+        console.error(e)
+      }
+      return null
+    },
+  })
+
+export const useProfilesQuery = () =>
+  useQuery({
+    queryKey: ['useProfilesQuery'],
+    queryFn: async (): Promise<Profile[]> => {
+      try {
+        return await Profile.fetchAll()
+      } catch (e) {
+        console.error(e)
+      }
+      return []
+    },
+  })
+
+export type SaveProfilePayload = {
+  name: string
+  demographic: Demographic
+}
+
+export const useSaveProfileMutation = () => {
+  const { data: profile, refetch } = useActiveProfileQuery()
+  return useMutation({
+    mutationKey: ['useSaveProfileMutation'],
+    mutationFn: async ({ name, demographic }: SaveProfilePayload) => {
+      if (!profile) {
+        return
+      }
+      profile.name = name
+      profile.demographic = demographic
+      await profile.save()
+      refetch()
+    },
+  })
+}
+
+export const useSaveDemographicsMutation = () => {
+  const { data: profile, refetch } = useActiveProfileQuery()
+  return useMutation({
+    mutationKey: ['useSaveDemographicsMutation'],
+    mutationFn: async (demographic: Demographic) => {
+      if (!profile) {
+        return
+      }
+      profile.demographic = demographic
+      await profile.save()
+      refetch()
+    },
+  })
+}
+
+export const useAddBiomarkerMeasurementMutation = () => {
+  const queryClient = useQueryClient()
+  const { data: profile, refetch } = useActiveProfileQuery()
+  return useMutation({
+    mutationKey: ['useAddBiomarkerMeasurementMutation'],
+    mutationFn: async (metric: BiomarkerMeasurement) => {
+      if (!profile) {
+        return
+      }
+      if (!profile.biomarkers[metric.biomarkerId]) {
+        profile.biomarkers[metric.biomarkerId] = []
+      }
+      profile.biomarkers[metric.biomarkerId].push(metric)
+      await profile.save()
+      await refetch()
+    },
+    onMutate: async (metric: BiomarkerMeasurement) => {
+      await queryClient.cancelQueries({ queryKey: ['useActiveProfileQuery'] })
+      const previous =
+        queryClient.getQueryData<Profile | null>(['useActiveProfileQuery'])
+      const current = previous
+      if (!current) return { previous }
+      const nextBiomarkers = { ...current.biomarkers }
+      const existing = nextBiomarkers[metric.biomarkerId] ?? []
+      nextBiomarkers[metric.biomarkerId] = [...existing, metric]
+      const optimistic = Object.assign(new Profile(current.name), {
+        ...current,
+        biomarkers: nextBiomarkers,
+      })
+      queryClient.setQueryData(['useActiveProfileQuery'], optimistic)
+      return { previous }
+    },
+    onError: (_err, _metric, context) => {
+      if (context?.previous != null) {
+        queryClient.setQueryData(['useActiveProfileQuery'], context.previous)
+      }
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['useActiveProfileQuery'] })
+    },
+  })
+}
+
+export const useDeleteBiomarkerMeasurementMutation = () => {
+  const { data: profile, refetch } = useActiveProfileQuery()
+  return useMutation({
+    mutationKey: ['useDeleteBiomarkerMeasurementMutation'],
+    mutationFn: async ({
+      biomarkerId,
+      timestamp,
+    }: {
+      biomarkerId: BiomarkerId
+      timestamp: number
+    }) => {
+      if (!profile) {
+        return
+      }
+      if (!profile.biomarkers[biomarkerId]) {
+        profile.biomarkers[biomarkerId] = []
+      }
+      profile.biomarkers[biomarkerId] = profile.biomarkers[biomarkerId].filter(
+        (m) => m.timestamp !== timestamp,
+      )
+      await profile.save()
+      refetch()
+    },
+  })
+}
+
+export const useAddBiomarkerReferenceRangeMutation = () => {
+  const { data: profile, refetch } = useActiveProfileQuery()
+  return useMutation({
+    mutationKey: ['useAddBiomarkerReferenceRangeMutation'],
+    mutationFn: async (range: BiomarkerRange) => {
+      if (!profile) {
+        return
+      }
+      if (!profile.referenceRanges) {
+        profile.referenceRanges = {}
+      }
+      profile.referenceRanges[range.id] = range
+      await profile.save()
+      refetch()
+    },
+  })
+}
+
+export const useDeleteBiomarkerReferenceRangeMutation = () => {
+  const { data: profile, refetch } = useActiveProfileQuery()
+  return useMutation({
+    mutationKey: ['useDeleteBiomarkerReferenceRangeMutation'],
+    mutationFn: async (id: BiomarkerId) => {
+      if (!profile) {
+        return
+      }
+      if (!profile.referenceRanges) {
+        profile.referenceRanges = {}
+      }
+      delete profile.referenceRanges[id]
+      await profile.save()
+      refetch()
+    },
+  })
+}

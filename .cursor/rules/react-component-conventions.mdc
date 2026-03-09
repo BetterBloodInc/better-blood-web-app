@@ -1,0 +1,51 @@
+---
+description: BetterBlood React/TypeScript component conventions — naming, file structure, library usage
+globs: "**/*.tsx"
+alwaysApply: false
+---
+
+# React Component Conventions
+
+## File structure
+
+- One component per file. File name matches component name.
+- Colocate `.scss` with `.tsx` in the same directory.
+- Feature components go in `src/features/feature-name/`.
+- Page components go in `src/pages/page-name/`.
+- Reusable UI goes in `src/library/`.
+
+## Component patterns
+
+```tsx
+// ✅ Named export for components
+export function MyComponent({ title }: Props) { ... }
+
+// ✅ Also acceptable
+export const MyComponent: React.FC<Props> = ({ title }) => { ... }
+```
+
+## Library components — use what exists
+
+Use existing library components instead of raw HTML:
+
+- `<Col>` / `<Row>` for flex layout (not raw `div` with `display: flex`)
+- `<Card>` for elevated content containers
+- `<Button>` / `<IconButton>` for actions
+- `<Input>`, `<PillSelect>`, `<Dropdown>`, `<DatePicker>` for form controls
+- `<Badge>` for status labels
+- `<TabGroup>` for tabbed content
+- `<PageContainer>` + `<PageHeader>` for page layout
+
+## Styling
+
+- Use SCSS files colocated with the component, not inline styles.
+- Exception: dynamic values that depend on props/state can use `style={}`.
+- Import palette tokens in SCSS — never hardcode colors/spacing.
+
+## Icons
+
+Use FontAwesome via `@fortawesome/react-fontawesome`. Import from `free-solid-svg-icons`, `free-regular-svg-icons`, or `free-brands-svg-icons`.
+
+## Theme
+
+Access dark mode via `useDarkModeSelector()` from `~src/theme-slice`. In SCSS, use the `.dark-mode` parent selector pattern.

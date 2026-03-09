@@ -1,0 +1,38 @@
+@import '../palette.scss';
+
+.PageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+}
+
+.PageHeader__row {
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: $space-lg;
+}
+
+.PageHeader__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: $space-xs;
+  font-size: 14px;
+}
+
+.PageHeader__description {
+  margin: 0;
+}
+
+.PageHeader__actions {
+  flex-shrink: 0;
+  align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .PageHeader__row {
+    flex-direction: column;
+  }
+  .PageHeader__actions {
+    width: 100%;
+  }
+}

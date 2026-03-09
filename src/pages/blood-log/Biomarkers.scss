@@ -1,0 +1,13 @@
+@import '../../palette.scss';
+
+.Biomarkers-viewToggle {
+  .Biomarkers-viewOption.is-active .icon-button {
+    background: rgba(0, 0, 0, 0.12);
+  }
+}
+
+.dark-mode .Biomarkers-viewToggle {
+  .Biomarkers-viewOption.is-active .icon-button {
+    background: rgba(255, 255, 255, 0.15);
+  }
+}

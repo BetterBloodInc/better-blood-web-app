@@ -1,0 +1,52 @@
+---
+description: Enforces BetterBlood page layout conventions — PageContainer, PageHeader, heading hierarchy, spacing
+globs: "**/pages/**/*.tsx"
+alwaysApply: false
+---
+
+# Page Layout Strategy
+
+Every page must use `PageContainer` and `PageHeader` for consistent layout.
+
+## Required structure
+
+```tsx
+import { PageContainer } from '~src/library/PageContainer'
+import { PageHeader } from '~src/library/PageHeader'
+
+export const MyPage = () => {
+  return (
+    <PageContainer size="default">
+      <PageHeader
+        title="Page Title"
+        description="Optional description"
+      />
+      {/* Sections — spaced automatically by PageContainer gap (2.5rem) */}
+      <section>...</section>
+    </PageContainer>
+  )
+}
+```
+
+## PageContainer sizes
+
+- `narrow` (600px) — forms, settings, profile
+- `default` (960px) — most pages
+- `wide` (1200px) — multi-column marketing layouts
+- `full` (no max-width) — data tables, detail pages needing horizontal space
+
+## PageHeader props
+
+- `title` (required) — renders as the page's single `<h1>`
+- `description` — subtitle paragraph
+- `actions` — buttons, right-aligned on desktop, stacked on mobile
+- `breadcrumb` — navigation trail above the title
+
+## Rules
+
+1. **One h1 per page** — always via `PageHeader`. Never use a raw `<h1>` tag.
+2. **No manual section spacing** — `PageContainer` gap handles it. Don't add `marginTop` between sections.
+3. **Heading hierarchy**: h1 (PageHeader) → h2 (sections) → h3 (cards/subsections) → h4 (labels)
+4. **Use Col with gap="1rem"** for items within a section (form fields, card lists).
+5. **Wrap in Fader** — web app `PageContainer` already wraps in `Fader`. Don't add another.
+6. **Pages rendered inside `<Page>`** (layout shell) should not import `Page` themselves — the router handles it.

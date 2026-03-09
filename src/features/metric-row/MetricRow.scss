@@ -1,0 +1,23 @@
+.metric-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+  .date-input {
+    width: 270px;
+  }
+  .value-input {
+    width: 200px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .metric-row {
+    flex-direction: column;
+    .date-input {
+        width: 100%;
+    }
+    .value-input {
+        width: 100%
+    }
+  }
+}

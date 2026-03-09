@@ -1,0 +1,29 @@
+@import '../palette.scss';
+
+.card {
+  padding: $space-2xl;
+  border-radius: $radius-sm;
+  background: $color-bg-card;
+  box-shadow: $shadow-card-light;
+  display: flex;
+  flex-direction: column;
+  border: $border-card-light;
+}
+
+.dark-mode {
+  .card {
+    background: $color-bg-card-dark;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    border-top: 2px solid $color-border-card-dark;
+    border-left: 2px solid $color-border-card-dark;
+    border-right: 2px solid $color-border-card-dark;
+    border-bottom: 2px solid transparent;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    padding: $space-xl;
+  }
+}

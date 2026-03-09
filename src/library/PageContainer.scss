@@ -1,0 +1,24 @@
+@import '../palette.scss';
+
+.PageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3xl;
+  width: 100%;
+}
+
+.PageContainer--narrow {
+  max-width: 600px;
+}
+
+.PageContainer--default {
+  max-width: 960px;
+}
+
+.PageContainer--wide {
+  max-width: 1200px;
+}
+
+.PageContainer--full {
+  max-width: none;
+}

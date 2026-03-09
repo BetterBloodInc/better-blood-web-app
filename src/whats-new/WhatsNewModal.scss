@@ -1,0 +1,39 @@
+@import '../palette.scss';
+
+.WhatsNewModal {
+  .WhatsNewModal-intro {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .WhatsNewModal-list {
+    overflow-y: auto;
+    max-height: 60vh;
+  }
+
+  .WhatsNewModal-entry {
+    margin-bottom: $space-xl;
+
+    h3 {
+      font-size: 16px;
+      margin: 0 0 $space-sm;
+    }
+
+    .WhatsNewModal-meta {
+      font-weight: 400;
+      opacity: 0.7;
+      font-size: 13px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: $space-xl;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    li {
+      margin-bottom: $space-xs;
+    }
+  }
+}

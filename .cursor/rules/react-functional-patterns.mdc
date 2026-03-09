@@ -1,0 +1,102 @@
+---
+description: React functional components, hooks order, callbacks, error handling (from cursor-rules-essentials)
+globs: ["**/*.tsx"]
+alwaysApply: false
+---
+
+# React Functional Patterns Best Practices
+
+Preferred patterns for React functional components and hooks. Project rule **react-component-conventions.mdc** defines file structure and library usage; this rule adds ordering and patterns.
+
+## Functional Component Syntax
+
+Use functional components. Prefer named exports. Return type can be `JSX.Element` or `JSX.Element | null`:
+
+```tsx
+// Preferred
+export const ComponentName = ({ prop1, prop2 }): JSX.Element => {
+  return <div>Content</div>;
+};
+
+// May return null
+export const ConditionalComponent = (): JSX.Element | null => {
+  if (someCondition) return null;
+  return <div>Content</div>;
+};
+```
+
+## Hooks Organization
+
+Order hooks in a logical sequence:
+
+```tsx
+export const Component = ({ initialData }): JSX.Element => {
+  // 1. State hooks first
+  const [data, setData] = useState(initialData);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // 2. Ref hooks
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // 3. Context hooks
+  const { user } = useUserContext();
+
+  // 4. Custom hooks
+  const { isSmallScreen } = useResponsive();
+
+  // 5. Data fetching or derived values (useMemo)
+  const filteredData = useMemo(() => data.filter((item) => item.isActive), [data]);
+
+  // 6. Effect hooks last
+  useEffect(() => { /* ... */ }, [dependencies]);
+
+  // 7. Event handlers and other functions
+  const handleClick = () => { /* ... */ };
+
+  // 8. Return JSX
+  return <div>{/* Content */}</div>;
+};
+```
+
+## Callback Functions
+
+Use appropriate callback patterns:
+
+```tsx
+// Functions that don't need dependencies — define outside component
+const formatDate = (date: Date): string => date.toLocaleDateString();
+
+export const Component = (): JSX.Element => {
+  // Handlers that use state/props — use useCallback when passed to children
+  const handleClick = useCallback(() => { /* ... */ }, [dependencies]);
+
+  // Simple handlers — can be inline
+  const handleToggle = () => { /* ... */ };
+
+  return <button onClick={handleClick}>Click me</button>;
+};
+```
+
+## Conditional Rendering
+
+Prefer clear patterns: early returns for loading/error, then main content.
+
+## List Rendering
+
+Use stable, unique keys. Prefer `item.id`; use index only when list is static and documented.
+
+## Error Handling
+
+Use error boundaries for child trees. For async operations, set error state in catch and render error UI. Clean up effects (see async-effect-patterns.mdc).
+
+## Accessibility
+
+Use semantic HTML and ARIA where needed (see a11y-standards.mdc): `aria-expanded`, `aria-controls`, `aria-hidden`, `aria-labelledby`.
+
+## Prop Handling
+
+Destructure props with defaults where it improves readability.
+
+## Clean Up Effects
+
+Always clean up side effects (subscriptions, timers, AbortController). See **async-effect-patterns.mdc** for async useEffect patterns.

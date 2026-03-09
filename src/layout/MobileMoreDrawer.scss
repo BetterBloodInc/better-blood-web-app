@@ -1,0 +1,112 @@
+@import '../palette.scss';
+
+.MobileMoreDrawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  border: none;
+  cursor: default;
+}
+
+.MobileMoreDrawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 70vh;
+  background: white;
+  border-radius: $radius-xl $radius-xl 0 0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.dark-mode .MobileMoreDrawer {
+  background: #234;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.MobileMoreDrawer-header {
+  padding: $space-lg $space-xl;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid $color-border-light;
+}
+
+.dark-mode .MobileMoreDrawer-header {
+  border-bottom-color: $color-border-dark;
+}
+
+.MobileMoreDrawer-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.MobileMoreDrawer-close {
+  padding: $space-sm;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  border-radius: $radius-sm;
+  &:hover {
+    background: rgba(0, 0, 0, 0.06);
+  }
+}
+
+.dark-mode .MobileMoreDrawer-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.MobileMoreDrawer-list {
+  overflow-y: auto;
+  padding: $space-sm 0;
+}
+
+.MobileMoreDrawer-item {
+  display: flex;
+  align-items: center;
+  gap: $space-lg;
+  width: 100%;
+  padding: $space-lg $space-xl;
+  border: none;
+  background: none;
+  font-family: Poppins, sans-serif;
+  font-size: 16px;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  svg:first-of-type {
+    width: 22px;
+    text-align: center;
+    opacity: 0.8;
+  }
+}
+
+.dark-mode .MobileMoreDrawer-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.MobileMoreDrawer-external {
+  margin-left: auto;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* Only show on mobile */
+@media screen and (min-width: 769px) {
+  .MobileMoreDrawer-overlay,
+  .MobileMoreDrawer {
+    display: none !important;
+  }
+}

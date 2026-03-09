@@ -1,0 +1,100 @@
+---
+description: AbortController for async useEffect, cleanup patterns, race condition prevention (from cursor-rules-essentials)
+globs: ["**/*.tsx", "**/*.ts"]
+alwaysApply: false
+severity: warn
+---
+
+# Async Effect Patterns
+
+## AbortController for Async Operations
+
+Async work in `useEffect` should be cancellable to avoid race conditions, state updates on unmounted components, and memory leaks.
+
+```typescript
+// ✅ Use this pattern
+useEffect(() => {
+  const controller = new AbortController();
+
+  const fetchData = async () => {
+    try {
+      const result = await api.getData({ signal: controller.signal });
+      setData(result);
+    } catch (err) {
+      if (!controller.signal.aborted) {
+        setError(err as Error);
+      }
+    }
+  };
+
+  fetchData();
+  return () => controller.abort();
+}, [dependency]);
+```
+
+## Loading and Error State
+
+```typescript
+const [isLoading, setIsLoading] = useState(false);
+const [error, setError] = useState<Error | null>(null);
+
+useEffect(() => {
+  const controller = new AbortController();
+
+  const fetchData = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const result = await api.getData({ signal: controller.signal });
+      setData(result);
+    } catch (err) {
+      if (!controller.signal.aborted) setError(err as Error);
+    } finally {
+      if (!controller.signal.aborted) setIsLoading(false);
+    }
+  };
+
+  fetchData();
+  return () => controller.abort();
+}, [dependency]);
+```
+
+## Debounced Effects
+
+Clear timeout and abort in cleanup:
+
+```typescript
+useEffect(() => {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(async () => {
+    try {
+      const result = await api.search(query, { signal: controller.signal });
+      setResults(result);
+    } catch (err) {
+      if (!controller.signal.aborted) setError(err as Error);
+    }
+  }, 300);
+
+  return () => {
+    clearTimeout(timeoutId);
+    controller.abort();
+  };
+}, [query]);
+```
+
+## Anti-patterns to Avoid
+
+```typescript
+// ❌ No cleanup — can set state after unmount
+useEffect(() => {
+  fetchData().then(setData);
+}, []);
+
+// ❌ Async function directly in useEffect (React warning)
+useEffect(async () => {
+  const data = await fetchData();
+  setData(data);
+}, []);
+
+// ❌ catch that runs on abort — check controller.signal.aborted before setError
+```

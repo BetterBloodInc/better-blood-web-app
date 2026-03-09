@@ -1,0 +1,24 @@
+@import '../../palette.scss';
+
+.drop-area {
+  border: 2px dashed #ccc;
+  border-radius: 4px;
+  padding: 3rem;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  &:hover {
+    border-color: $tertiary-color-light;
+    p {
+        color: $tertiary-color-light;
+    }
+  }
+}
+
+.drop-area.active {
+  border-color: #007bff;
+}
+
+.drop-area p {
+  margin: 0;
+}

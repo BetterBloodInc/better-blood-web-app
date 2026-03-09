@@ -1,0 +1,8 @@
+.ResultsSection {
+  flex-direction: row;
+}
+@media only screen and (max-width: 768px) {
+  .ResultsSection {
+    flex-direction: column;
+  }
+}

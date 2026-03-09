@@ -1,0 +1,26 @@
+@import '../../palette.scss';
+
+.biomarker-row-actions-cell {
+  width: 1%;
+  max-width: 7rem;
+  white-space: nowrap;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  text-align: right;
+}
+
+.biomarker-row-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.table-card tbody tr:hover .biomarker-row-actions {
+  opacity: 1;
+}
+
+.dark-mode .table-card tbody tr:hover .biomarker-row-actions {
+  opacity: 1;
+}

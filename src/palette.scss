@@ -1,0 +1,89 @@
+// =============================================================================
+// BetterBlood Design Tokens — single source of truth for colors, spacing, radius
+// Keep constants/theme.ts in sync with brand colors for JS/TS usage
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Brand colors (dark theme — default)
+// -----------------------------------------------------------------------------
+$primary-color: #F5567E;
+$secondary-color: #FFD186;
+$tertiary-color: #06D6A0;
+$quaternary-color: #118AB2;
+
+// Brand colors (light theme)
+$primary-color-light: #DF285F;
+$secondary-color-light: #FFB166;
+$tertiary-color-light: #00A680;
+$quaternary-color-light: #0A558C;
+
+// -----------------------------------------------------------------------------
+// Neutrals & base
+// -----------------------------------------------------------------------------
+$dark-color: #002238;
+$dark-color-2: #223344; // #234 shorthand expanded for clarity
+
+// Backgrounds
+$color-bg-html: #112233; // #123
+$color-bg-app: #ffffff;
+$color-bg-app-dark: linear-gradient(to bottom, #112233, #1f0e18);
+$color-bg-card: #fafafa;
+$color-bg-card-secondary: #f5f5f5;
+$color-bg-card-secondary-dark: rgba(255, 255, 255, 0.05);
+
+// Light mode shadows and borders (elevate light mode)
+$shadow-card-light: 0 1px 3px rgba(0, 0, 0, 0.08);
+$border-card-light: 1px solid rgba(0, 0, 0, 0.08);
+
+// Dark mode surfaces (gradients)
+$color-bg-nav-dark: linear-gradient(to bottom, #1a2a3a, #2a101f);
+$color-bg-card-dark: linear-gradient(to bottom, #1f2f3f, #2a3a4a);
+$color-bg-button-dark: linear-gradient(to bottom, #334455, #445566);
+$color-bg-button-dark-hover: linear-gradient(to bottom, #445566, #556677);
+$color-border-card-dark: rgba(255, 255, 255, 0.05);
+
+// Text
+$color-text-muted: rgba(0, 0, 0, 0.67);
+$color-text-muted-dark: rgba(255, 255, 255, 0.67);
+$color-text-placeholder: rgba(0, 0, 0, 0.5);
+$color-text-placeholder-dark: rgba(255, 255, 255, 0.5);
+
+// UI elements
+$color-tooltip-bg: #112233;
+$color-tooltip-bg-dark: #334455;
+$color-button-hover: #eeeeee;
+$color-border-light: rgba(0, 0, 0, 0.1);
+$color-border-dark: rgba(255, 255, 255, 0.1);
+$color-input-error: #ca0000;
+// Danger/destructive actions use brand primary (per brand guide: primary = alerts, errors)
+$color-danger: $primary-color-light;
+$color-danger-hover: darken($primary-color-light, 8%);
+$color-danger-border: darken($primary-color-light, 12%);
+$color-danger-dark: $primary-color;
+$color-danger-dark-hover: darken($primary-color, 8%);
+$color-danger-dark-border: darken($primary-color, 12%);
+
+// Focus ring uses tertiary (accessibility + brand)
+// Light: $tertiary-color-light, Dark: $tertiary-color
+$color-focus-bg-light: rgba($tertiary-color-light, 0.1);
+$color-focus-bg-dark: rgba($tertiary-color, 0.13);
+
+// -----------------------------------------------------------------------------
+// Spacing scale (4px base)
+// -----------------------------------------------------------------------------
+$space-xs: 0.25rem;  // 4px
+$space-sm: 0.5rem;   // 8px
+$space-md: 0.75rem;  // 12px
+$space-lg: 1rem;     // 16px
+$space-xl: 1.5rem;   // 24px
+$space-2xl: 2rem;    // 32px
+$space-3xl: 2.5rem;  // 40px
+
+// -----------------------------------------------------------------------------
+// Border radius
+// -----------------------------------------------------------------------------
+$radius-sm: 4px;   // buttons, inputs, cards
+$radius-md: 5px;   // nav links, secondary cards
+$radius-lg: 6px;   // pills
+$radius-xl: 10px;  // modals, large CTAs
+$radius-2xl: 12px; // input error state, large surfaces

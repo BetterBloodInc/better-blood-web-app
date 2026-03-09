@@ -1,0 +1,127 @@
+@import '../palette.scss';
+
+.CommandPalette {
+  display: flex;
+  flex-direction: column;
+  max-height: 70vh;
+  background: $color-bg-app;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .CommandPalette {
+  background: $color-bg-card-dark;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.CommandPalette-search {
+  display: flex;
+  align-items: center;
+  gap: $space-lg;
+  /* Match list padding so input lines up with items below */
+  padding: $space-sm;
+  border-bottom: 1px solid $color-border-light;
+}
+
+.dark-mode .CommandPalette-search {
+  border-bottom-color: $color-border-card-dark;
+}
+
+.CommandPalette-searchInput {
+  flex: 1;
+  min-width: 0;
+
+  .InputContainer {
+    margin-bottom: 0;
+  }
+}
+
+.CommandPalette-kbd {
+  font-size: 12px;
+  padding: $space-xs $space-sm;
+  border-radius: $radius-sm;
+  background: rgba(0, 0, 0, 0.06);
+  color: $color-text-muted;
+}
+
+.dark-mode .CommandPalette-kbd {
+  background: rgba(255, 255, 255, 0.1);
+  color: $color-text-muted-dark;
+}
+
+.CommandPalette-list {
+  overflow-y: auto;
+  padding: $space-sm;
+  max-height: 360px;
+}
+
+.CommandPalette-item {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  width: 100%;
+  padding: $space-md $space-lg;
+  border: none;
+  border-radius: $radius-md;
+  background: transparent;
+  font-family: Poppins, sans-serif;
+  font-size: 14px;
+  color: $dark-color;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &:hover,
+  &.selected {
+    background: rgba($quaternary-color-light, 0.12);
+  }
+
+  &[data-selected='true'] {
+    background: rgba($tertiary-color-light, 0.15);
+  }
+}
+
+.dark-mode .CommandPalette-item {
+  color: white;
+
+  &:hover,
+  &.selected {
+    background: rgba($quaternary-color, 0.2);
+  }
+
+  &[data-selected='true'] {
+    background: rgba($tertiary-color, 0.2);
+  }
+}
+
+.CommandPalette-itemIcon {
+  width: 20px;
+  color: $color-text-muted;
+  font-size: 14px;
+}
+
+.dark-mode .CommandPalette-itemIcon {
+  color: $color-text-muted-dark;
+}
+
+.CommandPalette-itemMeta {
+  margin-left: auto;
+  font-size: 12px;
+  color: $color-text-placeholder;
+}
+
+.dark-mode .CommandPalette-itemMeta {
+  color: $color-text-placeholder-dark;
+}
+
+.CommandPalette-empty {
+  padding: $space-2xl;
+  text-align: center;
+  color: $color-text-muted;
+  font-size: 14px;
+}
+
+.dark-mode .CommandPalette-empty {
+  color: $color-text-muted-dark;
+}

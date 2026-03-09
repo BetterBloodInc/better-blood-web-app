@@ -1,0 +1,42 @@
+.MobileNav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+  justify-content: space-between;
+  background: white;
+  a,
+  .MobileNav-more {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    text-align: center;
+    font-size: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    background: none;
+    font-family: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    svg {
+      font-size: 1.5rem;
+    }
+  }
+}
+.dark-mode {
+    .MobileNav {
+        background: #123;
+    }
+}
+@media screen and (max-width: 768px) {
+    .MobileNav {
+        display: flex;
+    }
+  }
+  

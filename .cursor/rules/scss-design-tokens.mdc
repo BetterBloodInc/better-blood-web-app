@@ -1,0 +1,88 @@
+---
+description: Enforces BetterBlood design tokens in SCSS files — colors, spacing, radius, surfaces
+globs: **/*.scss
+alwaysApply: false
+---
+
+# SCSS Design Tokens
+
+All styling values must come from `palette.scss` tokens. Never hardcode colors, spacing, or radii.
+
+## Import
+
+Every SCSS file must import the palette:
+
+```scss
+@import '../palette.scss';   // or ../../palette.scss depending on depth
+```
+
+## Colors — use tokens, never raw hex
+
+```scss
+// ❌ BAD
+background: #fff;
+background: #123;
+border: 1px solid rgba(0, 0, 0, 0.1);
+color: #4d9;
+
+// ✅ GOOD
+background: $color-bg-app;
+background: $color-bg-html;
+border: 1px solid $color-border-light;
+color: $tertiary-color-light;
+```
+
+Brand colors: `$primary-color`, `$secondary-color`, `$tertiary-color`, `$quaternary-color`
+Light variants: `$primary-color-light`, `$secondary-color-light`, etc.
+Surfaces: `$color-bg-app`, `$color-bg-card-dark`, `$color-bg-button-dark`, `$color-bg-nav-dark`
+Text: `$color-text-muted`, `$color-text-muted-dark`, `$color-text-placeholder`, `$color-text-placeholder-dark`
+Borders: `$color-border-light`, `$color-border-dark`, `$color-border-card-dark`
+Focus: `$color-focus-bg-light`, `$color-focus-bg-dark` with `$tertiary-color-light` / `$tertiary-color`
+Error: `$color-input-error`
+
+## Spacing — use scale tokens
+
+```scss
+// ❌ BAD
+padding: 8px;
+gap: 0.75rem;
+margin: 2rem;
+
+// ✅ GOOD
+padding: $space-sm;       // 0.5rem / 8px
+gap: $space-md;           // 0.75rem / 12px
+margin: $space-2xl;       // 2rem / 32px
+```
+
+Scale: `$space-xs` (4px), `$space-sm` (8px), `$space-md` (12px), `$space-lg` (16px), `$space-xl` (24px), `$space-2xl` (32px), `$space-3xl` (40px)
+
+## Border radius — use scale tokens
+
+```scss
+// ❌ BAD
+border-radius: 4px;
+border-radius: 10px;
+
+// ✅ GOOD
+border-radius: $radius-sm;   // 4px — buttons, inputs, cards
+border-radius: $radius-xl;   // 10px — modals
+```
+
+Scale: `$radius-sm` (4px), `$radius-md` (5px), `$radius-lg` (6px), `$radius-xl` (10px), `$radius-2xl` (12px)
+
+## Dark mode pattern
+
+Always nest dark overrides under `.dark-mode`:
+
+```scss
+.my-component {
+  background: $color-bg-app;
+  color: $dark-color;
+}
+.dark-mode {
+  .my-component {
+    background: $color-bg-card-dark;
+    color: white;
+  }
+}
+```

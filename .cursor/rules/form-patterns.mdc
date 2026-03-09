@@ -1,0 +1,72 @@
+---
+description: useWatch over watch(), memoize validation schemas, FormProvider when using react-hook-form (from cursor-rules-essentials)
+globs: ["**/*.tsx"]
+alwaysApply: false
+severity: warn
+---
+
+# React Hook Form Patterns
+
+When using **react-hook-form** in this project, follow these patterns.
+
+## useWatch over watch()
+
+`watch()` causes re-renders on every form change. Prefer `useWatch` for surgical updates.
+
+```typescript
+// ❌ Avoid — re-renders entire component on any field change
+const allValues = methods.watch();
+const singleValue = watch('fieldName');
+
+// ✅ Prefer — surgical re-renders
+import { useWatch } from 'react-hook-form';
+
+const value = useWatch({ name: 'fieldName', control });
+
+const [field1, field2] = useWatch({
+  name: ['fieldName1', 'fieldName2'],
+  control,
+});
+```
+
+## Memoize Validation Schemas
+
+Schemas are objects; recreating them every render triggers unnecessary validation.
+
+```typescript
+// ❌ Schema recreated every render
+const schema = yup.object({ email: yup.string().email().required() });
+
+// ✅ Memoized
+const schema = useMemo(
+  () => yup.object({ email: yup.string().email().required() }),
+  []
+);
+
+// ✅ Or define outside component if no dependencies
+const schema = yup.object({ email: yup.string().email().required() });
+```
+
+## FormProvider When Using Context
+
+If child components need `useFormContext`, wrap the form in `FormProvider`:
+
+```tsx
+import { useForm, FormProvider } from 'react-hook-form';
+
+const MyForm = () => {
+  const methods = useForm({ defaultValues: { field: '' } });
+
+  return (
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <input {...methods.register('field')} />
+      </form>
+    </FormProvider>
+  );
+};
+```
+
+## Form Inputs and A11y
+
+All inputs must have associated labels (see a11y-standards.mdc). Use project `Input` with `label` prop or explicit `<label htmlFor="...">` + `id`.

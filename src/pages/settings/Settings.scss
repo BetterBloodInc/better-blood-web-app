@@ -1,0 +1,15 @@
+@import '../../palette.scss';
+
+.Settings-label {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.Settings-hint {
+  font-size: 13px;
+  color: $color-text-muted;
+}
+
+.dark-mode .Settings-hint {
+  color: $color-text-muted-dark;
+}

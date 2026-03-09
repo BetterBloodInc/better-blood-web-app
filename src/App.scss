@@ -1,0 +1,240 @@
+@import './palette.scss';
+
+html {
+  background-color: $color-bg-html;
+  transition: background-color 0.2s ease;
+}
+
+body {
+  margin: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+button,
+div {
+  font-family: 'Poppins', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 28px;
+}
+h2 {
+  font-size: 24px;
+}
+h3 {
+  font-size: 20px;
+}
+h4 {
+  font-size: 16px;
+}
+h5 {
+  font-size: 14px;
+}
+h6 {
+  font-size: 12px;
+}
+
+strong {
+  font-weight: 600;
+}
+
+p {
+  color: $color-text-muted;
+  margin-bottom: $space-lg;
+  line-height: 1.5;
+  &:last-child {
+    margin: 0;
+  }
+}
+
+a {
+  color: $primary-color-light;
+  text-decoration: none;
+  line-height: 1.5;
+}
+
+.dark-mode p,
+.dark-mode li {
+  color: $color-text-muted-dark;
+}
+
+.App.dark-mode {
+  --scrollbar-color-track: rgba(0, 0, 0, 0.3);
+  --scrollbar-color-thumb: rgba(255, 255, 255, 0.1);
+  scrollbar-color: var(--scrollbar-color-thumb) var(--scrollbar-color-track);
+  scrollbar-highlight-color: rgba(255, 255, 255, 0.2);
+}
+
+.App {
+  font-family: 'Poppins', sans-serif;
+  background-color: $color-bg-app;
+  color: #000;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.App.dark-mode {
+  color: #fff;
+  background: $color-bg-app-dark;
+}
+
+input {
+  border: 0;
+  padding: 0 $space-md;
+  font-size: 16px;
+  border-radius: $radius-sm;
+  height: auto;
+  resize: vertical;
+  background: rgba(0, 0, 0, 0.1);
+  color: white;
+  outline: none;
+  &::placeholder {
+    font-size: 14px;
+    color: $color-text-placeholder;
+  }
+  &:focus {
+    box-shadow: inset 0 0 0 2px $tertiary-color-light;
+    background: $color-focus-bg-light;
+  }
+  &:disabled {
+    background: rgba(0, 0, 0, 0.1);
+    color: $color-text-placeholder;
+  }
+}
+
+.align-right {
+  text-align: right;
+}
+
+.text-green {
+  color: $tertiary-color-light;
+}
+.text-red {
+  color: $primary-color-light;
+}
+.text-yellow {
+  color: $secondary-color-light;
+}
+.biomarker-name {
+  color: $primary-color-light;
+}
+
+div.react-tooltip {
+  background: $color-tooltip-bg;
+  padding: $space-md;
+  opacity: 1;
+}
+
+.card-secondary {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: $space-sm;
+  border-radius: $radius-md;
+  background-color: $color-bg-card-secondary;
+  h4 {
+    font-size: 16px;
+  }
+  a {
+    font-size: 13px;
+  }
+  .overline {
+    color: black;
+  }
+}
+
+.dark-mode .card-secondary {
+  background-color: $color-bg-card-secondary-dark;
+  color: #fff;
+  .overline {
+    color: white;
+  }
+}
+
+.toast-with-undo {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+  padding: $space-sm $space-md;
+  border-radius: $radius-sm;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  &__button {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: $tertiary-color;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 13px;
+    padding: $space-xs $space-sm;
+    border-radius: $radius-sm;
+    &:hover {
+      text-decoration: underline;
+      background: rgba(255, 255, 255, 0.08);
+    }
+  }
+}
+
+.density-compact {
+  .card {
+    padding: $space-lg;
+  }
+  .table td,
+  .table th {
+    padding: 0.75rem;
+  }
+}
+
+.dark-mode {
+  div.react-tooltip {
+    background: $color-tooltip-bg-dark;
+  }
+  a {
+    color: $primary-color;
+    &:hover {
+      color: #fff;
+    }
+  }
+  .biomarker-name {
+    color: $secondary-color;
+  }
+  input {
+    background: rgba(0, 0, 0, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    &::placeholder {
+      color: $color-text-placeholder-dark;
+    }
+    &:focus {
+      box-shadow: inset 0 0 0 2px $tertiary-color;
+      background: $color-focus-bg-dark;
+    }
+  }
+  .text-green {
+    color: $tertiary-color;
+  }
+  .text-red {
+    color: $primary-color;
+  }
+  .text-yellow {
+    color: $secondary-color;
+  }
+}

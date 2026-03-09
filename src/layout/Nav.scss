@@ -1,0 +1,180 @@
+@import '../palette.scss';
+
+.nav-container {
+  color: $dark-color;
+  background: $color-bg-app;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 230px;
+  padding: 0 $space-sm; /* horizontal spacing so .nav-item can width:100% without overflow */
+  transition: 0.3s;
+  z-index: 3;
+  box-sizing: border-box;
+}
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: $space-2xl $space-lg;
+  gap: $space-sm;
+}
+.logo-text {
+  color: $dark-color;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 18px;
+  letter-spacing: 3px;
+  display: flex;
+  gap: 0.5rem;
+  span + span {
+    color: $primary-color-light;
+  }
+}
+.dark-mode {
+  .nav-container {
+    color: white;
+    background: $color-bg-nav-dark;
+  }
+  .logo-text {
+    color: $primary-color;
+    span + span {
+      color: white;
+    }
+  }
+}
+
+.nav-item-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: $primary-color-light;
+  pointer-events: none;
+}
+
+.dark-mode .nav-item-dot {
+  background: $primary-color;
+}
+
+/* Shared nav row: links and action buttons use the same layout and size */
+.nav-item {
+  display: flex;
+  gap: $space-xs;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: $space-md $space-sm;
+  margin: $space-xs 0;
+  border-radius: $radius-md;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  min-width: 0;
+  svg {
+    color: #3458;
+  }
+  .post-icon svg {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.75);
+  }
+  div {
+    color: rgba(0, 0, 0, 0.75);
+    font-weight: 400;
+  }
+  &:hover {
+    background: rgba(100, 150, 200, 0.1);
+  }
+  &.active {
+    background: rgba($primary-color-light, 0.1);
+    svg {
+      color: $primary-color-light;
+    }
+    div {
+      color: $primary-color-light;
+      font-weight: 500;
+    }
+  }
+  .nav-link-label {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.nav-container.collapsed {
+  width: 60px;
+  .logo-container {
+    padding: 1rem 0.5rem;
+  }
+  .logo-text {
+    display: none;
+  }
+  .nav-link-group-label {
+    display: none;
+  }
+  .nav-item {
+    padding: 0.75rem 0.25rem;
+    justify-content: center;
+    .nav-link-label {
+      display: none;
+    }
+  }
+}
+
+.dark-mode {
+  .nav-item {
+    svg {
+      color: #fff3;
+    }
+    .post-icon svg {
+      color: #fff9;
+    }
+    div {
+      color: #fff9;
+    }
+    &:hover {
+      svg {
+        color: #fffc;
+      }
+      div {
+        color: white;
+      }
+    }
+    &.active {
+      background-color: rgba(100, 150, 200, 0.2);
+      svg {
+        color: $primary-color;
+      }
+      div {
+        color: white;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  .nav-container {
+    opacity: 0;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+  }
+  .nav-container.open {
+    opacity: 1;
+    z-index: 99;
+  }
+}
+
+@media print {
+  .nav-container {
+    display: none;
+  }
+}

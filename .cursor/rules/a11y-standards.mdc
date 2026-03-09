@@ -1,0 +1,160 @@
+---
+description: ARIA labels, keyboard nav, focus management for interactive components (from cursor-rules-essentials)
+globs: ["**/*.tsx"]
+alwaysApply: false
+severity: warn
+---
+
+# Accessibility Standards (A11y)
+
+Accessibility violations are treated as **correctness issues**, not stylistic concerns.
+
+## Required Accessibility Rules
+
+### 1. Icon Buttons
+
+All IconButtons MUST have accessible labels:
+
+```tsx
+// ✅ REQUIRED - One of these patterns
+<IconButton
+  src="close"
+  ariaLabel="Close dialog"  // Required
+/>
+
+<IconButton
+  src="info"
+  aria-labelledby="info-label"  // Alternative
+/>
+
+// ❌ BLOCKED - Missing accessibility
+<IconButton src="close" />  // No label!
+```
+
+### 2. Images
+
+All images MUST include alt text:
+
+```tsx
+// ✅ REQUIRED
+<img src="car.jpg" alt="Red BMW sedan" />
+
+// ✅ Decorative images (empty alt allowed)
+<img src="decorative-line.svg" alt="" role="presentation" />
+
+// ❌ BLOCKED
+<img src="car.jpg" />  // Missing alt!
+```
+
+### 3. Modals and Dialogs
+
+Modals MUST:
+- Trap keyboard focus within the modal
+- Restore focus to trigger element on close
+- Be dismissible via ESC key
+- Have aria-modal="true" or role="dialog"
+
+```tsx
+// ✅ REQUIRED patterns
+<Modal
+  isOpen={isOpen}
+  onClose={handleClose}  // Handles ESC
+  aria-labelledby="modal-title"
+>
+  <h2 id="modal-title">Modal Title</h2>
+  {/* Focus trapped here */}
+</Modal>
+
+// ❌ BLOCKED - Missing focus management
+<div className="modal-overlay">
+  <div className="modal">...</div>  // No focus trap!
+</div>
+```
+
+### 4. Interactive Elements
+
+All interactive elements MUST be keyboard accessible:
+
+```tsx
+// ✅ REQUIRED - Native button (keyboard accessible)
+<button onClick={handleClick}>Click me</button>
+
+// ✅ REQUIRED - If using div, add role + keyboard
+<div
+  role="button"
+  tabIndex={0}
+  onClick={handleClick}
+  onKeyDown={(e) => e.key === 'Enter' && handleClick()}
+>
+  Click me
+</div>
+
+// ❌ BLOCKED - Not keyboard accessible
+<div onClick={handleClick}>Click me</div>  // Can't tab to this!
+```
+
+### 5. Form Inputs
+
+All form inputs MUST have associated labels:
+
+```tsx
+// ✅ REQUIRED
+<label htmlFor="email">Email</label>
+<input id="email" type="email" />
+
+// ✅ Using project Input/label patterns
+<Input id="email" label="Email" type="email" />
+
+// ❌ BLOCKED
+<input type="email" placeholder="Email" />  // Placeholder is NOT a label!
+```
+
+### 6. Color Contrast
+
+Text MUST meet WCAG contrast requirements:
+- Normal text: 4.5:1 minimum
+- Large text (>18pt): 3:1 minimum
+
+In this project use palette tokens (see scss-design-tokens.mdc): `$primary-color`, `$color-text-muted`, etc. — they are chosen for contrast. Avoid custom hex in SCSS without verification.
+
+### 7. Focus Indicators
+
+Focus states MUST be visible. Use project tokens: `$color-focus-bg-light`, `$color-focus-bg-dark`, `$tertiary-color-light` / `$tertiary-color` in SCSS.
+
+```scss
+// ✅ REQUIRED - Visible focus
+&:focus-visible {
+  outline: 2px solid $tertiary-color-light;
+  outline-offset: 2px;
+}
+
+// ❌ BLOCKED
+&:focus {
+  outline: none;  // Never remove focus without replacement!
+}
+```
+
+## Quick Checklist
+
+When creating or modifying UI:
+
+- [ ] All IconButtons have `ariaLabel` (or aria-label)
+- [ ] All images have `alt` text
+- [ ] Modals trap focus and handle ESC
+- [ ] All clickable elements are keyboard accessible
+- [ ] All form inputs have labels
+- [ ] Focus states are visible
+- [ ] Color contrast meets WCAG AA (use palette tokens)
+
+## Exceptions
+
+If an accessibility attribute is intentionally omitted:
+1. Document the reason in a comment
+2. Ensure alternative accessibility is provided
+
+```tsx
+// ✅ Documented exception
+// A11y: Decorative icon, text provides context
+<Icon src="check" aria-hidden="true" />
+<span>Success</span>
+```

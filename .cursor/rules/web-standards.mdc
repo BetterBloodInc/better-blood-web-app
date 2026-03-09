@@ -1,0 +1,53 @@
+---
+description: Component size, hook patterns, no inline components; styling in SCSS follows scss-design-tokens.mdc (from cursor-rules-essentials)
+globs: ["**/*.tsx", "**/*.ts"]
+alwaysApply: false
+---
+
+# Web Development Standards
+
+Guidance on component size, hooks, and structure. **For SCSS and design tokens use project rule scss-design-tokens.mdc** (palette.scss: `$space-*`, `$color-*`, `$radius-*`). This rule does not override that.
+
+## Component Size Limits
+
+Prefer keeping components within these ranges:
+
+| Metric        | Target | Warning | Critical |
+|---------------|--------|---------|----------|
+| Lines of code | < 150  | 150–300 | > 300    |
+| Imports       | < 20   | 20–35   | > 35     |
+| useState      | < 4    | 4–6     | > 6      |
+| useEffect     | < 3    | 3–5     | > 5      |
+
+If code exceeds warning limits, consider: decomposing into smaller components, extracting custom hooks, or splitting into sub-components.
+
+## Hook Patterns
+
+- **Async in useEffect**: Use AbortController and cleanup (see **async-effect-patterns.mdc**).
+- **Forms**: Prefer useWatch over watch(); memoize validation schemas (see **form-patterns.mdc**).
+- **No component definitions inside render**: Define components outside or wrap in memo; do not create a function component inside another component’s body.
+
+```tsx
+// ✅ Component outside or memoized
+const InfoTrigger = memo(({ onClick }: { onClick: () => void }) => (
+  <button onClick={onClick}>Info</button>
+));
+
+// ❌ Recreated every render
+const Parent = () => {
+  const InfoTrigger = () => <button>Info</button>;
+  return <InfoTrigger />;
+};
+```
+
+## Styling (SCSS)
+
+Use **scss-design-tokens.mdc**: import `palette.scss`, use `$space-*`, `$color-*`, `$radius-*`. No hardcoded colors, spacing, or radii in SCSS. Responsive: use the project’s breakpoint patterns and `.dark-mode` for theme.
+
+## Feature and File Structure
+
+Follow **react-component-conventions.mdc**: one component per file, colocate `.scss`, features in `src/features/`, pages in `src/pages/`, reusable UI in `src/library/`.
+
+## Error Handling
+
+Prefer typed errors in catch (e.g. `err as ApiError` or project error type) rather than `catch (err: any)`.
