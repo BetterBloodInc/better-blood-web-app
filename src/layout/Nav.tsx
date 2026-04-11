@@ -69,7 +69,7 @@ export function Nav() {
         actionOnly
         label="Search"
         icon={faMagnifyingGlass}
-        shortcut="⌘K"
+        shortcut="⌘K or ⌘⇧K"
         onClick={openCommandPalette}
         ariaLabel="Open command palette"
       />

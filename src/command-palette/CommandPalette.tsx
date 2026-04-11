@@ -162,7 +162,8 @@ export function CommandPalette() {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+      const isModK = (e.key === 'k' || e.key === 'K') && (e.metaKey || e.ctrlKey)
+      if (isModK) {
         e.preventDefault()
         toggle()
       }
@@ -247,7 +248,7 @@ export function CommandPalette() {
               autoComplete="off"
             />
           </div>
-          <kbd className="CommandPalette-kbd">⌘K</kbd>
+          <kbd className="CommandPalette-kbd">⌘K</kbd> or <kbd className="CommandPalette-kbd">⌘⇧K</kbd>
         </div>
         <div ref={listRef} className="CommandPalette-list" role="listbox">
           {filteredItems.length === 0 ? (

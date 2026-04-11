@@ -26,7 +26,10 @@ export function useGlobalShortcuts() {
       const inInput = isInputFocused()
       const isMod = e.metaKey || e.ctrlKey
 
-      if (e.key === 'k' && isMod) {
+      // Cmd+K is reserved by Chrome (address bar); Cmd+Shift+K and Ctrl+K work everywhere
+      const isPaletteShortcut =
+        (e.key === 'k' || e.key === 'K') && (e.metaKey || (e.ctrlKey && !e.shiftKey))
+      if (isPaletteShortcut) {
         e.preventDefault()
         togglePalette()
         return
